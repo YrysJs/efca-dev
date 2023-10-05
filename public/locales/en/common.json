@@ -1,0 +1,158 @@
+{
+  "name": {
+    "first-part": "EURASIA FUND",
+    "second-part": "OF CENTRAL ASIA",
+    "third-part": "IN KAZAKHSTAN"
+  },
+  "main": {
+    "more": "More details" 
+  },
+  "menu": {
+    "fund": {
+      "root": "About the fund",
+      "about-us": {
+        "root": "About us",
+        "desc": "Our mission, history"
+      },
+      "team": {
+        "root": "Command",
+        "desc": "Staff and board of trustees"
+      },
+      "annual-reports": {
+        "root": "Annual reports",
+        "desc": "Documentation of our activities"
+      },
+      "faq": {
+        "root": "FAQ",
+        "desc": "Current Issues"
+      }
+    },
+    "activities": {
+      "root": "Our activities",
+      "projects": {
+        "root": "Projects"
+      },
+      "success-stories": {
+        "root": "Success stories"
+      },
+      "grants-competetions": {
+        "root": "Grants and competitions"
+      }
+    },
+    "materials": {
+      "root": "Materials",
+      "for-business": {
+        "root": "For business"
+      },
+      "for-ngo": {
+        "root": "For NGOs"
+      },
+      "news": {
+        "root": "News"
+      },
+      "researches": {
+        "root": "Researches"
+      },
+      "benefits": {
+        "root": "Benefits"
+      }
+    },
+    "join": {
+      "root": "Join Us",
+      "vacancy": {
+        "root": "Vacancies"
+      },
+      "donors": {
+        "root": "Donors"
+      },
+      "partners": {
+        "root": "Partners"
+      },
+      "contacts": {
+        "root": "Contacts"
+      }
+    }
+  },
+  "footer": {
+    "offer": "Subscribe to the newsletter",
+    "placeholder": "Enter your Email",
+    "cta": "Subscribe",
+    "address": "050060, Almaty, st. Zharokova, 284/3",
+    "phone": "Phone",
+    "socials": "We are in social networks",
+    "emailError": "Please enter a valid e-mail address!"
+  },
+  "about-us": {
+    "history-title": "Our story",
+    "values-title": "Our Values"
+  },
+  "team": {
+    "head": "Board of trustees | Our employees",
+    "trustees": "Board of trustees",
+    "employees": "Our employees",
+    "show-more": "Show more"
+  },
+  "faq": {
+    "head": "Frequently asked questions"
+  },
+  "vacancy": {
+    "head": "Vacancy",
+    "cta": "More",
+    "active": "Active",
+    "passive": "Not active",
+    "links": "Links"
+  },
+  "researches": {
+    "head": "Researches"
+  },
+  "benefits": {
+    "head": "Benefits"
+  },
+  "contacts": {
+    "head": "Contacts",
+    "address": "Address"
+  },
+  "grants-competetions": {
+    "head": "Competitions",
+    "active": "Active",
+    "passive": "Not active"
+  },
+  "projects": {
+    "head": "Projects",
+    "select": "Select...",
+    "filter": {
+      "direction": "Direction",
+      "donor": "Donor",
+      "region": "Region",
+      "partners": "Partners",
+      "date": "Date",
+      "from": "from",
+      "to": "to",
+      "status": "Status",
+      "active": "Active",
+      "passive": "Finished"
+    },
+    "donor": "Donor",
+    "period": "Performance period",
+    "region": "Region",
+    "socials": "Social networks",
+    "more": "Learn more",
+    "contacts": "Contacts"
+  },
+  "success-stories": {
+    "head": "Success stories",
+    "select": "Select...",
+    "filter": {
+      "direction": "Direction",
+      "donor": "Donor",
+      "region": "Region",
+      "partners": "Partners",
+      "date": "Date",
+      "from": "from",
+      "to": "to",
+      "status": "Status",
+      "active": "Active",
+      "passive": "Finished"
+    }
+  }
+}

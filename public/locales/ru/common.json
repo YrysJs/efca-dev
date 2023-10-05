@@ -1,0 +1,161 @@
+{
+  "name": {
+    "first-part": "ФОНД ЕВРАЗИЯ",
+    "second-part": "ЦЕНТРАЛЬНОЙ АЗИИ",
+    "third-part": "В КАЗАХСТАНЕ"
+  },
+  "main": {
+    "more": "Подробнее"
+  },
+  "menu": {
+    "fund": {
+      "root": "О фонде",
+      "about-us": {
+        "root": "О нас",
+        "desc": "Наша миссия, история"
+      },
+      "team": {
+        "root": "Команда",
+        "desc": "Сотрудники и совет попечителей"
+      },
+      "annual-reports": {
+        "root": "Годовые отчеты",
+        "desc": "Документация нашей деятельности"
+      },
+      "faq": {
+        "root": "FAQ",
+        "desc": "Актуальные вопросы"
+      }
+    },
+    "activities": {
+      "root": "Наша деятельность",
+      "projects": {
+        "root": "Проекты"
+      },
+      "success-stories": {
+        "root": "Истории успеха"
+      },
+      "grants-competetions": {
+        "root": "Гранты и конкурсы"
+      }
+    },
+    "materials": {
+      "root": "Материалы",
+      "for-business": {
+        "root": "Для бизнеса"
+      },
+      "for-ngo": {
+        "root": "Для нко"
+      },
+      "news": {
+        "root": "Новости"
+      },
+      "researches": {
+        "root": "Исследования"
+      },
+      "benefits": {
+        "root": "Пособия"
+      }
+    },
+    "join": {
+      "root": "Присоединяйтесь",
+      "vacancy": {
+        "root": "Вакансии"
+      },
+      "donors": {
+        "root": "Доноры"
+      },
+      "partners": {
+        "root": "Партнеры"
+      },
+      "contacts": {
+        "root": "Контакты"
+      }
+    }
+  },
+  "footer": {
+    "offer": "Подпишитесь на новостную рассылку",
+    "placeholder": "Введите ваш Email",
+    "cta": "Подписаться",
+    "address": "050060, г. Алматы, ул. Жарокова, 284/3",
+    "phone": "Телефон",
+    "socials": "Мы в соцсетях",
+    "emailError": "Введите корректный e-mail адрес!"
+  },
+  "about-us": {
+    "history-title": "Наша история",
+    "values-title": "Наши ценности"
+  },
+  "team": {
+    "head": "Совет попечителей | Наши сотрудники",
+    "trustees": "Совет попечителей",
+    "employees": "Наши сотрудники",
+    "show-more": "Показать больше"
+  },
+  "faq": {
+    "head": "Часто задаваемые вопросы"
+  },
+  "vacancy": {
+    "head": "Вакансии",
+    "cta": "Подробнее",
+    "active": "Активен",
+    "passive": "Не активен",
+    "links": "Ссылки"
+  },
+  "researches": {
+    "head": "Исследования"
+  },
+  "benefits": {
+    "head": "Пособия"
+  },
+  "contacts": {
+    "head": "Контакты",
+    "address": "Адрес"
+  },
+  "grants-competetions": {
+    "head": "Конкурсы",
+    "active": "Активен",
+    "passive": "Не активен"
+  },
+  "projects": {
+    "head": "Проекты",
+    "select": "Выбрать...",
+    "filter": {
+      "direction": "Направление",
+      "donor": "Донор",
+      "region": "Регион",
+      "partners": "Партнеры",
+      "date": "Дата",
+      "from": "c",
+      "to": "по",
+      "status": "Статус",
+      "active": "Активные",
+      "passive": "Завершенные"
+    },
+    "donor": "Донор",
+    "period": "Срок реализации",
+    "region": "Регион",
+    "socials": "Социальные сети",
+    "more": "Узнайте больше",
+    "contacts": "Контакты"
+  },
+  "success-stories": {
+    "head": "Истории успеха",
+    "select": "Выбрать...",
+    "filter": {
+      "direction": "Направление",
+      "donor": "Донор",
+      "region": "Регион",
+      "partners": "Партнеры",
+      "date": "Дата",
+      "from": "c",
+      "to": "по",
+      "status": "Статус",
+      "active": "Активные",
+      "passive": "Завершенные"
+    }
+  },
+  "donors": {
+    "head": "Доноры"
+  }
+}
