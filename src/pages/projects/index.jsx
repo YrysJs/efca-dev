@@ -128,7 +128,7 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
           </aside>
           <div className="ml-12 flex-[3]">
             <div className="h-[38px]"></div>
-            {/* <div className="mt-6 flex flex-col">
+            <div className="mt-6 flex flex-col">
               {data.map(item => (
                 <Link key={item.id} href={`/projects/${item.id}`}>
                   <div className="mb-6 min-h-[264px] flex cursor-pointer">
@@ -162,7 +162,7 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
                   </div>
                 </Link>
               ))}
-            </div> */}
+            </div>
             <div>
               <Pagination
                 totalCount={count}
