@@ -10,7 +10,7 @@ const nextConfig = {
     BASE_URL: 'http://194.4.56.53/api'
   },
   images: {
-    domains: ['images.unsplash.com', 'purepng.com'],
+    domains: ['images.unsplash.com', 'purepng.com', '194.4.56.53'],
     remotePatterns: [
       {
         protocol: 'http',

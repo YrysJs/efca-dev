@@ -17,8 +17,44 @@ const settings = {
   speed: 1000,
   slidesToShow: 5,
   slidesToScroll: 1,
-  initialSlide: 2
+  initialSlide: 2,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: false
+      }
+    }
+  ],
 }
+
+const settingsLastSlide = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  arrows: false,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  initialSlide: 1,
+  centerMode: false,
+  swipeToSlide: true,
+  customPaging: function (i) {
+    return (
+      <div className="custom-dot"></div>
+    );
+  },
+  appendDots: (dots) => (
+    <div>
+      <ul className='custom-dots' style={{ display: 'flex', justifyContent: 'center', alignItems: "center", position: "relative", top: "10px"}}>
+        {dots}
+      </ul>
+    </div>
+  ),
+}
+
 const About = ({ main_block, histories, values }) => {
   const { t } = useTranslation()
   const sliderRef = useRef(null)
@@ -60,21 +96,21 @@ const About = ({ main_block, histories, values }) => {
             </div>
           </div>
         </div>
-        <div className="relative flex-[3]">
+        <div className="relative h-[340px] md:h-[440px] lg:h-[auto] lg:flex-[3]">
           <Image
             src={main_block.image}
             priority={true}
             fill={true}
             alt={main_block.main_title}
             objectFit='cover'
-            objectPosition='center'
+            objectPosition='bottom'
           />
         </div>
       </section>
-      <section className="relative py-12 flex flex-col">
-        <h2 className="text-3xl font-bold text-primaryDark uppercase text-center">{t('about-us.history-title')}</h2>
+      <section className="relative py-6 lg:py-12 flex flex-col">
+        <h2 className="text-2xl lg:text-3xl font-bold text-primaryDark uppercase px-3 lg:px-0 lg:text-center">{t('about-us.history-title')}</h2>
         {activeSlide !== null && (
-          <div className="absolute left-0 right-0 mx-auto drop-shadow flex flex-col items-center animate-[growUp_0.3s_ease-in-out_forwards]" style={{ bottom: bottom + 'px' }}>
+          <div className="absolute left-0 right-0 mx-auto drop-shadow flex flex-col px-3 lg:px-0 items-center animate-[growUp_0.3s_ease-in-out_forwards]" style={{ bottom: bottom + 'px' }}>
             <div className="p-7 max-w-[430px] bg-white rounded-2xl font-semibold">
               {histories[activeSlide].text}
             </div>
@@ -83,7 +119,7 @@ const About = ({ main_block, histories, values }) => {
             </svg>
           </div>
         )}
-        <div ref={containerRef} className="relative mt-72">
+        <div ref={containerRef} className="relative mt-[400px] lg:mt-72">
           <div className="absolute top-[50%] left-0 w-full h-1 bg-[#ACA7E9]" />
           <Slider 
             ref={sliderRef} 
@@ -94,7 +130,7 @@ const About = ({ main_block, histories, values }) => {
             {histories.map((item, index) => (
               <div key={item.year} className="!flex justify-center items-center">
                 <div 
-                  className={clsx('w-[6vw] h-[6vw] rounded-full font-semibold text-white cursor-pointer flex justify-center items-center', {
+                  className={clsx('w-[60px] h-[60px] lg:w-[6vw] lg:h-[6vw] rounded-full font-semibold text-white cursor-pointer flex justify-center items-center', {
                     ['bg-primaryLight']: index !== activeSlide,
                     ['bg-primary']: index === activeSlide,
                   })}
@@ -107,29 +143,54 @@ const About = ({ main_block, histories, values }) => {
           </Slider>
         </div>
       </section>
-      <section className="py-12">
+      <section className="py-6 lg:py-12">
         <Container className="flex flex-col">
-          <h2 className="text-3xl font-bold text-primaryDark uppercase text-center">{t('about-us.values-title')}</h2>
-          {values.map((item, index) => (
-            <div key={index} className={clsx('mt-12 min-h-[398px] flex', {
-              ['flex-row']: index % 2 === 0,
-              ['flex-row-reverse']: index % 2 > 0,
-            })}>
-              <div className="flex-1 flex justify-center items-center">
-                <div className="max-w-[400px] flex flex-col">
-                  <span className="text-2xl font-semibold">{item.title}</span>
-                  <span className="mt-5 font-medium">{item.text}</span>
+          <h2 className="text-2xl md:text-3xl font-bold text-primaryDark uppercase px-3 md:px-0 md:text-center">{t('about-us.values-title')}</h2>
+          <div className='hidden md:block px-3'>
+            {values.map((item, index) => (
+              <div key={index} className={clsx('mt-12 min-h-[398px] flex', {
+                ['flex-row']: index % 2 === 0,
+                ['flex-row-reverse']: index % 2 > 0,
+              })}>
+                <div className="flex-1 flex justify-center items-center">
+                  <div className="max-w-[400px] flex flex-col">
+                    <span className="text-2xl font-semibold">{item.title}</span>
+                    <span className="mt-5 font-medium">{item.text}</span>
+                  </div>
+                </div>
+                <div className="relative overflow-hidden rounded-2xl flex-1">
+                  <Image
+                    src={item.image}
+                    fill={true}
+                    alt={item.title}
+                    objectFit='cover'
+                  />
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-2xl flex-1">
-                <Image
-                  src={item.image}
-                  fill={true}
-                  alt={item.title}
-                />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="mt-6 mb-6">
+            <Slider {...settingsLastSlide} className="w-full h-[576px]">
+              {values.map((item, index) => (
+                <div key={index} className='min-h-[398px] flex'>
+                  <div className="relative overflow-hidden flex-1 h-[318px]">
+                    <Image
+                      src={item.image}
+                      fill={true}
+                      alt={item.title}
+                      objectFit='cover'
+                    />
+                  </div>
+                  <div className="py-6 px-3">
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-semibold">{item.title}</span>
+                      <span className="mt-2 tex-base font-medium">{item.text}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
         </Container>
       </section>
     </>

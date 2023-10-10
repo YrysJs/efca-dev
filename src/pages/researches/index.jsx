@@ -13,28 +13,51 @@ const Researches = ({ data, count, currentPage }) => {
       <Head>
         <title>{t('researches.head')}</title>
       </Head>
-      <section className="py-8 px-3 md:py-8 md:px-8 lg:py-10">
+      <section className="py-6 px-3 md:py-8 md:px-8 lg:py-10">
         <Container className="flex flex-col">
-          <div>
-            <h1 className="text-2xl/8 lg:text-3xl font-bold text-primaryDark uppercase">{t('researches.head')}</h1>
+          <div className="w-full flex items-center justify-between">
+            <h1 className="text-2xl lg:text-3xl font-bold text-primaryDark uppercase">{t('researches.head')}</h1>
+            <div className="flex flex-end h-[38px]">
+              <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
+                <input
+                  className="ml-auto w-[70%] py-2 px-3 outline-none placeholder:text-right"
+                  type="text"
+                  placeholder="Поиск"
+                />
+                <div className="cursor-pointer">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                  >
+                    <path
+                      d="M14.0948 12.3124C13.7043 11.9219 13.0711 11.9219 12.6806 12.3124C12.2901 12.7029 12.2901 13.3361 12.6806 13.7266L14.0948 12.3124ZM17.6806 18.7266C18.0711 19.1172 18.7043 19.1172 19.0948 18.7266C19.4853 18.3361 19.4853 17.7029 19.0948 17.3124L17.6806 18.7266ZM9.22103 13.6862C6.55165 13.6862 4.3877 11.5222 4.3877 8.85286H2.3877C2.3877 12.6268 5.44708 15.6862 9.22103 15.6862V13.6862ZM4.3877 8.85286C4.3877 6.18349 6.55165 4.01953 9.22103 4.01953V2.01953C5.44708 2.01953 2.3877 5.07892 2.3877 8.85286H4.3877ZM9.22103 4.01953C11.8904 4.01953 14.0544 6.18349 14.0544 8.85286H16.0544C16.0544 5.07892 12.995 2.01953 9.22103 2.01953V4.01953ZM14.0544 8.85286C14.0544 11.5222 11.8904 13.6862 9.22103 13.6862V15.6862C12.995 15.6862 16.0544 12.6268 16.0544 8.85286H14.0544ZM12.6806 13.7266L17.6806 18.7266L19.0948 17.3124L14.0948 12.3124L12.6806 13.7266Z"
+                      fill="#343BFF"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="lg:mt-6 lg:ml-auto w-full lg:max-w-[66%]">
+          <div className="mt-6 lg:mt-0 lg:mt-6 lg:ml-auto w-full lg:max-w-[66%]">
             {data.map(item => (
-              <div key={item.id} className="mb-6 min-h-[292px] flex flex-col lg:flex-row">
+              <div key={item.id} className="mb-6 min-h-[292px] flex flex-col md:flex-row">
                 <div className="relative flex-1 min-h-[300px] lg:min-h-auto">
                   <Image
                     src={item.image}
                     fill={true}
                     alt={item.title}
-                    objectFit='coler'
+                    objectFit='cover'
                   />
                 </div>
-                <div className="p-6 flex-[2]">
-                  <h3 className="text-2xl text-primaryDark font-semibold">{item.title}</h3>
-                  <p className="mt-4 text-lg font-medium">{item.text}</p>
-                  <div className="mt-6 flex justify-end items-center">
+                <div className="p-4 md:p-6 flex-[2]">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl text-primaryDark font-semibold">{item.title}</h3>
+                  <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
+                  <div className="mt-4 lg:mt-6 text-xs sm:text-sm flex justify-end items-center">
                     <Link href={item.file.path}>
-                      <div className="px-7 py-3 rounded-[40px] bg-secondaryDark flex items-center">
+                      <div className="px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-secondaryDark flex items-center">
                         <span className="mr-2 font-semibold text-primary">
                           {item.file.type}, {(item.file.size / 1024).toFixed(1)} MB
                         </span>

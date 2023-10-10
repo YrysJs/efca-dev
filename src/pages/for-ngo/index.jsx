@@ -122,7 +122,7 @@ const AnnualReports = () => {
           <div className="w-full flex items-center justify-between">
             <h1 className="text-2xl/8 lg:text-3xl font-bold text-primaryDark uppercase">Для НКО</h1>
             <div className="flex flex-end h-[38px]">
-              <div className="ml-auto flex flex-row items-center justify-between w-fit">
+              <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
                 <input
                   className="ml-auto w-[70%] py-2 px-3 outline-none placeholder:text-right"
                   type="text"

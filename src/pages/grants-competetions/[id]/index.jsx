@@ -15,9 +15,9 @@ const GrantsCompetitionsDetails = ({ data }) => {
         <title>{t('grants-competetions.head') || ''} | {data?.title || ''}</title>
         <meta name="description" content={data?.text} />
       </Head>
-      <div className="py-10">
-        <Container>
-          <aside className="flex-1 p-4 h-fit bg-secondary rounded-lg">
+      <div className="py-6 md:py-8 lg:py-10">
+        <Container className='flex-col-reverse lg:flex-row'>
+          <aside className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:flex lg:flex-1 p-4 h-fit lg:bg-secondary rounded-lg">
             {data.other.map(item => (
               <div key={item.id} className="overflow-hidden mb-4 w-full flex flex-col rounded-lg">
                 <div className="relative w-full h-[168px]">
@@ -25,23 +25,24 @@ const GrantsCompetitionsDetails = ({ data }) => {
                     src={item.image}
                     fill={true}
                     alt={item.title}
+                    objectFit='cover'
                   />
                 </div>
                 <div className="p-4 bg-white flex flex-col">
-                  <span className="text-xs font-medium text-lightgray">{item.date_from}</span>
-                  <span className="text-lg font-medium text-primaryDark">{item.title}</span>
+                  <span className="text-[10px] sm:text-xs font-medium text-lightgray">{item.date_from}</span>
+                  <span className="text-base sm:text-lg font-medium text-primaryDark">{item.title}</span>
                 </div>
               </div>
             ))}
           </aside>
-          <section className="ml-12 flex-[4]">
-            <h1 className="text-2xl font-bold">{data.title}</h1>
-            <div className="mt-4 px-7 py-3 w-fit rounded-[40px] bg-secondaryDark font-semibold text-primary">
+          <section className="ml-0 lg:ml-12 flex-[4]">
+            <h1 className="px-3 lg:px-0 text-xl lg:text-2xl font-bold">{data.title}</h1>
+            <div className="mt-6 md:mt-4 px-7 py-[9px] lg:py-3 w-full lg:w-fit rounded-[0px] lg:rounded-[40px] bg-secondaryDark font-semibold text-primary text-sm lg:text-base">
               Дата открытия {data.date_from} {'->'} Дата закрытия {data.date_to}
             </div>
-            <div className="my-6 flex">
+            <div className="my-4 md:my-6 flex">
               <div className="w-4 bg-primary" style={{ flex: '1 0 8px' }} />
-              <p className="ml-12 text-lg font-medium">{data.text}</p>
+              <p className="ml-2 md:ml-12 text-sm md:text-lg font-medium">{data.text}</p>
             </div>
             <ModifiedJSX html={data.detail}/>
           </section>
@@ -57,11 +58,11 @@ const ModifiedJSX = ({ html }) => {
     if (React.isValidElement(element)) {
       const elementType = element.type
       if (elementType === 'ol') {
-        return React.cloneElement(element, { className: 'mb-6 list-decimal list-inside' }, React.Children.map(element.props.children, applyStyles))
+        return React.cloneElement(element, { className: 'px-3 lg:px-0 mb-6 list-decimal list-inside' }, React.Children.map(element.props.children, applyStyles))
       } else if (elementType === 'li') {
-        return React.cloneElement(element, { className: 'text-lg font-medium' })
+        return React.cloneElement(element, { className: 'px-3 lg:px-0 text-sm md:text-lg font-medium' })
       } else if (elementType === 'p') {
-        return React.cloneElement(element, { className: 'text-lg font-medium' })
+        return React.cloneElement(element, { className: 'px-3 lg:px-0 text-sm md:text-lg font-medium' })
       }
     }
     return element

@@ -21,6 +21,10 @@ const Footer = () => {
   const [subFooterState, setSubFooterState] = useState(false)
   const { t } = useTranslation()
   const [email, setEmail] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [company, setCompany] = useState('')
+  const [phone, setPhone] = useState('')
+  const [formText, setFormText] = useState('')
   const isEmailValid = useDebounce(validateEmail(email), 500)
 
   const subFooterPathNames = ['/donors', '/path2', '/path3', '/path4']
@@ -36,9 +40,64 @@ const Footer = () => {
     })
     setEmail('')
   }
+
+  const handleForm = async (e) => {
+    e.preventDefault()
+    await api.post('/fakeForm')
+    setEmail('')
+    setEmail('')
+    setEmail('')
+    setEmail('')
+  }
+
   return (
     <>
-      { subFooterState ? 'Test' : <section className="py-6 px-4 md:py-8 md:px-6 lg:py-12 bg-secondary">
+      { subFooterState ? <section className="py-6 px-4 md:py-8 md:px-6 lg:py-12 bg-secondary">
+        <Container className='flex-col lg:flex-row'>
+          <div className="flex-1">
+            <h2 className="text-xl sm:text-2xl lg:text-2xl font-semibold">
+              {t('footer.offer')}
+            </h2>
+            <p className="mt-3 sm:mt-6 lg:mt-6 text-base sm:text-lg lg:text-lg font-medium">
+              Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor
+            </p>
+          </div>
+          <div className="flex-1 flex flex-col mt-5 lg:mt-0">
+            <form className="flex flex-col gap-6 mx-auto w-full max-w-[500px] items-center" onSubmit={handleForm}>
+              <input 
+                placeholder='ФИО'
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
+              />
+              <input 
+                placeholder='Компания'
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
+              />
+              <input 
+                placeholder='Контакты'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
+              />
+              <textarea 
+                placeholder='Задайте Ваш вопрос или кратко опишите тему, которую хотите обсудить'
+                value={formText}
+                onChange={(e) => setFormText(e.target.value)}
+                className="resize-none py-3 px-6 w-[100%] text-sm lg:text-base h-[134px] font-semibold text-base rounded-[20px] outline-none" 
+              ></textarea>
+              <Button className="min-w-[100px] sm:w-[initial] lg:w-[initial] ml-auto block text-xs sm:text-sm pl-3 pr-3 sm:px-7 lg:px-7 lg:text-base" disabled={!isEmailValid}>
+                {t('footer.cta')}
+              </Button>
+            </form>
+            <span className="mt-2 pl-6 h-[24px] text-[red]">
+              {email.length > 3 && !isEmailValid && t('footer.emailError')}
+            </span>
+          </div>
+        </Container>
+      </section> : <section className="py-6 px-4 md:py-8 md:px-6 lg:py-12 bg-secondary">
         <Container className='flex-col lg:flex-row'>
           <div className="flex-1">
             <h2 className="text-xl sm:text-2xl lg:text-2xl font-semibold">
@@ -66,13 +125,13 @@ const Footer = () => {
           </div>
         </Container>
       </section>}
-      <footer className="py-[68px] bg-darkened">
-        <Container className="flex flex-col items-start lg:items-center mx-auto max-w-[fit-content] lg:max-w-[1280px]">
+      <footer className="px-[48px] xl:px-0 py-[68px] bg-darkened xl:px-3">
+        <Container className="flex flex-col items-start lg:items-center mx-auto max-w-[585px] xl:max-w-[1280px]">
           <div className="w-full flex justify-between">
             <Link href="/">
               <div className="text-base font-bold lg:text-2xl lg:font-semibold text-white">ФЕЦА Казахстан</div>
             </Link>
-            <div className='hidden lg:flex'>
+            <div className='hidden xl:flex'>
               {routes.map(route => (
                 <Link key={route.path} href={route.path}>
                   <span className="ml-6 font-medium text-white">{t('menu.' + route.labelKey + '.root')}</span>
@@ -80,7 +139,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className="mt-5 lg:mt-10 w-full flex flex-col md:flex-col lg:flex-row justify-between gap-5">
+          <div className="mt-5 lg:mt-10 w-full flex flex-wrap xl:flex-nowrap justify-between gap-5">
             <span className="text-sm lg:text-base font-bold lg:font-medium text-white">{t('footer.address')}</span>
             <span className="text-sm lg:text-base min-w-[187px] font-bold lg:font-medium text-white">Email: <Link href="mailto:almaty@ef-ca.org"><span className="text-primaryLight hover:underline">almaty@ef-ca.org</span></Link></span>
             <span className="text-sm lg:text-base min-w-[226px] font-bold lg:font-medium text-white">{t('footer.phone')}: <Link href="tel:+77272501810"><span className="text-primaryLight hover:underline">+7 (727) 250-18-10</span></Link></span>

@@ -51,66 +51,66 @@ const settings = {
   ),
 }
 
+const fakeHistory = [
+  {
+    imgUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    date: '01.01.1999',
+    title: 'Lorem ipsum dolor sit amet.',
+  },
+  {
+    imgUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    date: '01.01.1999',
+    title: 'Lorem ipsum dolor sit amet.',
+  },
+  {
+    imgUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    date: '01.01.1999',
+    title: 'Lorem ipsum dolor sit amet.',
+  },
+  {
+    imgUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    date: '01.01.1999',
+    title: 'Lorem ipsum dolor sit amet.',
+  },
+  {
+    imgUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    date: '01.01.1999',
+    title: 'Lorem ipsum dolor sit amet.',
+  },
+]
 
+const fakeSlider = [
+  {
+    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    short_descr: '01.01.1999',
+    title: 'Lorem ipsum dolor.'
+  },
+  {
+    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY=1000&q=80',
+    short_descr: '01.01.1999',
+    title: 'Lorem ipsum dolor.'
+  },
+  {
+    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    short_descr: '01.01.1999',
+    title: 'Lorem ipsum dolor.'
+  },
+  {
+    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+    short_descr: '01.01.1999',
+    title: 'Lorem ipsum dolor4.'
+  },
+]
 
-const AnnualReports = () => {
+const AnnualReports = (data) => {
   const { t } = useTranslation()
 
-  const fakeHistory = [
-    {
-      imgUrl:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      date: '01.01.1999',
-      title: 'Lorem ipsum dolor sit amet.',
-    },
-    {
-      imgUrl:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      date: '01.01.1999',
-      title: 'Lorem ipsum dolor sit amet.',
-    },
-    {
-      imgUrl:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      date: '01.01.1999',
-      title: 'Lorem ipsum dolor sit amet.',
-    },
-    {
-      imgUrl:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      date: '01.01.1999',
-      title: 'Lorem ipsum dolor sit amet.',
-    },
-    {
-      imgUrl:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      date: '01.01.1999',
-      title: 'Lorem ipsum dolor sit amet.',
-    },
-  ]
-
-  const fakeSlider = [
-    {
-      imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      short_descr: '01.01.1999',
-      title: 'Lorem ipsum dolor.'
-    },
-    {
-      imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY=1000&q=80',
-      short_descr: '01.01.1999',
-      title: 'Lorem ipsum dolor.'
-    },
-    {
-      imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      short_descr: '01.01.1999',
-      title: 'Lorem ipsum dolor.'
-    },
-    {
-      imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-      short_descr: '01.01.1999',
-      title: 'Lorem ipsum dolor4.'
-    },
-  ]
+  console.log(data);
 
   return (
     <>
@@ -122,7 +122,7 @@ const AnnualReports = () => {
           <div className="w-full flex items-center justify-between">
             <h1 className="text-2xl/8 lg:text-3xl font-bold text-primaryDark uppercase">Новости</h1>
             <div className="flex flex-end h-[38px]">
-              <div className="ml-auto flex flex-row items-center justify-between w-fit">
+              <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
                 <input
                   className="ml-auto w-[70%] py-2 px-3 outline-none placeholder:text-right"
                   type="text"
@@ -198,10 +198,14 @@ const AnnualReports = () => {
 
 export async function getServerSideProps(context) {
   const { locale } = context
-
+  const response = await api.get('/materials', {
+    headers: { 'Accept-Language' : locale }
+  })
+  console.log(response);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
+      ...response.data,
     },
   }
 }

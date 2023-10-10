@@ -31,10 +31,35 @@ module.exports = {
       lightOrange: '#FFEDDD',
       lightPurple: '#EFDDF2',
       lightPink: '#FFE4E4',
-      lighterBlue: '#F4F5FF'
+      lighterBlue: '#F4F5FF',
+      lightYellow: '#FFFAED'
     },
     extend: {
+      screens: {
+        xl: '1184px',
+        smd: '850px'
+      },
       keyframes: {
+        menuHide: {
+          '0%': { 
+            transform: 'translateY(0%)',
+            opacity: '1'
+          },
+          '100%': { 
+            transform: 'translateY(-100%)',
+            opacity: '0'
+          },
+        },
+        menuShow: {
+          '0%': { 
+            transform: 'translateY(-100%)',
+            opacity: '0'
+          },
+          '100%': { 
+            transform: 'translateY(0%)',
+            opacity: '1'
+          },
+        },
         growDown: {
           '0%': { transform: 'scaleY(0)' },
           '80%': { transform: 'scaleY(1.1)' },

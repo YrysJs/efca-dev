@@ -4,6 +4,7 @@ import { appWithTranslation } from 'next-i18next'
 import { Header, Footer } from '@/widgets/layout'
 import { Layout } from '@/shared/ui'
 import '@/shared/styles/globals.css'
+import '@/shared/styles/custom.css'
 
 const App = ({ Component, pageProps }) => {
   const { locale } = useRouter()
