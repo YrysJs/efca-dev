@@ -5,7 +5,7 @@ const nextConfig = {
   i18n: {
     locales: ['ru', 'kz', 'en'],
     defaultLocale: 'ru',
-    localePath: path.resolve('./public/locales'),
+    // localePath: path.resolve('./public/locales'),
     localeStructure: '{{lng}}/{{ns}}',
   },
 }
