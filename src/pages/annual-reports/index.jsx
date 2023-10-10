@@ -24,10 +24,11 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
         })}
       />
       <div style={{ transform: 'translate(-50%, -50%)' }} className='absolute top-[50%] left-[50%] w-[108px] sm:w-[130px] h-[108px] sm:h-[130px]'>
-        <img
+        <Image
           src={imageUrl}
           alt="Изображение"
           style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
+          fill={true}
         />
       </div>
     </div>
@@ -69,7 +70,7 @@ const AnnualReports = () => {
             {fakeChips.map( (item, index) => {
               return (
                 <div key={index} class="flex justify-center items-center gap-[64px] lg:block">
-                  <CircularProgressBarWithImage percentage={22*(index+1)} imageUrl={'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80'}/>
+                  <CircularProgressBarWithImage percentage={22*(index+1)} imageUrl='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80'/>
                   <div className='lg:ml-auto lg:mr-[12%] mt-0 lg:mt-5 lg:w-[150px]'>
                     <h3 className='text-primary text-[36px] sm:text-[64px] font-bold leading-[55px]'>
                       {22*(index+1)}%
@@ -146,7 +147,7 @@ const AnnualReports = () => {
           <div className="w-full grid grid-cols-1 md:grid-cols-2">
             {fakeGrid.map((item, index) => {
               return (
-                <div className="service-item w-full flex items-center px-[48px] py-[16px] justify-between">
+                <div key={index} className="service-item w-full flex items-center px-[48px] py-[16px] justify-between">
                   <div className="flex gap-[24px] items-center">
                     <span className="text-lg font-semibold">2019-2020</span>
                     <span className="text-sm text-primaryLight">pdf, 9.0 MB</span>

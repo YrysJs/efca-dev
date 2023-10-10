@@ -31,7 +31,7 @@ const Footer = () => {
   useEffect( () => {
     const isSubFooterPath = subFooterPathNames.some(item => item === pathname);
     setSubFooterState(isSubFooterPath)
-  }, [pathname])
+  }, [pathname, subFooterPathNames])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

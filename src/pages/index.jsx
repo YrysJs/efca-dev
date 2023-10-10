@@ -63,10 +63,11 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
         })}
       />
       <div style={{ transform: 'translate(-50%, -50%)' }} className='absolute top-[50%] left-[50%] w-[108px] sm:w-[130px] h-[108px] sm:h-[130px]'>
-        <img
+        <Image
           src={imageUrl}
           alt="Изображение"
           style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
+          fill={true}
         />
       </div>
     </div>
