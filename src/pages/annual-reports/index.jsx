@@ -25,7 +25,7 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
         })}
       />
       <div style={{ transform: 'translate(-50%, -50%)' }} className='absolute top-[50%] left-[50%] w-[108px] sm:w-[130px] h-[108px] sm:h-[130px]'>
-        <img
+        <Image
           src={imageUrl}
           alt="Изображение"
           style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
@@ -147,7 +147,7 @@ const AnnualReports = (data) => {
           <div className="w-full grid grid-cols-1 md:grid-cols-2">
             {data.lists.map((item, index) => {
               return (
-                <div className="service-item w-full flex items-center px-[48px] py-[16px] justify-between">
+                <div key={index} className="service-item w-full flex items-center px-[48px] py-[16px] justify-between">
                   <div className="flex gap-[24px] items-center">
                     <span className="text-lg font-semibold">{item.title}</span>
                     <span className="text-sm text-primaryLight">{item.file.type}, {(item.file.size*0.001).toFixed(2)} MB</span>

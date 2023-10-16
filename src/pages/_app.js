@@ -48,7 +48,7 @@ const App = ({ Component, pageProps }) => {
     router.events.on("routeChangeComplete", () => {
       setLoading(false);
     });
-  }, []);
+  }, [router.events]);
 
   return (
     <>
