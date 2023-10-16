@@ -61,7 +61,7 @@ const NewsDetails = ({data}) => {
         }
         if (item.type === 'contacts') {
           return (
-            <section>
+            <section key={i}>
               <Container className="my-6 flex-col px-3 xl:px-0">
                 <h3 className="font-semibold text-lg md:text-xl lg:text-2xl">{t('projects.contacts')}:</h3>
                 <div className="mt-6 flex grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
