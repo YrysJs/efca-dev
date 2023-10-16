@@ -30,10 +30,10 @@ const NewsDetails = ({data}) => {
           <Image src={data.image} fill={true} alt='text' objectFit='cover'/>
         </div>
       </section>
-      {data.blocks.map( item => {
+      {data.blocks.map( (item, i) => {
         if (item.type === 'more') {
           return (
-            <section className='px-3 pt-6 sm:pt-10'>
+            <section key={i} className='px-3 pt-6 sm:pt-10'>
               <Container className='flex-col'>
               <h3 className='text-lg sm:text-2xl text-left font-semibold'>
                 Читайте также
