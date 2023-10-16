@@ -8,6 +8,7 @@ import 'react-circular-progressbar/dist/styles.css'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { api } from '@/shared/api'
 
 
 const PrevSlideBtn = (props) => {
@@ -63,11 +64,10 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
         })}
       />
       <div style={{ transform: 'translate(-50%, -50%)' }} className='absolute top-[50%] left-[50%] w-[108px] sm:w-[130px] h-[108px] sm:h-[130px]'>
-        <Image
+        <img
           src={imageUrl}
           alt="Изображение"
           style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
-          fill={true}
         />
       </div>
     </div>
@@ -111,6 +111,19 @@ const settings = {
     }
   ]
 }
+
+const settingsDonor = {
+  dots: false,
+  infinite: true,
+  slidesToShow: 3,
+  rows: 2,
+  slidesToScroll: 1,
+  autoplay: true,
+  speed: 2000,
+  autoplaySpeed: 2000,
+  cssEase: "linear"
+};
+
 const settingsTeam = {
   dots: true,
   infinite: true,
@@ -135,125 +148,34 @@ const settingsTeam = {
   )
 }
 
-const fakeSlider = [
-  {
-    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-    short_descr: '01.01.1999',
-    title: 'Lorem ipsum dolor.'
-  },
-  {
-    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY=1000&q=80',
-    short_descr: '01.01.1999',
-    title: 'Lorem ipsum dolor.'
-  },
-  {
-    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-    short_descr: '01.01.1999',
-    title: 'Lorem ipsum dolor.'
-  },
-  {
-    imgUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-    short_descr: '01.01.1999',
-    title: 'Lorem ipsum dolor4.'
-  },
-]
 
-const fakePartners = [
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-  {
-      imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-      title: 'Chevron',
-      url: 'www.chvron.com'
-  },
-]
-
-const fakeGrid = [1, 2, 3, 4, 5]
-const fakeChips = [1,2,3]
-const fakeString = 'Lorem ipsum dolor, sit amet consectetur adipisicing'
-
-const Home = () => {
+const Home = ({annual_report, donors, materials, partners, projects, slider, text, title, trustees, employees}) => {
   const { t } = useTranslation() 
-
   return (
     <>
       <Head>
-        <title></title>
+        <title>{t('main.head')}</title>
       </Head>
       <main>
         <section className="hero px-3">
           <Container className="pt-[24px] flex-col">
             <div className='flex flex-col md:flex-row items-start gap-5 md:items-center mb-4'>
               <h1 className='font-bold text-2xl sm:text-3xl md:text-4xl flex-[2] leading-[normal] uppercase'>
-                Заголовок <br />
-                в две строки
+                {title}
               </h1>
               <p className='flex-[3] text-sm md:text-lg font-medium leading-[normal]'>
-                Наши сферы работы в проектах: поддержка социально уязвимого населения, развитие молодежи через образование и лидерство, развитие социального предпринимательства, вовлечение граждан (и НПО) в решение общественных проблем и эффективное управление.
+                {text}
               </p>
             </div>
-            <button className='py-3 px-6 md:px-7 w-fit ml-auto bg-white rounded-[25px] border-2 border-primary text-sm md:text-base font-medium'>{t('main.more')}</button>
+            <Link href="/about-us" className='py-3 px-6 md:px-7 w-fit ml-auto bg-white rounded-[25px] border-2 border-primary text-sm md:text-base font-medium'>{t('main.more')}</Link>
           </Container>
         </section>
         <section className="hero-slider">
           <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full h-[482px]">
-              {fakeSlider.map((item, index) => (
+              {slider.map((item, index) => (
                 <div key={index} className='h-[482px] relative'>
                   <div>
-                    <Image src={item.imgUrl} alt={index} objectFit='cover' fill={true}/>
+                    <Image src={item} alt={`image${index}`} objectFit='cover' fill={true}/>
                   </div>
                 </div>
               ))}
@@ -261,17 +183,20 @@ const Home = () => {
         </section>
         <section className="main-stats bg-secondary mt-[48px] pb-[24px] sm:pb-[56px] px-3">
         <Container className='pt-[28px] md:pt-[48px] pb-[24px]'>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px] lg:gap-[20px]">
-            {fakeChips.map( (item, index) => {
+          <div className={clsx('w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px] lg:gap-[20px]', {
+            ['lg:grid-cols-2'] : annual_report.stats.length <= 2,
+            ['lg:grid-cols-3'] : annual_report.stats.length > 2
+          })}>
+            {annual_report.stats.map( (item, index) => {
               return (
                 <div key={index} className="flex justify-center items-center gap-[64px] lg:block">
-                  <CircularProgressBarWithImage percentage={22*(index+1)} imageUrl={'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80'}/>
-                  <div className='lg:ml-auto lg:mr-[12%] mt-0 lg:mt-5 lg:w-[150px]'>
+                  <CircularProgressBarWithImage percentage={item.percent} imageUrl={item.image}/>
+                  <div className='lg:ml-[50%] mt-0 lg:mt-5 lg:w-[150px]'>
                     <h3 className='text-primary text-[36px] sm:text-[64px] font-bold leading-[55px]'>
-                      {22*(index+1)}%
+                      {item.percent}%
                     </h3>
                     <p className='text-sm sm:text-base font-semibold'>
-                      долларов в бюджете ФЕЦА. 
+                      {item.text}
                     </p>
                   </div>
                 </div>
@@ -281,15 +206,15 @@ const Home = () => {
         </Container>
         <Container className="pt-[40px] pb-[24px] sm:pt-[24px] sm:pb-[48px]">
           <div className="w-full grid gap-3 sm:gap-6 md:gap-10 lg:gap-x-[46px] lg:gap-y-[34px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {fakeGrid.map((item, index) => {
+            {annual_report.advantages.map((item, index) => {
               return (
                 <div
                   key={index}
                   className="py-5 px-6 lg:py-7 lg:px-10 bg-primary rounded-[16px] flex sm:block items-center gap-[24px]"
                 >
                   <div className="flex gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
-                    <h3 className="text-[36px] sm:text-[44px] md:text-[58px] lg:text-[64px] font-bold text-white">
-                      138
+                    <h3 className="text-white flex flex-col sm:flex-row items-center sm:gap-4">
+                      <p className="text-[36px] sm:text-[44px] md:text-[58px] lg:text-[64px] font-bold">{item.count}</p>
                     </h3>
                     <div className="hidden sm:block">
                       <svg
@@ -329,7 +254,7 @@ const Home = () => {
                     </div>
                   </div>
                   <p className="text-sm lg:text-base font-semibold text-white">
-                    реализованных проектов {item}
+                    {item.text}
                   </p>
                 </div>
               )
@@ -338,11 +263,11 @@ const Home = () => {
         </Container>
         <Container className='flex justify-between items-center'>
           <div className='flex flex-col gap-4'>
-            <h3 className='text-base sm:text-[32px] font-bold uppercase'>Наш годовой отчет</h3>
-            <h6 className='text-base text-primaryLight'>pdf, 9.0 MB</h6>
+            <h3 className='text-base sm:text-[32px] font-bold uppercase'>{t('annual-reports.year')}</h3>
+            <h6 className='text-base text-primaryLight'>{annual_report.main_year.file.type}, { (annual_report.main_year.file.size*0.001).toFixed(2) } MB</h6>
           </div>
-          <Link className='flex bg-primary justify-center items-center gap-2.5 w-[144px] h-[48px] rounded-[40px] text-base' href='test'>
-            <span className='text-base text-white font-semibold'>Скачать</span> 
+          <Link className='flex bg-primary justify-center items-center gap-2.5 w-[144px] h-[48px] rounded-[40px] text-base' href={annual_report.main_year.file.path}>
+            <span className='text-base text-white font-semibold'>{t('annual-reports.download')}</span> 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M4 14H12M8 2L8 11.3333M8 11.3333L11.3333 8M8 11.3333L4.66667 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -353,7 +278,7 @@ const Home = () => {
 
         <section className="main-projects">
           <h3 className='py-6 sm:py-12 text-2xl sm:text-[32px] font-bold bg-white px-3 sm:px-0 uppercase flex justify-start sm:justify-center items-center gap-[10px]'>
-            <Link href='/team'>Проекты</Link>
+            <Link href='/team'>{t('projects.head')}</Link>
             <div className="block sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g opacity="0.5">
@@ -362,7 +287,7 @@ const Home = () => {
               </svg>
             </div>
           </h3>
-          { fakeGrid.map( (item, index) => {
+          { projects.map( (item, index) => {
             return (
               <div key={index} className={clsx('flex flex-col items-center pb-6 sm:pb-0 gap-6 sm:gap-12', {
                 ['sm:flex-row']: index % 2 === 0,
@@ -371,28 +296,28 @@ const Home = () => {
                 ['bg-lightYellow']: index % 2 === 1
               })}>
                 <div className='relative h-[277px] sm:h-[688px] w-[100%] sm:w-[45%]'>
-                  <Image src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80" alt={item.imgUrl} objectFit='cover' fill={true}/>
+                  <Image src={item.image} alt={item.imgUrl} objectFit='cover' fill={true}/>
                 </div>
                 <div className='w-[100%] sm:w-[45%] px-3 sm:px-0'>
                   <h3 className='text-2xl sm:text-[32px] font-bold text-primaryDark'>
-                      Orle Fest
+                      {item.title}
                     </h3>
                     <p className='text-base sm:text-lg py-3 sm:pt-[20px] sm:pb-[33px] font-medium'>
-                      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
+                      {item.text}
                     </p>
-                    <Link href='http://test.com' className='text-sm sm:text-base flex ml-auto w-[127px] sm:w-[147px] h-[41px] sm:h-[48px] rounded-[24px] border-primaryDark border-[2px] items-center justify-center font-semibold'>Подробнее</Link>
+                    <Link href={`/projects/${item.id}`} className='text-sm sm:text-base flex ml-auto w-[127px] sm:w-[147px] h-[41px] sm:h-[48px] rounded-[24px] border-primaryDark border-[2px] items-center justify-center font-semibold'>{t('main.more')}</Link>
                 </div>
               </div>
             )
           })}
-          <Link href='/projects' className='hidden sm:flex text-base text-white font-semibold bg-primary items-center justify-center rounded-[24px] mx-auto my-6 w-[198px] h-[48px]'>Больше проектов</Link>
+          <Link href='/projects' className='hidden sm:flex text-base text-white font-semibold bg-primary items-center justify-center rounded-[24px] mx-auto my-6 w-[198px] h-[48px]'>{t('main.more-projects')}</Link>
         </section>
 
 
 
         <section className="main-team">
           <h3 className='py-6 sm:py-12 text-2xl sm:text-[32px] font-bold bg-white px-3 sm:px-0 uppercase flex justify-start sm:justify-center items-center gap-[10px]'>
-            <Link href='/projects'>Команда</Link>
+            <Link href='/projects'>{t('menu.fund.team.root')}</Link>
             <div className="block sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g opacity="0.5">
@@ -401,46 +326,43 @@ const Home = () => {
               </svg>
             </div>
           </h3>
-          <div className='hidden md:block'>
-            { fakeGrid.map( (item, index) => {
-              return (
-                <div key={index} className={clsx('flex items-center gap-12 relative', {
-                  ['flex-row']: index % 2 === 0,
-                  ['flex-row-reverse']: index % 2 > 0
-                })}>
-                  <div className='relative h-[688px] w-[45%]'>
-                    <Image src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80" alt={item.imgUrl} objectFit='cover' fill={true}/>
-                  </div>
-                  <div className='w-[50%] relative h-[688px] flex flex-col justify-center px-3 xl:px-0'>
-                    <h3 className='text-2xl font-bold text-primaryDark'>
-                      Orle Fest
-                    </h3>
-                    <p className='text-2xl pt-[53px] font-medium'>
-                      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
-                    </p>
-                    <Link href='http://test.com' className={clsx('absolute bottom-[20px]', {
-                      ['right-[20px]']: index % 2 === 0,
-                      ['left-[20px]']: index % 2 > 0
-                    })}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
-                        <path d="M85.7071 8.70711C86.0976 8.31658 86.0976 7.68342 85.7071 7.29289L79.3431 0.928932C78.9526 0.538408 78.3195 0.538408 77.9289 0.928932C77.5384 1.31946 77.5384 1.95262 77.9289 2.34315L83.5858 8L77.9289 13.6569C77.5384 14.0474 77.5384 14.6805 77.9289 15.0711C78.3195 15.4616 78.9526 15.4616 79.3431 15.0711L85.7071 8.70711ZM0 9L85 9V7L0 7L0 9Z" fill="#0006BB"/>
-                      </svg>
-                    </Link>
-                  </div>
+          <div className='hidden md:block pb-[50px]'>
+            <Slider {...settingsTeam} className="w-full min:h-[400px]">
+              {employees.map((item, index) => (
+                <div key={index} className='!flex items-center gap-12 relative'>
+                <div className='relative h-[688px] w-[45%]'>
+                  <Image src={item.image} alt={item.full_name} objectFit='cover' fill={true}/>
                 </div>
-              )
-            })}
+                <div className='w-[50%] relative h-[688px] flex flex-col justify-center px-3 xl:px-0'>
+                  <h3 className='text-2xl font-bold text-primaryDark'>
+                    { item.full_name }
+                  </h3>
+                  <p className='text-2xl pt-[53px] font-medium'>
+                    Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
+                  </p>
+                  <Link href='http://test.com' className={clsx('absolute bottom-[20px]', {
+                    ['right-[20px]']: index % 2 === 0,
+                    ['left-[20px]']: index % 2 > 0
+                  })}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
+                      <path d="M85.7071 8.70711C86.0976 8.31658 86.0976 7.68342 85.7071 7.29289L79.3431 0.928932C78.9526 0.538408 78.3195 0.538408 77.9289 0.928932C77.5384 1.31946 77.5384 1.95262 77.9289 2.34315L83.5858 8L77.9289 13.6569C77.5384 14.0474 77.5384 14.6805 77.9289 15.0711C78.3195 15.4616 78.9526 15.4616 79.3431 15.0711L85.7071 8.70711ZM0 9L85 9V7L0 7L0 9Z" fill="#0006BB"/>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+              ))}
+            </Slider>
           </div>
           <div className="block md:hidden mb-14">
             <Slider {...settingsTeam} className="w-full min:h-[400px]">
-              {fakeSlider.map((item, index) => (
+              {employees.map((item, index) => (
                 <div key={index}>
                   <div className='h-[338px] relative'>
-                    <Image src={item.imgUrl} alt={index} objectFit='cover' fill={true}/>
+                    <Image src={item.image} alt={index} objectFit='cover' fill={true}/>
                   </div>
                   <div className='px-3 py-6'>
                     <h3 className='text-2xl font-semibold text-primaryDark mb-2'>
-                      Алим Болатов
+                      { item.full_name }
                     </h3>
                     <p className='text-base'>
                       Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. 
@@ -456,7 +378,7 @@ const Home = () => {
         <section className="bg-secondary py-6 sm:py-8 md:py-10 py-12 px-3">
           <Container className='flex-col'>
             <h3 className='text-2xl sm:text-[32px] mb-6 font-bold sm:px-0 uppercase flex justify-start sm:justify-center items-center gap-[10px]'>
-              <Link href='/news'>Новости</Link>
+              <Link href='/news'>{t('materials.head.news')}</Link>
               <div className="block sm:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g opacity="0.5">
@@ -465,12 +387,12 @@ const Home = () => {
                 </svg>
               </div>
             </h3>
-            <div className='main-news flex flex-wrap flex-col md:flex-row justify-start gap-6'>
-              {fakeGrid.map( (item, index) => {
+            <div className='main-news flex flex-wrap flex-col md:flex-row justify-center gap-6'>
+              {materials.map( (item, index) => {
                 return (
                   <div key={index} className='main-news__item'>
                     <div className='main-news__img relative'>
-                      <Image src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80" alt="test" fill={true} objectFit='cover'/>
+                      <Image src={item.image} alt="image" fill={true} objectFit='cover'/>
                     </div>
                     <div className='main-news__bg'></div>
                     <div className={clsx('main-news__content overflow-hidden', {
@@ -481,34 +403,34 @@ const Home = () => {
                         ['text-sm text-darkGray smd:text-white smd:text-base']: index === 0,
                         ['text-sm text-darkGray']: index !== 0,
                       })}>
-                        25.05.2022
+                        {item.created_at  }
                       </p>
                       <h3 className={clsx('flex items-center gap-12 relative font-medium', {
                         ['text-2xl text-primaryDark py-3 smd:py-6 smd:text-white md:text-[24px] lg:text-[28px] xl:text-[32px] font-bold']: index === 0,
                         ['text-2xl font-semibold md:text-[20px] lg:text-[20px] lg:leading-[25px] xl:leading-[30px] xl:text-[24px] text-primaryDark py-3 sm:py-2']: index !== 0,
                       })}>
-                        { fakeString }
+                        { item.title }
                       </h3>
-                      <p className={clsx('main-news__content-p flex items-center gap-12 relative font-medium', {
+                      {/* <p className={clsx('main-news__content-p flex items-center hidden smd:block gap-12 relative font-medium', {
                         ['smd:text-white text-base font-semibold smd:font-medium']: index === 0,
                         ['text-base smd:text-2xl font-semibold text-black']: index !== 0,
                       })}>
-                          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim fuga recusandae libero illo alias, totam facere tenetur commodi suscipit sed error dolorem saepe eligendi, modi dicta vel ipsum assumenda? Eligendi.
-                      </p>
+                          { item.title }
+                      </p> */}
                     </div>
                   </div>
                 )
               })}
             </div>
-            <Link href='/news' className="w-[197px] h-[48px] rounded-[24px] flex justify-center items-center bg-white mx-auto mt-4 sm:mt-6 text-base font-semibold">Больше новостей</Link>
+            <Link href='/news' className="w-[197px] h-[48px] rounded-[24px] flex justify-center items-center bg-white mx-auto mt-4 sm:mt-6 text-base font-semibold">{t('main.more-news')}</Link>
           </Container>
         </section>
 
 
-        <section className="main-logos pb-6 sm:py-8 md:py-10 lg:py-12">
+        <section className="main-logos pb-6 sm:py-8 md:py-10 lg:py-12 overflow-hidden">
           <Container className='flex-col'>
             <h3 className='py-6 sm:py-12 text-2xl sm:text-[32px] font-bold bg-white px-3 sm:px-0 uppercase flex justify-start sm:justify-center items-center gap-[10px]'>
-            <Link href='/projects'>Нас поддерживают</Link>
+            <Link href='/projects'>{t('main.helped')}</Link>
             <div className="block sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g opacity="0.5">
@@ -517,14 +439,25 @@ const Home = () => {
               </svg>
             </div>
           </h3>
-            <div className='flex flex-wrap gap-[104px]'>
-              {fakePartners.map( (item, index) => {
+            <div className='hidden sm:flex flex-wrap gap-[104px] px-3'>
+              {donors.map( (item, index) => {
                 return (
                   <div key={index} className='relative w-[80px] h-[80px]'>
-                    <Image src={item.imgUrl} alt={index} fill={true}/>
+                    <Image src={item} alt="image" fill={true} objectFit='contain'/>
                   </div>
                 )
               })}
+            </div>
+            <div className="block sm:hidden">
+              <Slider {...settingsDonor} className="w-full h-[188px]">
+              {donors.map( (item, index) => {
+                return (
+                  <div key={index} className={`check-test${index % 2} relative w-[80px] h-[80px]`}>
+                    <Image src={item} alt="image" fill={true} objectFit='contain'/>
+                  </div>
+                )
+              })}
+              </Slider>
             </div>
           </Container>
         </section>
@@ -533,11 +466,19 @@ const Home = () => {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { locale } = context
+  const fetchMain = await api.get('/main', {
+    headers: { 'Accept-Language' : locale }
+  })
+  const fetchTeam = await api.get('/team', {
+    headers: { 'Accept-Language' : locale }
+  })
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
+      ...fetchMain.data,
+      ...fetchTeam.data
     },
   }
 }

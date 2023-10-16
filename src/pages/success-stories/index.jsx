@@ -32,6 +32,7 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
   }
 
   const [filterState, setFilterState] = useState(false)
+  const [searchField, setSearchFiled] = useState(query.search || '')
   const title = useRef(null)
 
   const handleChangeDate = (e) => {
@@ -46,6 +47,10 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
   const handleChangeFilter = () => {
     setFilterState(!filterState);
     title.current.scrollIntoView({behavior: "smooth", block: "center", inline: "start"})
+  }
+
+  const changeSearch = (e) => {
+    setSearchFiled(e.target.value)
   }
 
   return (
@@ -69,14 +74,17 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
               ['flex lg:flex']: filterState === true,
             })}>
               <div className="mb-6 flex lg:hidden flex-col">
-                <label className="mb-2 font-medium">Поиск</label>
+                <label className="mb-2 font-medium">{t('success-stories.search')}</label>
                 <div className="flex shadow-sm pr-3 rounded-lg flex-row items-center bg-white justify-between w-full">
                   <input
                     className="ml-auto w-[100%] py-2 px-3 outline-none placeholder:text-left"
                     type="text"
-                    placeholder="Поиск"
+                    placeholder={t('success-stories.search')}
+                    onChange={changeSearch}
+                    value={searchField}
+                    onKeyDown={ (e) => e.key === 'Enter' ? enableFilter({ search: searchField || null }) : ''}
                   />
-                  <div className="cursor-pointer">
+                  <div className="cursor-pointer" onClick={ () => enableFilter({ search: searchField || null })}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                       <path d="M13.3194 12.2675C12.9289 11.877 12.2957 11.877 11.9052 12.2675C11.5147 12.658 11.5147 13.2912 11.9052 13.6817L13.3194 12.2675ZM16.9052 18.6817C17.2957 19.0722 17.9289 19.0722 18.3194 18.6817C18.7099 18.2912 18.7099 17.658 18.3194 17.2675L16.9052 18.6817ZM8.44564 13.6413C5.77626 13.6413 3.6123 11.4773 3.6123 8.80794H1.6123C1.6123 12.5819 4.67169 15.6413 8.44564 15.6413V13.6413ZM3.6123 8.80794C3.6123 6.13857 5.77626 3.97461 8.44564 3.97461V1.97461C4.67169 1.97461 1.6123 5.034 1.6123 8.80794H3.6123ZM8.44564 3.97461C11.115 3.97461 13.279 6.13857 13.279 8.80794H15.279C15.279 5.034 12.2196 1.97461 8.44564 1.97461V3.97461ZM13.279 8.80794C13.279 11.4773 11.115 13.6413 8.44564 13.6413V15.6413C12.2196 15.6413 15.279 12.5819 15.279 8.80794H13.279ZM11.9052 13.6817L16.9052 18.6817L18.3194 17.2675L13.3194 12.2675L11.9052 13.6817Z" fill="black"/>
                     </svg>
@@ -167,11 +175,14 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
               <div className="flex flex-end h-[38px]">
                 <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
                   <input
-                    className="ml-auto w-[70%] py-2 px-3 outline-none placeholder:text-right"
+                    className="ml-auto w-[100%] py-2 px-3 outline-none placeholder:text-right"
                     type="text"
-                    placeholder="Поиск"
+                    placeholder={t('success-stories.search')}
+                    onChange={changeSearch}
+                    value={searchField}
+                    onKeyDown={ (e) => e.key === 'Enter' ? enableFilter({ search: searchField || null }) : ''}
                   />
-                  <div className="cursor-pointer">
+                  <div className="cursor-pointer" onClick={ () => enableFilter({ search: searchField || null })}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="21"
@@ -189,7 +200,7 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
               </div>
             </div>
             <div className="mt-6 flex flex-col">
-              {data.map(item => (
+              {data.length ? data.map(item => (
                 <Link key={item.id} href={`/success-stories/${item.id}`}>
                   <div className="mb-6 min-h-[264px] flex flex-col smd:flex-row cursor-pointer">
                     <div className="relative h-[188px] sm:h-[240px] smd:h-[340px] smd:flex-1">
@@ -210,7 +221,7 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                       <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
                       <div className="mt-6 flex justify-end items-center text-xs sm:text-sm lg:text-base">
                         <div className="px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary">
-                          с {item.date_from} по {item.date_to}
+                            {t('success-stories.filter.from')} {item.date_from} {t('success-stories.filter.to')} {item.date_to}
                         </div>
                         <div className={clsx('ml-6 px-4 lg:px-7 py-2 lg:py-3 w-fit rounded-[40px] font-semibold', {
                           ['bg-active text-activeDark']: item.is_active,
@@ -222,7 +233,7 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                     </div>
                   </div>
                 </Link>
-              ))}
+              )) : <h3 className="py-4 font-bold uppercase text-center">Нет результатов</h3>}
             </div>
             <div>
               <Pagination

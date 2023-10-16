@@ -7,6 +7,7 @@ import { Container } from '@/shared/ui'
 import { api } from '@/shared/api'
 import 'react-circular-progressbar/dist/styles.css'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
+import clsx from 'clsx'
 
 const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
   return (
@@ -24,11 +25,10 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
         })}
       />
       <div style={{ transform: 'translate(-50%, -50%)' }} className='absolute top-[50%] left-[50%] w-[108px] sm:w-[130px] h-[108px] sm:h-[130px]'>
-        <Image
+        <img
           src={imageUrl}
           alt="Изображение"
           style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
-          fill={true}
         />
       </div>
     </div>
@@ -36,47 +36,47 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
   )
 }
 
-const AnnualReports = () => {
+const AnnualReports = (data) => {
   const { t } = useTranslation()
-
-  const fakeGrid = [1, 2, 3, 4, 5, 6, 7, 8]
-  const fakeChips = [1,2,3]
 
 
   return (
     <>
       <Head>
-        <title>Годовой отчет</title>
+        <title>{t('annual-reports.title')}</title>
       </Head>
       <section className="bg-secondary px-3">
         <Container>
           <div className="px-3 lg:px-0 py-8 w-full flex justify-between items-center">
             <div>
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold pb-2">
-                Наш годовой отчет 2021-2022
+                {t('annual-reports.year')} {data['annual-report'].main_year.title}
               </h1>
-              <p className="text-sm lg:text-base text-primaryLight">pdf, 9.0 MB</p>
+              <p className="text-sm lg:text-base text-primaryLight">{data['annual-report'].main_year.file.type}, { (data['annual-report'].main_year.file.size*0.001).toFixed(2) } MB</p>
             </div>
             <Link
               className="px-6 py-3 lg:py-3 lg:px-7 border-[2px] border-primary rounded-[40px] text-sm text-base text-primaryDark"
-              href="/"
+              href={data['annual-report'].main_year.file.path}
             >
-              Скачать
+              {t('annual-reports.download')}
             </Link>
           </div>
         </Container>
         <Container className='pt-[28px] md:pt-[48px] pb-[24px]'>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px] lg:gap-[20px]">
-            {fakeChips.map( (item, index) => {
+          <div className={clsx('w-full grid grid-cols-1 md:grid-cols-2 gap-[40px] lg:gap-[20px]', {
+            ['lg:grid-cols-2'] : data['annual-report'].stats.length <= 2,
+            ['lg:grid-cols-3'] : data['annual-report'].stats.length > 2
+          })}>
+            {data['annual-report'].stats.map( (item, index) => {
               return (
                 <div key={index} class="flex justify-center items-center gap-[64px] lg:block">
-                  <CircularProgressBarWithImage percentage={22*(index+1)} imageUrl='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80'/>
-                  <div className='lg:ml-auto lg:mr-[12%] mt-0 lg:mt-5 lg:w-[150px]'>
+                  <CircularProgressBarWithImage percentage={item.percent} imageUrl={item.image}/>
+                  <div className='lg:ml-[50%] mt-0 lg:mt-5 lg:w-[150px]'>
                     <h3 className='text-primary text-[36px] sm:text-[64px] font-bold leading-[55px]'>
-                      {22*(index+1)}%
+                      {item.percent}%
                     </h3>
                     <p className='text-sm sm:text-base font-semibold'>
-                      долларов в бюджете ФЕЦА. 
+                      {item.text}
                     </p>
                   </div>
                 </div>
@@ -86,15 +86,15 @@ const AnnualReports = () => {
         </Container>
         <Container className="pt-[40px] pb-[24px] sm:pt-[24px] sm:pb-[48px]">
           <div className="w-full grid gap-3 sm:gap-6 md:gap-10 lg:gap-x-[46px] lg:gap-y-[34px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {fakeGrid.map((item, index) => {
+            {data['annual-report'].advantages.map((item, index) => {
               return (
                 <div
                   key={index}
                   className="py-5 px-6 lg:py-7 lg:px-10 bg-primary rounded-[16px] flex sm:block items-center gap-[24px]"
                 >
                   <div className="flex gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
-                    <h3 className="text-[36px] sm:text-[44px] md:text-[58px] lg:text-[64px] font-bold text-white">
-                      138
+                    <h3 className="text-white flex flex-col sm:flex-row items-center sm:gap-4">
+                      <p className="text-[36px] sm:text-[44px] md:text-[58px] lg:text-[64px] font-bold">{item.count}</p>
                     </h3>
                     <div className="hidden sm:block">
                       <svg
@@ -134,7 +134,7 @@ const AnnualReports = () => {
                     </div>
                   </div>
                   <p class="text-sm lg:text-base font-semibold text-white">
-                    реализованных проектов {item}
+                    {item.text}
                   </p>
                 </div>
               )
@@ -145,14 +145,14 @@ const AnnualReports = () => {
       <section className="px-3 py-2">
         <Container>
           <div className="w-full grid grid-cols-1 md:grid-cols-2">
-            {fakeGrid.map((item, index) => {
+            {data.lists.map((item, index) => {
               return (
-                <div key={index} className="service-item w-full flex items-center px-[48px] py-[16px] justify-between">
+                <div className="service-item w-full flex items-center px-[48px] py-[16px] justify-between">
                   <div className="flex gap-[24px] items-center">
-                    <span className="text-lg font-semibold">2019-2020</span>
-                    <span className="text-sm text-primaryLight">pdf, 9.0 MB</span>
+                    <span className="text-lg font-semibold">{item.title}</span>
+                    <span className="text-sm text-primaryLight">{item.file.type}, {(item.file.size*0.001).toFixed(2)} MB</span>
                   </div>
-                  <div className="w-[32px] h-[32px] rounded-[50%] border-[2px] border-primaryLight flex justify-center items-center">
+                  <Link href={item.file.path} className="w-[32px] h-[32px] rounded-[50%] border-[2px] border-primaryLight flex justify-center items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="17"
@@ -168,7 +168,7 @@ const AnnualReports = () => {
                         stroke-linejoin="round"
                       />
                     </svg>
-                  </div>
+                  </Link>
                 </div>
               )
             })}
@@ -181,10 +181,13 @@ const AnnualReports = () => {
 
 export async function getServerSideProps(context) {
   const { locale } = context
-
+  const response = await api.get('/annual-report', {
+    headers: { 'Accept-Language' : locale }
+  })
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
+      ...response.data
     },
   }
 }

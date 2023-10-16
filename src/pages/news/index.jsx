@@ -6,6 +6,9 @@ import { useTranslation } from 'next-i18next'
 import { Container, Pagination } from '@/shared/ui'
 import Slider from 'react-slick'
 import { api } from '@/shared/api'
+import { useState } from 'react'
+import { removeEmpty } from '@/shared/lib'
+import { useRouter } from 'next/router'
 
 const PrevSlideBtn = (props) => {
   return (
@@ -107,28 +110,38 @@ const fakeSlider = [
   },
 ]
 
-const AnnualReports = (data) => {
+const News = (data) => {
   const { t } = useTranslation()
 
-  console.log(data);
+  const [searchField, setSearchFiled] = useState('')
+  const router = useRouter()
+  let { query } = router
+  const enableSearch = (query) => {
+    router.push({ pathname: '/news', query: removeEmpty({ ...router.query, ...query })})
+  }
+  const changeSearch = (e) => {
+    setSearchFiled(e.target.value)
+  }
 
   return (
     <>
       <Head>
-        <title>Новости</title>
+        <title>{t('materials.head.news')}</title>
       </Head>
       <section className="pt-6 px-3 md:pt-8 md:px-8 lg:pt-6">
         <Container>
           <div className="w-full flex items-center justify-between">
-            <h1 className="text-2xl/8 lg:text-3xl font-bold text-primaryDark uppercase">Новости</h1>
+            <h1 className="text-2xl/8 lg:text-3xl font-bold text-primaryDark uppercase">{t('materials.head.news')}</h1>
             <div className="flex flex-end h-[38px]">
               <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
                 <input
                   className="ml-auto w-[70%] py-2 px-3 outline-none placeholder:text-right"
                   type="text"
-                  placeholder="Поиск"
+                  placeholder={t('success-stories.search')}
+                  onChange={changeSearch}
+                  onKeyDown={ (e) => e.key === 'Enter' ? enableSearch({ search: searchField || null }) : ''}
                 />
-                <div className="cursor-pointer">
+                <div className="cursor-pointer" onClick={ () => enableSearch({ search: searchField || null })}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="21"
@@ -150,22 +163,22 @@ const AnnualReports = (data) => {
       <section className="pb-6 px-3 md:pb-6 md:px-8 lg:pb-6">
         <Container>
           <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full h-[576px]">
-            {fakeSlider.map((item, index) => (
-              <div key={index} className='h-[576px] relative'>
+            {data.data.map((item, index) => (
+              <Link href={`/news/${item.id}`} key={index} className='h-[576px] relative'>
                 <div>
-                  <Image src={item.imgUrl} alt={item.imgUrl} objectFit='cover' fill={true}/>
+                  <Image src={item.image} alt={`image${index}`} objectFit='cover' fill={true}/>
                   <div className='absolute bg-[#00000080] h-[576px] min-w-full'></div>
                 </div>
                 <div className='absolute bottom-[24px] lg:bottom-[48px] left-[24px] lg:left-[48px] right-[24px] lg:right-[48px] text-white'>
-                  <p className='text-xs lg:text-sm'>25.05.1985</p>
+                  <p className='text-xs lg:text-sm'>{item.created_at}</p>
                   <h3 className='text-2xl lg:text-[32px] font-bold my-4'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur adipisicing elit
+                    {item.title}
                   </h3>
                   <p className='text-base lg:text-base max-w-[520px]'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam quaerat culpa enim! Doloribus, blanditiis? Consequuntur beatae exercitationem, quibusdam qui deserunt recusandae cum dignissimos saepe molestias. Sit dolore magnam quidem consequuntur.
+                    {item.title}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </Slider>
         </Container>
@@ -173,14 +186,14 @@ const AnnualReports = (data) => {
       <section className="pt-6 pb-8 px-3 md:py-8 md:px-8 lg:py-8">
         <Container className="flex-col">
           <div className="mb-2 sm:mb-6 md:mb-10 lg:mb-12 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 relative">
-            {fakeHistory.map((item, i) => {
+            {data.data.map((item, i) => {
               return (
-                <Link href="test" key={i} className="">
+                <Link href={`/news/${item.id}`} key={i} className="">
                   <div className="relative w-[100%] h-[216px] rounded-[8px] overflow-hidden">
-                    <Image src={item.imgUrl} alt={i} fill={true} objectFit="cover" />
+                    <Image src={item.image} alt={i} fill={true} objectFit="cover" />
                   </div>
                   <div className="py-4 px-5">
-                    <p className="text-darkGray text-[10px] sm:text-xs">{item.date}</p>
+                    <p className="text-darkGray text-[10px] sm:text-xs">{item.created_at}</p>
                     <h3 className="text-primaryDark text-base font-medium lg:font-semibold md:text-xl lg:text-2xl">
                       {item.title}
                     </h3>
@@ -197,11 +210,11 @@ const AnnualReports = (data) => {
 }
 
 export async function getServerSideProps(context) {
-  const { locale } = context
-  const response = await api.get('/materials', {
+  const { locale, query } = context
+  const response = await api.get(`/materials?page=${query.page || 1}&type=news`, {
+    params: query,
     headers: { 'Accept-Language' : locale }
-  })
-  console.log(response);
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
@@ -210,4 +223,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default AnnualReports
+export default News

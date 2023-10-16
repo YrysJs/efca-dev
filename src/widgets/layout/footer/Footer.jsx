@@ -31,7 +31,7 @@ const Footer = () => {
   useEffect( () => {
     const isSubFooterPath = subFooterPathNames.some(item => item === pathname);
     setSubFooterState(isSubFooterPath)
-  }, [pathname, subFooterPathNames])
+  }, [pathname])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -65,25 +65,25 @@ const Footer = () => {
           <div className="flex-1 flex flex-col mt-5 lg:mt-0">
             <form className="flex flex-col gap-6 mx-auto w-full max-w-[500px] items-center" onSubmit={handleForm}>
               <input 
-                placeholder='ФИО'
+                placeholder={t('footer.full_name')}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
               />
               <input 
-                placeholder='Компания'
+                placeholder={t('footer.company')}
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
               />
               <input 
-                placeholder='Контакты'
+                placeholder={t('footer.contacts')}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
               />
               <textarea 
-                placeholder='Задайте Ваш вопрос или кратко опишите тему, которую хотите обсудить'
+                placeholder={t('footer.textarea')}
                 value={formText}
                 onChange={(e) => setFormText(e.target.value)}
                 className="resize-none py-3 px-6 w-[100%] text-sm lg:text-base h-[134px] font-semibold text-base rounded-[20px] outline-none" 
@@ -129,7 +129,7 @@ const Footer = () => {
         <Container className="flex flex-col items-start lg:items-center mx-auto max-w-[585px] xl:max-w-[1280px]">
           <div className="w-full flex justify-between">
             <Link href="/">
-              <div className="text-base font-bold lg:text-2xl lg:font-semibold text-white">ФЕЦА Казахстан</div>
+              <div className="text-base font-bold lg:text-2xl lg:font-semibold text-white">{t('footer.title')}</div>
             </Link>
             <div className='hidden xl:flex'>
               {routes.map(route => (
@@ -150,7 +150,7 @@ const Footer = () => {
               <Icon src="/assets/ic_youtube.svg" className="ml-10" width={24} height={24} />
             </div>
           </div>
-          <span className="mt-5 lg:mt-10 text-[#B0B0B0] block max-w-[180px] sm:max-w-[240px] lg:max-w-[initial] font-bold lg:font-medium text-xs sm:text-sm">Copyright © 2014 КФ «Фонд Евразия Центральной Азии». All Rights Reserved</span>
+          <span className="mt-5 lg:mt-10 text-[#B0B0B0] block max-w-[180px] sm:max-w-[240px] lg:max-w-[initial] font-bold lg:font-medium text-xs sm:text-sm">{t('footer.copyright')}</span>
         </Container>
       </footer>
     </>

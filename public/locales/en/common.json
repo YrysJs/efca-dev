@@ -5,7 +5,33 @@
     "third-part": "IN KAZAKHSTAN"
   },
   "main": {
-    "more": "More details" 
+    "more": "More details" ,
+    "head": "European Fisheries Control Agency",
+    "more-projects": "More projects",
+    "more-news": "More news",
+    "helped": "They support us"
+  },
+  "materials": {
+    "head": {
+      "news": "News",
+      "busy": "For business",
+      "ngo": "For NPOs"
+    }
+  },
+  "annual-reports": {
+    "title": "Annual report",
+    "year": "Our annual report",
+    "download": "Download"
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "partners": {
+    "head": "Partners",
+    "full_history": "Full story",
+    "history_success": "Success stories",
+    "our_partners": "Our partners"
   },
   "menu": {
     "fund": {
@@ -60,7 +86,9 @@
     "join": {
       "root": "Join Us",
       "vacancy": {
-        "root": "Vacancies"
+        "root": "Vacancies",
+        "open": "Opening date",
+        "closed": "Closing date"
       },
       "donors": {
         "root": "Donors"
@@ -80,7 +108,14 @@
     "address": "050060, Almaty, st. Zharokova, 284/3",
     "phone": "Phone",
     "socials": "We are in social networks",
-    "emailError": "Please enter a valid e-mail address!"
+    "emailError": "Please enter a valid e-mail address!",
+    "full_name": "Full name",
+    "company": "Company",
+    "contacts": "Contacts",
+    "textarea": "Ask your question or briefly describe the topic you want to discuss",
+    "copyright": "Copyright © 2014 CF «Eurasia Fund of Central Asia». All Rights Reserved",
+    "title": "EFCA Kazakhstan"
+    
   },
   "about-us": {
     "history-title": "Our story",
@@ -142,6 +177,7 @@
   "success-stories": {
     "head": "Success stories",
     "select": "Select...",
+    "search": "Search",
     "filter": {
       "direction": "Direction",
       "donor": "Donor",
@@ -154,5 +190,22 @@
       "active": "Active",
       "passive": "Finished"
     }
+  },
+  "donors": {
+    "head": "Donors",
+    "title": "We implement projects that contribute to the development of our society.",
+    "chip-1": "youth and education",
+    "chip-2": "support for socially vulnerable groups",
+    "chip-3": "citizen engagement and good governance",
+    "chip-4": "strengthening the organizational capacity of NGOs",
+    "chip-5": "support for social entrepreneurship",
+    "step": "Stage",
+    "step-1": "Needs assessment",
+    "step-2": "Project design development",
+    "step-3": "Project approval and contract signing",
+    "step-4": "Project implementation",
+    "step-5": "Efficiency mark",
+    "donors-review": "Feedback from donors",
+    "our-donors": "Our donors"
   }
 }

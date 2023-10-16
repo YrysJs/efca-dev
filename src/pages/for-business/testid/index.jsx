@@ -12,7 +12,6 @@ import clsx from 'clsx'
 
 const NewsDetails = ({data}) => {
   const { t } = useTranslation()
-  console.log(data);
   return (
     <>
       <Head>

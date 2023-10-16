@@ -5,9 +5,29 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { Container, Pagination } from '@/shared/ui'
 import { api } from '@/shared/api'
+import { useRouter } from 'next/router'
+import { useState, useRef } from 'react'
+import { removeEmpty } from '@/shared/lib'
 
-const Researches = ({ data, count, currentPage }) => {
+const Researches = ({ data, count, currentPage }) => {  
   const { t } = useTranslation()
+  const router = useRouter()
+  let { query } = router
+  const enableSearch = (query) => {
+    router.push({ pathname: '/researches', query: removeEmpty({ ...router.query, ...query })})
+  }
+  const [searchField, setSearchFiled] = useState(query.search || '')
+  const changeSearch = (e) => {
+    setSearchFiled(e.target.value)
+  }
+
+  const searchWrapper = useRef(null)
+  const resizeInputFocus = (e) => {
+    searchWrapper.current.style.cssText = 'transition: 1s; position: absolute; right:0; width: 277px; box-shadow: 0px 0px 5px 0px #dbdbdb; border-radius: 5px overflow:hidden;'
+  }
+  const resizeInputBlur = (e) => {
+    searchWrapper.current.style.cssText = 'transition: 1s;'
+  }
   return (
     <>
       <Head>
@@ -15,16 +35,21 @@ const Researches = ({ data, count, currentPage }) => {
       </Head>
       <section className="py-6 px-3 md:py-8 md:px-8 lg:py-10">
         <Container className="flex flex-col">
-          <div className="w-full flex items-center justify-between">
+          <div className="relative w-full flex gap-4 items-center justify-between h-[40px]">
             <h1 className="text-2xl lg:text-3xl font-bold text-primaryDark uppercase">{t('researches.head')}</h1>
-            <div className="flex flex-end h-[38px]">
+            <div ref={searchWrapper} className="flex flex-end rounded-lg h-[40px]">
               <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
                 <input
-                  className="ml-auto w-[70%] py-2 px-3 outline-none placeholder:text-right"
+                  className="w-[100%] py-2 px-3 outline-none rounded-lg placeholder:text-right"
                   type="text"
-                  placeholder="Поиск"
+                  placeholder={t('success-stories.search')}
+                  value={searchField}
+                  onChange={changeSearch}
+                  onFocus={resizeInputFocus}
+                  onBlur={resizeInputBlur}
+                  onKeyDown={ (e) => e.key === 'Enter' ? enableSearch({ search: searchField || null }) : ''}
                 />
-                <div className="cursor-pointer">
+                <div className="cursor-pointer" onClick={ () => enableSearch({ search: searchField || null })}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="21"
@@ -42,7 +67,7 @@ const Researches = ({ data, count, currentPage }) => {
             </div>
           </div>
           <div className="mt-6 lg:mt-0 lg:mt-6 lg:ml-auto w-full lg:max-w-[66%]">
-            {data.map(item => (
+            {data.length ? data.map(item => (
               <div key={item.id} className="mb-6 min-h-[292px] flex flex-col md:flex-row">
                 <div className="relative flex-1 min-h-[300px] lg:min-h-auto">
                   <Image
@@ -69,7 +94,7 @@ const Researches = ({ data, count, currentPage }) => {
                   </div>
                 </div>
               </div>
-            ))}
+            )) : <h3 className="py-4 font-bold uppercase text-center">Нет результатов</h3>}
             <Pagination 
               totalCount={count}
               currentPage={currentPage}
@@ -84,6 +109,7 @@ const Researches = ({ data, count, currentPage }) => {
 export async function getServerSideProps(context) {
   const { locale, query } = context
   const response = await api.get(`/research?page=${query.page || 1}`, {
+    params: query,
     headers: { 'Accept-Language' : locale }
   })
   if (response.data.pages < query.page) {
@@ -94,6 +120,7 @@ export async function getServerSideProps(context) {
       }
     }
   }
+  console.log(response);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),

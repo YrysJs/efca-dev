@@ -112,10 +112,28 @@
     width: inherit;
     height: 118px;
 }
+.main-news > .main-news__item:nth-child(2) .main-news__content::after {
+    background: linear-gradient(180deg, transparent, #fff 50%);
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+}
 .main-news > .main-news__item:not(:nth-child(1)):not(:nth-child(2)) .main-news__content {
     background: #fff;
     width: inherit;
     height: 148px;
+}
+.main-news > .main-news__item:not(:nth-child(1)):not(:nth-child(2)) .main-news__content::after {
+    background: linear-gradient(180deg, transparent, #fff 50%);
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
 }
 .main-news > .main-news__item:first-child > .main-news__content {
     position: absolute;
@@ -201,7 +219,116 @@
 /* плитка новостей на главной конец */
 
 
+.slick-slide .check-test1 {
+    position: relative;
+    left: -24px;
+}
+.slick-slide .check-test0 {
+    position: relative;
+    left: 24px;
+    margin-bottom: 12px;
+}
 
-/* мобильное меню начало */
 
-/* мобильное меню конец */
+/* flip-card */
+
+.box-item {
+    position: relative;
+    -webkit-backface-visibility: hidden;
+    width: 100%;
+}
+
+.flip-box {
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    height: inherit;
+}
+.flip-box-front,
+.flip-box-back {
+    border-radius: 8px;
+    height: inherit;
+    -ms-transition: transform 1s cubic-bezier(.4, .2, .2, 1);
+    transition: transform 1s cubic-bezier(.4, .2, .2, 1);
+    -webkit-transition: transform 1s cubic-bezier(.4, .2, .2, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-box-front {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+
+
+.flip-box-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+@media (min-width: 768px) {
+    .flip-box:hover .flip-box-back {
+        -ms-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+        -webkit-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    .flip-box:hover .flip-box-front {
+        -ms-transform: rotateY(-180deg);
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+        -webkit-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+}
+
+.flip-box .inner {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    outline: 1px solid transparent;
+    -webkit-perspective: inherit;
+    perspective: inherit;
+    z-index: 2;
+
+    transform: translateY(-50%) translateZ(60px) scale(.94);
+    -webkit-transform: translateY(-50%) translateZ(60px) scale(.94);
+    -ms-transform: translateY(-50%) translateZ(60px) scale(.94);
+    top: 50%;
+}
+.front-anim {
+    -ms-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.back-anim {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+/* flip-card */

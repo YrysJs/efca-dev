@@ -28,7 +28,7 @@ const Vacancy = ({ data, count, currentPage }) => {
                 </div>
                 <div className="mt-6 flex justify-end items-center">
                   <div className="px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary text-xs sm:text-sm lg:text-base">
-                    с {item.date_from} по {item.date_to}
+                  {t('success-stories.filter.from')} {item.date_from} {t('success-stories.filter.to')} {item.date_to}
                   </div>
                   <Link href={`/vacancy/${item.id}`} passHref>
                     <div className="ml-2 lg:ml-6 px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-primary text-white font-semibold text-xs sm:text-sm lg:text-base">

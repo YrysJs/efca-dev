@@ -74,7 +74,7 @@ const About = ({ main_block, histories, values }) => {
   return (
     <>
       <Head>
-        <title>{main_block.main_title}</title>
+        <title>{t('menu.fund.about-us.root')}</title>
         <meta name="description" content={main_block.main_text}  />
       </Head>
       <section className="flex flex-col md:flex-col lg:flex-row bg-secondary">
@@ -169,7 +169,7 @@ const About = ({ main_block, histories, values }) => {
               </div>
             ))}
           </div>
-          <div className="mt-6 mb-6">
+          <div className="block md:hidden mt-6 mb-6">
             <Slider {...settingsLastSlide} className="w-full h-[576px]">
               {values.map((item, index) => (
                 <div key={index} className='min-h-[398px] flex'>

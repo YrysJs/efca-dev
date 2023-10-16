@@ -20,7 +20,7 @@ const VacancyDetails = ({ data }) => {
           <h1 className="text-2xl lg:text-3xl font-bold uppercase">{data.title}</h1>
           <div className="mt-4 flex">
             <div className="px-4 lg:px-7 py-2 lg:py-3 text-xs sm:text-sm lg:text-base w-fit rounded-[40px] bg-secondaryDark font-semibold text-primary">
-              Дата открытия {data.date_from} {'->'} Дата закрытия {data.date_to}
+            {t('menu.join.vacancy.open')} {data.date_from} {'->'} {t('menu.join.vacancy.closed')} {data.date_to}
             </div>
             <div className={clsx('ml-6 px-4 lg:px-7 py-2 lg:py-3 w-fit text-xs sm:text-sm lg:text-base rounded-[40px] font-semibold', {
               ['bg-active text-activeDark']: data.is_active,
