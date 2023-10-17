@@ -3,7 +3,7 @@ import { api } from '@/shared/api'
 import MainDetails from '@/shared/materials/MaterialsDetails'
 
 
-const NewsDetails = ({data}) => {
+const NgoDetails = ({data}) => {
   return <MainDetails data={data}/>
 }
 
@@ -22,4 +22,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default NewsDetails
+export default NgoDetails
