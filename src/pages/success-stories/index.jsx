@@ -62,8 +62,8 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
         <Container className="flex flex-col lg:flex-row">
           <aside className="flex-1 flex flex-col">
             <div className='flex justify-between items-center'>
-              <h1 ref={title} className="mt-[6px] text-2xl font-bold text-primaryDark uppercase">{t('success-stories.head')}</h1>
-              <button onClick={handleChangeFilter} className="block lg:hidden">
+              <h1 ref={title} className="mt-[6px] text-2xl sm:text-3xl text-black font-bold sm:text-primaryDark uppercase">{t('success-stories.head')}</h1>
+              <button onClick={handleChangeFilter} className="block rounded-lg p-2 lg:hidden" style={{boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.08)'}}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
                   <path d="M15.1123 5.72753V5.17459C15.1123 4.75455 15.112 4.54456 15.0303 4.38412C14.9584 4.243 14.8442 4.12826 14.7031 4.05635C14.5427 3.97461 14.3321 3.97461 13.912 3.97461H4.31201C3.89197 3.97461 3.68216 3.97461 3.52173 4.05635C3.38061 4.12826 3.26595 4.243 3.19405 4.38412C3.1123 4.54456 3.1123 4.75455 3.1123 5.17459V5.72753C3.1123 5.91098 3.1123 6.00273 3.13303 6.08905C3.1514 6.16558 3.18178 6.23871 3.2229 6.30582C3.26927 6.38148 3.33411 6.44633 3.46374 6.57596L3.46387 6.57608L7.26092 10.3731C7.39063 10.5028 7.45531 10.5677 7.50169 10.6434C7.54282 10.7105 7.57342 10.7837 7.5918 10.8602C7.61231 10.9456 7.61231 11.0363 7.6123 11.2161V11.2216V14.783C7.6123 15.4259 7.6123 15.7473 7.74771 15.9409C7.86595 16.11 8.04836 16.2229 8.25244 16.2531C8.48616 16.2876 8.77384 16.1438 9.34888 15.8563L9.94888 15.5563C10.1897 15.4359 10.3099 15.3757 10.3979 15.2859C10.4757 15.2064 10.535 15.1107 10.5713 15.0056C10.6123 14.8868 10.6123 14.7522 10.6123 14.483V11.2216C10.6123 11.0382 10.6123 10.9465 10.633 10.8602C10.6514 10.7837 10.6818 10.7105 10.7229 10.6434C10.7693 10.5677 10.8341 10.5029 10.9637 10.3733L10.9639 10.3731L14.7609 6.57608C14.8906 6.44637 14.9553 6.3815 15.0017 6.30582C15.0428 6.23871 15.0734 6.16558 15.0918 6.08905C15.1123 6.00361 15.1123 5.91285 15.1123 5.73312V5.72753Z" stroke="#343BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -219,11 +219,11 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                         </svg>
                       </div>
                       <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
-                      <div className="mt-6 flex justify-end items-center text-xs sm:text-sm lg:text-base">
-                        <div className="px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary">
+                      <div className="mt-6 flex justify-end items-center text-xs sm:text-sm xl:text-base">
+                        <div className="px-4 xl:px-7 py-2 xl:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary">
                             {t('success-stories.filter.from')} {item.date_from} {t('success-stories.filter.to')} {item.date_to}
                         </div>
-                        <div className={clsx('ml-6 px-4 lg:px-7 py-2 lg:py-3 w-fit rounded-[40px] font-semibold', {
+                        <div className={clsx('ml-2 lg:ml-6 px-4 xl:px-7 py-2 xl:py-3 w-fit rounded-[40px] font-semibold', {
                           ['bg-active text-activeDark']: item.is_active,
                           ['bg-passive text-passiveDark']: !item.is_active,
                         })}>

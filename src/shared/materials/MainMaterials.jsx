@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 const PrevSlideBtn = props => {
   return (
-    <button {...props} className="absolute left-[35px] bottom-[-30px] mr-4 outline-none z-50">
+    <button {...props} className="absolute left-[35px] bottom-[-30px] mr-4 outline-none z-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -28,7 +28,7 @@ const PrevSlideBtn = props => {
 }
 const NextSlideBtn = props => {
   return (
-    <button {...props} className="absolute bottom-[-30px] right-[35px] ml-4 outline-none z-50">
+    <button {...props} className="absolute bottom-[-30px] right-[35px] ml-4 outline-none z-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -98,13 +98,13 @@ const MainMaterials = ({data, translate, route}) => {
       <section className="pt-6 px-3 md:pt-8 md:px-8 lg:pt-6">
         <Container>
           <div className="w-full flex items-center justify-between">
-            <h1 className="text-2xl/8 lg:text-3xl font-bold text-primaryDark uppercase">
+            <h1 className="text-2xl/8 lg:text-3xl font-bold text-primaryDark uppercase mr-2">
               {t(`${translate}`)}
             </h1>
             <div className="flex flex-end h-[38px]">
-              <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
+              <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-[160px] md:w-[250px]">
                 <input
-                  className="ml-auto w-[70%] py-2 px-3 outline-none placeholder:text-right"
+                  className="ml-auto w-[100%] py-2 px-3 outline-none placeholder:text-right"
                   type="text"
                   placeholder={t('success-stories.search')}
                   onChange={changeSearch}

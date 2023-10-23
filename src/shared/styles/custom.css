@@ -15,6 +15,23 @@
     justify-content: center;
     align-items: center;
 }
+.custom-dot2 {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #0006BB80;
+}
+
+.custom-dots2 .slick-active .custom-dot2 {
+    background-color: #0006BB;
+    border: none;
+}
+
+.custom-dots li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* кастомные точки для слайдера конец */
 
 
@@ -181,7 +198,7 @@
         height: initial;
     }
     .main-news > .main-news__item:not(:nth-child(1)):not(:nth-child(2)) .main-news__content {
-        height: initial;
+        height: 210px;
     }
 }
 @media (max-width: 850px) {
@@ -228,7 +245,10 @@
     left: 24px;
     margin-bottom: 12px;
 }
-
+.slick-next:before, .slick-prev:before {
+    content: '';
+    display: none !important;
+}
 
 /* flip-card */
 

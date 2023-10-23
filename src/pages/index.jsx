@@ -13,40 +13,37 @@ import { api } from '@/shared/api'
 
 const PrevSlideBtn = (props) => {
   return (
-    <button {...props} className="absolute left-[35px] bottom-[-30px] mr-4 outline-none z-50">
-      <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
-        <path d="M0.292892 8.70711C-0.0976334 8.31658 -0.0976334 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41422 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM86 9L1 9V7L86 7V9Z" fill="#0006BB"/>
-      </svg>
-    </button>
+    <>
+      <button {...props} className="absolute left-[35px] bottom-[-30px] mr-4 outline-none z-20 hidden md:block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
+          <path d="M0.292892 8.70711C-0.0976334 8.31658 -0.0976334 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41422 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM86 9L1 9V7L86 7V9Z" fill="#0006BB"/>
+        </svg>
+      </button>
+      <button {...props} className="absolute left-[35px] bottom-[-30px] mr-4 outline-none z-20 block md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="15" viewBox="0 0 33 15" fill="none">
+          <path d="M0.292892 8.20711C-0.0976295 7.81658 -0.0976295 7.18342 0.292892 6.79289L6.65685 0.428932C7.04738 0.0384078 7.68054 0.0384078 8.07107 0.428932C8.46159 0.819457 8.46159 1.45262 8.07107 1.84315L2.41421 7.5L8.07107 13.1569C8.46159 13.5474 8.46159 14.1805 8.07107 14.5711C7.68054 14.9616 7.04738 14.9616 6.65685 14.5711L0.292892 8.20711ZM33 8.5L1 8.5V6.5L33 6.5V8.5Z" fill="#0006BB"/>
+        </svg>
+      </button>
+    </>
   )
 }
 const NextSlideBtn = (props) => {
   return (
-    <button {...props} className="absolute bottom-[-30px] right-[35px] ml-4 outline-none z-50">
-      <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
-        <path d="M85.7071 8.70711C86.0976 8.31658 86.0976 7.68342 85.7071 7.29289L79.3431 0.928932C78.9526 0.538408 78.3195 0.538408 77.9289 0.928932C77.5384 1.31946 77.5384 1.95262 77.9289 2.34315L83.5858 8L77.9289 13.6569C77.5384 14.0474 77.5384 14.6805 77.9289 15.0711C78.3195 15.4616 78.9526 15.4616 79.3431 15.0711L85.7071 8.70711ZM0 9L85 9V7L0 7L0 9Z" fill="#0006BB"/>
-      </svg>
-    </button>
+    <>
+      <button {...props} className="absolute bottom-[-30px] right-[35px] ml-4 outline-none z-20 hidden md:block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
+          <path d="M85.7071 8.70711C86.0976 8.31658 86.0976 7.68342 85.7071 7.29289L79.3431 0.928932C78.9526 0.538408 78.3195 0.538408 77.9289 0.928932C77.5384 1.31946 77.5384 1.95262 77.9289 2.34315L83.5858 8L77.9289 13.6569C77.5384 14.0474 77.5384 14.6805 77.9289 15.0711C78.3195 15.4616 78.9526 15.4616 79.3431 15.0711L85.7071 8.70711ZM0 9L85 9V7L0 7L0 9Z" fill="#0006BB"/>
+        </svg>
+      </button>
+      <button {...props} className="absolute bottom-[-30px] right-[35px] ml-4 outline-none z-20 block md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="15" viewBox="0 0 33 15" fill="none">
+          <path d="M32.7071 8.20711C33.0976 7.81658 33.0976 7.18342 32.7071 6.79289L26.3431 0.428932C25.9526 0.0384078 25.3195 0.0384078 24.9289 0.428932C24.5384 0.819457 24.5384 1.45262 24.9289 1.84315L30.5858 7.5L24.9289 13.1569C24.5384 13.5474 24.5384 14.1805 24.9289 14.5711C25.3195 14.9616 25.9526 14.9616 26.3431 14.5711L32.7071 8.20711ZM0 8.5L32 8.5V6.5L0 6.5L0 8.5Z" fill="#0006BB"/>
+        </svg>
+      </button>
+    </>
   )
 }
-const PrevSlideBtnSmall = (props) => {
-  return (
-    <button {...props} className="absolute left-[35px] bottom-[-30px] mr-4 outline-none z-50">
-      <svg xmlns="http://www.w3.org/2000/svg" width="33" height="15" viewBox="0 0 33 15" fill="none">
-        <path d="M0.292892 8.20711C-0.0976295 7.81658 -0.0976295 7.18342 0.292892 6.79289L6.65685 0.428932C7.04738 0.0384078 7.68054 0.0384078 8.07107 0.428932C8.46159 0.819457 8.46159 1.45262 8.07107 1.84315L2.41421 7.5L8.07107 13.1569C8.46159 13.5474 8.46159 14.1805 8.07107 14.5711C7.68054 14.9616 7.04738 14.9616 6.65685 14.5711L0.292892 8.20711ZM33 8.5L1 8.5V6.5L33 6.5V8.5Z" fill="#0006BB"/>
-      </svg>
-    </button>
-  )
-}
-const NextSlideBtnSmall = (props) => {
-  return (
-    <button {...props} className="absolute bottom-[-30px] right-[35px] ml-4 outline-none z-50">
-      <svg xmlns="http://www.w3.org/2000/svg" width="33" height="15" viewBox="0 0 33 15" fill="none">
-        <path d="M32.7071 8.20711C33.0976 7.81658 33.0976 7.18342 32.7071 6.79289L26.3431 0.428932C25.9526 0.0384078 25.3195 0.0384078 24.9289 0.428932C24.5384 0.819457 24.5384 1.45262 24.9289 1.84315L30.5858 7.5L24.9289 13.1569C24.5384 13.5474 24.5384 14.1805 24.9289 14.5711C25.3195 14.9616 25.9526 14.9616 26.3431 14.5711L32.7071 8.20711ZM0 8.5L32 8.5V6.5L0 6.5L0 8.5Z" fill="#0006BB"/>
-      </svg>
-    </button>
-  )
-}
+
 
 const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
   return (
@@ -84,8 +81,8 @@ const settings = {
   initialSlide: 1,
   centerMode: false,
   swipeToSlide: true,
-  nextArrow: <NextSlideBtnSmall/>,
-  prevArrow: <PrevSlideBtnSmall/>,
+  nextArrow: <NextSlideBtn/>,
+  prevArrow: <PrevSlideBtn/>,
   customPaging: function (i) {
     return (
       <div className="custom-dot"></div>
@@ -105,8 +102,6 @@ const settings = {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          nextArrow: <NextSlideBtn/>,
-          prevArrow: <PrevSlideBtn />,
         }
     }
   ]
@@ -159,11 +154,11 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
       <main>
         <section className="hero px-3">
           <Container className="pt-[24px] flex-col">
-            <div className='flex flex-col md:flex-row items-start gap-5 md:items-center mb-4'>
-              <h1 className='font-bold text-2xl sm:text-3xl md:text-4xl flex-[2] leading-[normal] uppercase'>
+            <div className='flex flex-col md:flex-row items-start gap-5 md:items-center mb-4 justify-between'>
+              <h1 className='max-w-[300px] font-bold text-2xl sm:text-3xl md:text-4xl leading-[normal] uppercase'>
                 {title}
               </h1>
-              <p className='flex-[3] text-sm md:text-lg font-medium leading-[normal]'>
+              <p className='max-w-[632px] text-sm md:text-lg font-medium leading-[normal]'>
                 {text}
               </p>
             </div>
@@ -189,7 +184,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
           })}>
             {annual_report.stats.map( (item, index) => {
               return (
-                <div key={index} className="flex justify-center items-center gap-[64px] lg:block">
+                <div key={index} className="flex smd:justify-center items-center gap-[64px] lg:block">
                   <CircularProgressBarWithImage percentage={item.percent} imageUrl={item.image}/>
                   <div className='lg:ml-[50%] mt-0 lg:mt-5 lg:w-[150px]'>
                     <h3 className='text-primary text-[36px] sm:text-[64px] font-bold leading-[55px]'>
@@ -212,9 +207,9 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
                   key={index}
                   className="py-5 px-6 lg:py-7 lg:px-10 bg-primary rounded-[16px] flex sm:block items-center gap-[24px]"
                 >
-                  <div className="flex gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
+                  <div className="flex gap-[16px] sm:gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
                     <h3 className="text-white flex flex-col sm:flex-row items-center sm:gap-4">
-                      <p className="text-[36px] sm:text-[44px] md:text-[58px] lg:text-[64px] font-bold">{item.count}</p>
+                      <p className="text-[36px] sm:text-[44px] md:text-[58px] w-[40px] lg:text-[64px] font-bold">{item.count}</p>
                     </h3>
                     <div className="hidden sm:block">
                       <svg
@@ -327,29 +322,29 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
             </div>
           </h3>
           <div className='hidden md:block pb-[50px]'>
-            <Slider {...settingsTeam} className="w-full min:h-[400px]">
+            <Slider {...settings} className="w-full min:h-[400px]">
               {employees.map((item, index) => (
                 <div key={index} className='!flex items-center gap-12 relative'>
-                <div className='relative h-[688px] w-[45%]'>
-                  <Image src={item.image} alt={item.full_name} objectFit='cover' fill={true}/>
+                  <div className='relative h-[688px] w-[45%]'>
+                    <Image src={item.image} alt={item.full_name} objectFit='cover' fill={true}/>
+                  </div>
+                  <div className='w-[50%] relative h-[688px] flex flex-col justify-center px-3 xl:px-0'>
+                    <h3 className='text-2xl font-bold text-primaryDark'>
+                      { item.full_name }
+                    </h3>
+                    <p className='text-2xl pt-[53px] font-medium'>
+                      Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
+                    </p>
+                    {/* <Link href='http://test.com' className={clsx('absolute bottom-[20px]', {
+                      ['right-[20px]']: index % 2 === 0,
+                      ['left-[20px]']: index % 2 > 0
+                    })}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
+                        <path d="M85.7071 8.70711C86.0976 8.31658 86.0976 7.68342 85.7071 7.29289L79.3431 0.928932C78.9526 0.538408 78.3195 0.538408 77.9289 0.928932C77.5384 1.31946 77.5384 1.95262 77.9289 2.34315L83.5858 8L77.9289 13.6569C77.5384 14.0474 77.5384 14.6805 77.9289 15.0711C78.3195 15.4616 78.9526 15.4616 79.3431 15.0711L85.7071 8.70711ZM0 9L85 9V7L0 7L0 9Z" fill="#0006BB"/>
+                      </svg>
+                    </Link> */}
+                  </div>
                 </div>
-                <div className='w-[50%] relative h-[688px] flex flex-col justify-center px-3 xl:px-0'>
-                  <h3 className='text-2xl font-bold text-primaryDark'>
-                    { item.full_name }
-                  </h3>
-                  <p className='text-2xl pt-[53px] font-medium'>
-                    Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.
-                  </p>
-                  <Link href='http://test.com' className={clsx('absolute bottom-[20px]', {
-                    ['right-[20px]']: index % 2 === 0,
-                    ['left-[20px]']: index % 2 > 0
-                  })}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="86" height="16" viewBox="0 0 86 16" fill="none">
-                      <path d="M85.7071 8.70711C86.0976 8.31658 86.0976 7.68342 85.7071 7.29289L79.3431 0.928932C78.9526 0.538408 78.3195 0.538408 77.9289 0.928932C77.5384 1.31946 77.5384 1.95262 77.9289 2.34315L83.5858 8L77.9289 13.6569C77.5384 14.0474 77.5384 14.6805 77.9289 15.0711C78.3195 15.4616 78.9526 15.4616 79.3431 15.0711L85.7071 8.70711ZM0 9L85 9V7L0 7L0 9Z" fill="#0006BB"/>
-                    </svg>
-                  </Link>
-                </div>
-              </div>
               ))}
             </Slider>
           </div>
@@ -439,10 +434,10 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
               </svg>
             </div>
           </h3>
-            <div className='hidden sm:flex flex-wrap gap-[104px] px-3'>
+            <div className='hidden sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-[104px] px-3'>
               {donors.map( (item, index) => {
                 return (
-                  <div key={index} className='relative w-[80px] h-[80px]'>
+                  <div key={index} className='relative w-[80px] h-[80px] mx-auto'>
                     <Image src={item} alt="image" fill={true} objectFit='contain'/>
                   </div>
                 )

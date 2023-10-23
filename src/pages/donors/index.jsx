@@ -48,6 +48,25 @@ const settings = {
     slidesToShow: 2,
     slidesToScroll: 2,
     initialSlide: 1,
+    customPaging: function (i) {
+        return <div className="custom-dot2"></div>
+    },
+    appendDots: dots => (
+        <div>
+            <ul
+            className="custom-dots2"
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative',
+                top: '10px',
+            }}
+            >
+            {dots}
+            </ul>
+        </div>
+    ),
     responsive: [
         {
             breakpoint: 850,
@@ -138,7 +157,7 @@ const Donors = (data) => {
                     <div className="flex max-w-[792px] items-center justify-center shadow-md rounded-[24px] px-12 lg:px-[124px] py-6 lg:py-[36px] mx-auto mt-10 text-center font-bold text-xl lg:text-2xl">
                         {t('donors.title')}
                     </div>
-                    <div className="flex lg:justify-center gap-6 lg:gap-12 flex-wrap mt-6 lg:mt-12 mb-4 lg:mb-10">
+                    <div className="flex lg:justify-center flex-col lg:flex-row gap-6 lg:gap-12 flex-wrap mt-6 lg:mt-12 mb-4 lg:mb-10">
                         <div className="flex items-center gap-4 lg:gap-8 lg:max-w-[362px]">
                             <div className="min-w-[68px] lg:min-w-[98px] min-h-[68px] lg:min-h-[98px] rounded-[50%] bg-[#AC76E1] flex justify-center items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
@@ -173,7 +192,7 @@ const Donors = (data) => {
                         </div>
                         <div className="flex items-center gap-4 lg:gap-8 lg:max-w-[362px]">
                             <div className="min-w-[68px] lg:min-w-[98px] min-h-[68px] lg:min-h-[98px] rounded-[50%] bg-[#6EC590] flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="49" viewBox="0 0 48 49" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
                                     <path d="M34 40.5195C34 37.2058 29.5228 34.5195 24 34.5195C18.4772 34.5195 14 37.2058 14 40.5195M42 34.5193C42 32.0589 39.5318 29.9444 36 29.0186M6 34.5193C6 32.0589 8.46819 29.9444 12 29.0186M36 20.9917C37.2275 19.8931 38 18.2965 38 16.5195C38 13.2058 35.3137 10.5195 32 10.5195C30.4633 10.5195 29.0615 11.0972 28 12.0473M12 20.9917C10.7725 19.8931 10 18.2965 10 16.5195C10 13.2058 12.6863 10.5195 16 10.5195C17.5367 10.5195 18.9385 11.0972 20 12.0473M24 28.5195C20.6863 28.5195 18 25.8332 18 22.5195C18 19.2058 20.6863 16.5195 24 16.5195C27.3137 16.5195 30 19.2058 30 22.5195C30 25.8332 27.3137 28.5195 24 28.5195Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
@@ -183,8 +202,8 @@ const Donors = (data) => {
                 </Container>
             </section>
             <section>
-                <Container className="grid grid-cols-1 md:grid-cols-2 lg:flex flex-wrap gap-4 py-6 md:py-8 px-3 lg:px-0 lg:py-12">
-                    <div className="max-w-[100%] md:max-w-[100%] lg:max-w-[584px] h-[478px] lg:h-[390px] relative rounded-[16px] box-item">
+                <Container className="grid grid-cols-1 md:grid-cols-2 xl:flex flex-wrap gap-4 py-6 md:py-8 px-3 lg:px-0 lg:py-12">
+                    <div className="max-w-[100%] md:max-w-[100%] xl:max-w-[584px] h-[478px] xl:h-[390px] relative rounded-[16px] box-item">
                         <div className="flip-box">
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
@@ -211,7 +230,7 @@ const Donors = (data) => {
                             </div>
                         </div>
                     </div>
-                    <div className="max-w-[100%] md:max-w-[100%] lg:max-w-[584px] h-[478px] lg:h-[390px] relative rounded-[16px] box-item">
+                    <div className="max-w-[100%] md:max-w-[100%] xl:max-w-[584px] h-[478px] xl:h-[390px] relative rounded-[16px] box-item">
                         <div className="flip-box">
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
@@ -240,7 +259,7 @@ const Donors = (data) => {
                             </div>
                         </div>
                     </div>
-                    <div className="max-w-[100%] md:max-w-[100%] lg:max-w-[384px] h-[358px] lg:h-[350px] relative  rounded-[16px] box-item">
+                    <div className="max-w-[100%] md:max-w-[100%] xl:max-w-[384px] h-[358px] lg:h-[350px] relative  rounded-[16px] box-item">
                         <div className="flip-box">
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
@@ -266,7 +285,7 @@ const Donors = (data) => {
                             </div>
                         </div>
                     </div>
-                    <div className="max-w-[100%] md:max-w-[100%] lg:max-w-[384px] h-[228px] lg:h-[350px] relative  rounded-[16px] box-item">
+                    <div className="max-w-[100%] md:max-w-[100%] xl:max-w-[384px] h-[228px] lg:h-[350px] relative  rounded-[16px] box-item">
                         <div className="flip-box">
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
@@ -291,7 +310,7 @@ const Donors = (data) => {
                             </div>
                         </div>
                     </div>
-                    <div className="max-w-[100%] md:max-w-[100%] lg:max-w-[384px] h-[278px] lg:h-[350px] relative  rounded-[16px] box-item">
+                    <div className="max-w-[100%] md:max-w-[100%] xl:max-w-[384px] h-[278px] lg:h-[350px] relative  rounded-[16px] box-item">
                         <div className="flip-box">
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">

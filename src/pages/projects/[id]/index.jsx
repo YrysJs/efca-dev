@@ -72,7 +72,7 @@ const ProjectDetails = ({ data }) => {
           <meta name="description" content={data.text} />
         </Head>
         <main className="mt-6 lg:mt-0 mb-6">
-          <Container className='flex-col smd:flex-row'>
+          <Container className='flex-col md:flex-row'>
             <div className="flex-[2] smd:mr-8 md:mr-10 lg:mr-12 flex flex-col justify-center px-3 xl:px-0">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{data.title}</h1>
               <div className="mt-10 flex items-center">
@@ -104,7 +104,7 @@ const ProjectDetails = ({ data }) => {
                 ))}
               </div>
             </div>
-            <div className="relative smd:flex-[2] md:flex-[3] h-[282px] sm:h-[382px] md:h-[482px] lg:h-[600px]">
+            <div className="relative smd:flex-[2] md:w-[400px] md:h-[382px] h-[282px] sm:h-[382px] md:h-[482px] lg:h-[600px]">
               <Image
                 src={data.image}
                 fill={true}
@@ -118,11 +118,16 @@ const ProjectDetails = ({ data }) => {
     ),
     statistics: ({ data }) => (
       <Container className="mb-6 px-3 xl:px-0">
-        <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className={clsx('w-full grid grid-cols-2  gap-4', {
+          'grid-cols-1': data.data.length ==1,
+          'grid-cols-2': data.data.length ==2,
+          'lg:grid-cols-3': data.data.length > 2
+          
+        })}>
           {data.data.map((item, index) => (
             <div 
               key={index} 
-              className='py-2 px-2 h-[138px] pr-3 rounded-lg grid grid-cols-[1fr_2fr] gap-2 items-center'
+              className='py-2 px-2 h-[138px] pr-3 rounded-lg flex flex-col items-center justify-center text-center sm:text-left sm:grid grid-cols-[1fr_2fr] gap-2 items-center'
               style={{ background: item.color }}
             >
               <div className="flex justify-center items-end">

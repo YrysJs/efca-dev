@@ -23,7 +23,7 @@ const Researches = ({ data, count, currentPage }) => {
 
   const searchWrapper = useRef(null)
   const resizeInputFocus = (e) => {
-    searchWrapper.current.style.cssText = 'transition: 1s; position: absolute; right:0; width: 277px; box-shadow: 0px 0px 5px 0px #dbdbdb; border-radius: 5px overflow:hidden;'
+    searchWrapper.current.style.cssText = 'transition: 1s;'
   }
   const resizeInputBlur = (e) => {
     searchWrapper.current.style.cssText = 'transition: 1s;'

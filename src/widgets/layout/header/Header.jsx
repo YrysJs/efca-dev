@@ -76,23 +76,23 @@ const Header = ({ locale }) => {
   }
 
   return (
-    <header>
+    <header className="sticky top-0 left-0 bg-white z-[60]">
       <Container className="flex items-center justify-between px-3 xl:px-0">
         <Link href="/" className="z-50">
           <div className="py-[8px] lg:py-6 flex items-center">
             <Icon src="/assets/logo.png" width={40} height={58} />
-            <span className="ml-4 leading-5 font-semibold text-black text-xs leading-[normal] lg:text-base">
+            <span className="min-w-[174px] mr-4 ml-4 leading-5 font-semibold text-black text-xs leading-[normal] lg:text-sm xl:text-base">
               {t('name.first-part')} <br/> {t('name.second-part')} <br/> {t('name.third-part')}
             </span>
           </div>
         </Link>
-        <div className="hidden lg:flex items-center gap-[61px]">
+        <div className="hidden xl:flex items-center gap-[61px]">
           <div className="relative w-[704px] flex justify-between">
             {routes.map(route => (
               <MenuItem key={route.labelKey} route={route} />
             ))}
           </div>
-          <div className="flex">
+          <div className="flex lg:flex-col xl:flex-row gap-3 xl:gap-5">
             <Link href={router.asPath} locale={'kz'}>
               <span className={clsx('font-medium uppercase', { 
                 ['!text-black']: locale === 'kz', 
@@ -102,7 +102,7 @@ const Header = ({ locale }) => {
               </span>
             </Link>
             <Link href={router.asPath} locale={'ru'}>
-              <span className={clsx('mx-5 font-medium uppercase', {
+              <span className={clsx('font-medium uppercase', {
                 ['!text-black']: locale === 'ru', 
                 ['text-gray']: locale !== 'ru' 
               })}>
@@ -119,7 +119,7 @@ const Header = ({ locale }) => {
             </Link>
           </div>
         </div>
-        <div className={clsx('fixed top-0 bg-white h-[100vh] z-30 left-0 flex justify-end pt-[80px] px-3 flex-col-reverse lg:hidden mob-menu w-full overflow-y-scroll', {
+        <div className={clsx('fixed top-0 bg-white h-[100vh] z-30 left-0 flex justify-end pt-[80px] px-3 flex-col-reverse xl:hidden mob-menu w-full overflow-y-scroll', {
           ['animate-[menuShow_0.3s_ease-in-out_forwards]']: mobileState === true,
           ['animate-[menuHide_0.3s_ease-in-out_forwards]']: mobileState === false,
         })}>
@@ -155,7 +155,7 @@ const Header = ({ locale }) => {
             </Link>
           </div>
         </div>
-        <button className='block lg:hidden z-50' onClick={() => handleMobileMenu(prev => !prev)}>
+        <button className='block xl:hidden z-50' onClick={() => handleMobileMenu(prev => !prev)}>
         { mobileState ? 
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
             <path d="M18 18.25L6 6.25M18 6.25L6 18.25" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -187,7 +187,7 @@ const MenuItem = ({ route, onSetClose }) => {
   return (
     <>
     <div 
-      className="py-3 hidden lg:block"
+      className="py-3 hidden xl:block"
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
     >
@@ -224,7 +224,7 @@ const MenuItem = ({ route, onSetClose }) => {
       )}
     </div>
     <div 
-      className="py-3 block lg:hidden"
+      className="py-3 block xl:hidden"
     >
       <div className="flex items-center cursor-pointer" onClick={handleSubMenu}>
         <div className="w-4 h-4 rounded-full border-4 border-primaryDark font-medium">
@@ -236,7 +236,7 @@ const MenuItem = ({ route, onSetClose }) => {
       </div>
       {isHovered && (
         <div 
-          className="z-50 lg:absolute top-12 left-0 right-0 lg:mx-auto px-6 py-2 lg:p-6 w-fit bg-white rounded lg:shadow flex flex-col lg:flex-row animate-[growDown_0.3s_ease-in-out_forwards]"
+          className="z-50 xl:absolute top-12 left-0 right-0 xl:mx-auto px-6 py-2 lg:p-6 w-fit bg-white rounded lg:shadow flex flex-col lg:flex-row animate-[growDown_0.3s_ease-in-out_forwards]"
           style={{ transformOrigin: 'top center' }}
         >
           {route.children.map((child, index) => (

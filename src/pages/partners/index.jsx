@@ -90,10 +90,10 @@ const Partners = ({ partners, materials, company_partners }) => {
                     <h3 className="text-2xl/8 lg:text-3xl font-bold text-black uppercase">
                     {t('partners.history_success')}
                     </h3>
-                    <div className="flex flex-wrap gap-6 justify-center lg:justify-start relative">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
                         { materials.map( (item, i) => {
                             return (
-                                <Link href={`/success-stories/${item.id}`} key={i} className='w-[378px]'>
+                                <Link href={`/success-stories/${item.id}`} key={i}>
                                     <div className='relative w-[100%] h-[216px] rounded-[8px] overflow-hidden'>
                                         <Image src={item.image} alt={i} fill={true} objectFit='cover'/>
                                     </div>
