@@ -21,13 +21,13 @@ const Footer = () => {
   const [subFooterState, setSubFooterState] = useState(false)
   const { t } = useTranslation()
   const [email, setEmail] = useState('')
-  const [fullName, setFullName] = useState('')
+  const [full_name, setFullName] = useState('')
   const [company, setCompany] = useState('')
-  const [phone, setPhone] = useState('')
-  const [formText, setFormText] = useState('')
+  const [contact, setContact] = useState('')
+  const [question, setQuestion] = useState('')
   const isEmailValid = useDebounce(validateEmail(email), 500)
 
-  const subFooterPathNames = ['/donors', '/path2', '/path3', '/path4']
+  const subFooterPathNames = ['/donors', '/partners']
   useEffect( () => {
     const isSubFooterPath = subFooterPathNames.some(item => item === pathname);
     setSubFooterState(isSubFooterPath)
@@ -43,11 +43,12 @@ const Footer = () => {
 
   const handleForm = async (e) => {
     e.preventDefault()
-    await api.post('/fakeForm')
-    setEmail('')
-    setEmail('')
-    setEmail('')
-    setEmail('')
+    await api.post('/mailing/donors', {
+      full_name,
+      company,
+      contact,
+      question
+    })
   }
 
   return (
@@ -66,7 +67,7 @@ const Footer = () => {
             <form className="flex flex-col gap-6 mx-auto w-full max-w-[500px] items-center" onSubmit={handleForm}>
               <input 
                 placeholder={t('footer.full_name')}
-                value={fullName}
+                value={full_name}
                 onChange={(e) => setFullName(e.target.value)}
                 className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
               />
@@ -78,17 +79,17 @@ const Footer = () => {
               />
               <input 
                 placeholder={t('footer.contacts')}
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
                 className="py-3 px-6 w-[100%] text-sm lg:text-base h-fit font-semibold text-base rounded-[40px] outline-none" 
               />
               <textarea 
                 placeholder={t('footer.textarea')}
-                value={formText}
-                onChange={(e) => setFormText(e.target.value)}
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
                 className="resize-none py-3 px-6 w-[100%] text-sm lg:text-base h-[134px] font-semibold text-base rounded-[20px] outline-none" 
               ></textarea>
-              <Button className="min-w-[100px] sm:w-[initial] lg:w-[initial] ml-auto block text-xs sm:text-sm pl-3 pr-3 sm:px-7 lg:px-7 lg:text-base" disabled={!isEmailValid}>
+              <Button className="min-w-[100px] sm:w-[initial] lg:w-[initial] ml-auto block text-xs sm:text-sm pl-3 pr-3 sm:px-7 lg:px-7 lg:text-base">
                 {t('footer.cta')}
               </Button>
             </form>

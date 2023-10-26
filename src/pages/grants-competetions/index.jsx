@@ -39,11 +39,11 @@ const GrantsCompetitions = ({ data, count, currentPage }) => {
                       </svg>
                     </div>
                     <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
-                    <div className="mt-4 lg:mt-6 text-xs sm:text-sm flex justify-end items-center">
-                      <div className="px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary">
+                    <div className="mt-6 flex justify-end items-center text-xs sm:text-sm xl:text-base">
+                      <div className="px-4 xl:px-7 py-2 xl:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary">
                       {t('success-stories.filter.from')} {item.date_from} {t('success-stories.filter.to')} {item.date_to}
                       </div>
-                      <div className={clsx('ml-2 lg:ml-6 px-4 lg:px-7 py-2 lg:-py-3 w-fit rounded-[40px] font-semibold', {
+                      <div className={clsx('ml-2 lg:ml-6 px-4 xl:px-7 py-2 xl:py-3 w-fit rounded-[40px] font-semibold', {
                         ['bg-active text-activeDark']: item.is_active,
                         ['bg-passive text-passiveDark']: !item.is_active,
                       })}>

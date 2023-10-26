@@ -201,7 +201,7 @@ const MenuItem = ({ route, onSetClose }) => {
       </div>
       {isHovered && (
         <div 
-          className="z-50 lg:absolute top-12 left-0 right-0 lg:mx-auto px-6 py-2 lg:p-6 w-fit bg-white rounded lg:shadow flex flex-col lg:flex-row animate-[growDown_0.3s_ease-in-out_forwards]"
+          className="z-50 lg:absolute top-12 left-0 right-0 lg:mx-auto min-w-[580px] px-6 py-2 lg:p-6 w-fit bg-white rounded lg:shadow flex flex-col justify-center lg:flex-row animate-[growDown_0.3s_ease-in-out_forwards]"
           style={{ transformOrigin: 'top center' }}
         >
           {route.children.map((child, index) => (

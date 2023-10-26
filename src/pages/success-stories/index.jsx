@@ -173,9 +173,9 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
           <div className="ml-0 lg:ml-12 flex-[3]">
             <div className="hidden lg:block h-[38px]">
               <div className="flex flex-end h-[38px]">
-                <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
+                <div className="ml-auto flex shadow pl-1 pr-3 rounded-lg flex-row items-center justify-between w-fit">
                   <input
-                    className="ml-auto w-[100%] py-2 px-3 outline-none placeholder:text-right"
+                    className="w-[100%] mr-1 px-3 outline-none placeholder:text-right"
                     type="text"
                     placeholder={t('success-stories.search')}
                     onChange={changeSearch}

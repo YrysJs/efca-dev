@@ -28,6 +28,7 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
         <Image
           src={imageUrl}
           alt="Изображение"
+          fill={true}
           style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
         />
       </div>
@@ -69,7 +70,7 @@ const AnnualReports = (data) => {
           })}>
             {data['annual-report'].stats.map( (item, index) => {
               return (
-                <div key={index} class="flex justify-center items-center gap-[64px] lg:block">
+                <div key={index} class="flex smd:justify-center items-center gap-[64px] lg:block">
                   <CircularProgressBarWithImage percentage={item.percent} imageUrl={item.image}/>
                   <div className='lg:ml-[50%] mt-0 lg:mt-5 lg:w-[150px]'>
                     <h3 className='text-primary text-[36px] sm:text-[64px] font-bold leading-[55px]'>
@@ -92,9 +93,9 @@ const AnnualReports = (data) => {
                   key={index}
                   className="py-5 px-6 lg:py-7 lg:px-10 bg-primary rounded-[16px] flex sm:block items-center gap-[24px]"
                 >
-                  <div className="flex gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
+                  <div className="flex gap-[16px] sm:gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
                     <h3 className="text-white flex flex-col sm:flex-row items-center sm:gap-4">
-                      <p className="text-[36px] sm:text-[44px] md:text-[58px] lg:text-[64px] font-bold">{item.count}</p>
+                      <p className="text-[36px] sm:text-[44px] md:text-[58px] w-[40px] lg:text-[64px] font-bold">{item.count}</p>
                     </h3>
                     <div className="hidden sm:block">
                       <svg
@@ -133,7 +134,7 @@ const AnnualReports = (data) => {
                       </svg>
                     </div>
                   </div>
-                  <p class="text-sm lg:text-base font-semibold text-white">
+                  <p className="text-sm lg:text-base font-semibold text-white">
                     {item.text}
                   </p>
                 </div>

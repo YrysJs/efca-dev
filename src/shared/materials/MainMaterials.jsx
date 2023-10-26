@@ -102,9 +102,9 @@ const MainMaterials = ({data, translate, route}) => {
               {t(`${translate}`)}
             </h1>
             <div className="flex flex-end h-[38px]">
-              <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-[160px] md:w-[250px]">
+              <div className="ml-auto flex shadow pl-1 pr-3 rounded-lg flex-row items-center justify-between w-[160px] md:w-[250px]">
                 <input
-                  className="ml-auto w-[100%] py-2 px-3 outline-none placeholder:text-right"
+                  className="ml-auto w-[100%] mr-1 px-3 outline-none placeholder:text-right"
                   type="text"
                   placeholder={t('success-stories.search')}
                   onChange={changeSearch}

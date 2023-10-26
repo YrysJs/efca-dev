@@ -48,6 +48,7 @@ const settings = {
     slidesToShow: 2,
     slidesToScroll: 2,
     initialSlide: 1,
+    rows: 1,
     customPaging: function (i) {
         return <div className="custom-dot2"></div>
     },
@@ -89,10 +90,67 @@ const settings = {
         }
     ]
 }
+const settings2 = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    centerMode: false,
+    swipeToSlide: true,
+    speed: 1000,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    initialSlide: 1,
+    customPaging: function (i) {
+        return <div className="custom-dot2"></div>
+    },
+    appendDots: dots => (
+        <div>
+            <ul
+            className="custom-dots2"
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative',
+                top: '10px',
+            }}
+            >
+            {dots}
+            </ul>
+        </div>
+    ),
+    responsive: [
+        {
+            breakpoint: 850,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                initialSlide: 2,
+                rows: 1,
+                gap: 20
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                rows: 1,
+                gap: 20
+            }
+        }
+    ]
+}
 
 const Donors = (data) => {
     const { t } = useTranslation()
+    console.log(data);
     const fakeSlider = [
+        {
+            imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
+            title: 'Chevron',
+            url: 'www.chvron.com'
+        },
         {
             imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
             title: 'Chevron',
@@ -345,7 +403,7 @@ const Donors = (data) => {
                 })}>
                     {data['annual-report'].stats.map( (item, index) => {
                     return (
-                        <div key={index} className="flex justify-center items-center gap-[64px] lg:block">
+                        <div key={index} className="flex smd:justify-center items-center gap-[64px] lg:block">
                         <CircularProgressBarWithImage percentage={item.percent} imageUrl={item.image}/>
                         <div className='lg:ml-[50%] mt-0 lg:mt-5 lg:w-[150px]'>
                             <h3 className='text-primary text-[36px] sm:text-[64px] font-bold leading-[55px]'>
@@ -365,54 +423,54 @@ const Donors = (data) => {
                     {data['annual-report'].advantages.map((item, index) => {
                     return (
                         <div
-                        key={index}
-                        className="py-5 px-6 lg:py-7 lg:px-10 bg-primary rounded-[16px] flex sm:block items-center gap-[24px]"
+                            key={index}
+                            className="py-5 px-6 lg:py-7 lg:px-10 bg-primary rounded-[16px] flex sm:block items-center gap-[24px]"
                         >
-                        <div className="flex gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
-                            <h3 className="text-white flex flex-col sm:flex-row items-center sm:gap-4">
-                            <p className="text-[36px] sm:text-[44px] md:text-[58px] lg:text-[64px] font-bold">{item.count}</p>
-                            </h3>
-                            <div className="hidden sm:block">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="61"
-                                height="61"
-                                viewBox="0 0 61 61"
-                                fill="none"
-                            >
-                                <path
-                                d="M30.6934 48C40.3583 48 48.1934 40.165 48.1934 30.5C48.1934 20.835 40.3583 13 30.6934 13C21.0284 13 13.1934 20.835 13.1934 30.5C13.1934 40.165 21.0284 48 30.6934 48Z"
-                                fill="white"
-                                />
-                                <path
-                                d="M30.6934 57.9C29.3184 57.9 28.1934 56.875 28.1934 55.5V55.3C28.1934 53.925 29.3184 52.8 30.6934 52.8C32.0684 52.8 33.1934 53.925 33.1934 55.3C33.1934 56.675 32.0684 57.9 30.6934 57.9ZM48.5434 50.85C47.8934 50.85 47.2684 50.6 46.7684 50.125L46.4434 49.8C45.4684 48.825 45.4684 47.25 46.4434 46.275C47.4184 45.3 48.9934 45.3 49.9684 46.275L50.2934 46.6C51.2684 47.575 51.2684 49.15 50.2934 50.125C49.8184 50.6 49.1934 50.85 48.5434 50.85ZM12.8434 50.85C12.1934 50.85 11.5684 50.6 11.0684 50.125C10.0934 49.15 10.0934 47.575 11.0684 46.6L11.3934 46.275C12.3684 45.3 13.9434 45.3 14.9184 46.275C15.8934 47.25 15.8934 48.825 14.9184 49.8L14.5934 50.125C14.1184 50.6 13.4684 50.85 12.8434 50.85ZM55.6934 33H55.4934C54.1184 33 52.9934 31.875 52.9934 30.5C52.9934 29.125 54.1184 28 55.4934 28C56.8684 28 58.0934 29.125 58.0934 30.5C58.0934 31.875 57.0684 33 55.6934 33ZM5.89336 33H5.69336C4.31836 33 3.19336 31.875 3.19336 30.5C3.19336 29.125 4.31836 28 5.69336 28C7.06836 28 8.29336 29.125 8.29336 30.5C8.29336 31.875 7.26836 33 5.89336 33ZM48.2184 15.475C47.5684 15.475 46.9434 15.225 46.4434 14.75C45.4684 13.775 45.4684 12.2 46.4434 11.225L46.7684 10.9C47.7434 9.925 49.3184 9.925 50.2934 10.9C51.2684 11.875 51.2684 13.45 50.2934 14.425L49.9684 14.75C49.4934 15.225 48.8684 15.475 48.2184 15.475ZM13.1684 15.475C12.5184 15.475 11.8934 15.225 11.3934 14.75L11.0684 14.4C10.0934 13.425 10.0934 11.85 11.0684 10.875C12.0434 9.9 13.6184 9.9 14.5934 10.875L14.9184 11.2C15.8934 12.175 15.8934 13.75 14.9184 14.725C14.4434 15.225 13.7934 15.475 13.1684 15.475ZM30.6934 8.1C29.3184 8.1 28.1934 7.075 28.1934 5.7V5.5C28.1934 4.125 29.3184 3 30.6934 3C32.0684 3 33.1934 4.125 33.1934 5.5C33.1934 6.875 32.0684 8.1 30.6934 8.1Z"
-                                fill="white"
-                                />
-                            </svg>
+                            <div className="flex gap-[16px] sm:gap-[24px] justify-between items-center sm:mb-2 flex-row-reverse sm:flex-row">
+                                <h3 className="text-white flex flex-col sm:flex-row items-center sm:gap-4">
+                                <p className="text-[36px] sm:text-[44px] md:text-[58px] w-[40px] lg:text-[64px] font-bold">{item.count}</p>
+                                </h3>
+                                <div className="hidden sm:block">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="61"
+                                    height="61"
+                                    viewBox="0 0 61 61"
+                                    fill="none"
+                                >
+                                    <path
+                                    d="M30.6934 48C40.3583 48 48.1934 40.165 48.1934 30.5C48.1934 20.835 40.3583 13 30.6934 13C21.0284 13 13.1934 20.835 13.1934 30.5C13.1934 40.165 21.0284 48 30.6934 48Z"
+                                    fill="white"
+                                    />
+                                    <path
+                                    d="M30.6934 57.9C29.3184 57.9 28.1934 56.875 28.1934 55.5V55.3C28.1934 53.925 29.3184 52.8 30.6934 52.8C32.0684 52.8 33.1934 53.925 33.1934 55.3C33.1934 56.675 32.0684 57.9 30.6934 57.9ZM48.5434 50.85C47.8934 50.85 47.2684 50.6 46.7684 50.125L46.4434 49.8C45.4684 48.825 45.4684 47.25 46.4434 46.275C47.4184 45.3 48.9934 45.3 49.9684 46.275L50.2934 46.6C51.2684 47.575 51.2684 49.15 50.2934 50.125C49.8184 50.6 49.1934 50.85 48.5434 50.85ZM12.8434 50.85C12.1934 50.85 11.5684 50.6 11.0684 50.125C10.0934 49.15 10.0934 47.575 11.0684 46.6L11.3934 46.275C12.3684 45.3 13.9434 45.3 14.9184 46.275C15.8934 47.25 15.8934 48.825 14.9184 49.8L14.5934 50.125C14.1184 50.6 13.4684 50.85 12.8434 50.85ZM55.6934 33H55.4934C54.1184 33 52.9934 31.875 52.9934 30.5C52.9934 29.125 54.1184 28 55.4934 28C56.8684 28 58.0934 29.125 58.0934 30.5C58.0934 31.875 57.0684 33 55.6934 33ZM5.89336 33H5.69336C4.31836 33 3.19336 31.875 3.19336 30.5C3.19336 29.125 4.31836 28 5.69336 28C7.06836 28 8.29336 29.125 8.29336 30.5C8.29336 31.875 7.26836 33 5.89336 33ZM48.2184 15.475C47.5684 15.475 46.9434 15.225 46.4434 14.75C45.4684 13.775 45.4684 12.2 46.4434 11.225L46.7684 10.9C47.7434 9.925 49.3184 9.925 50.2934 10.9C51.2684 11.875 51.2684 13.45 50.2934 14.425L49.9684 14.75C49.4934 15.225 48.8684 15.475 48.2184 15.475ZM13.1684 15.475C12.5184 15.475 11.8934 15.225 11.3934 14.75L11.0684 14.4C10.0934 13.425 10.0934 11.85 11.0684 10.875C12.0434 9.9 13.6184 9.9 14.5934 10.875L14.9184 11.2C15.8934 12.175 15.8934 13.75 14.9184 14.725C14.4434 15.225 13.7934 15.475 13.1684 15.475ZM30.6934 8.1C29.3184 8.1 28.1934 7.075 28.1934 5.7V5.5C28.1934 4.125 29.3184 3 30.6934 3C32.0684 3 33.1934 4.125 33.1934 5.5C33.1934 6.875 32.0684 8.1 30.6934 8.1Z"
+                                    fill="white"
+                                    />
+                                </svg>
+                                </div>
+                                <div className="block sm:hidden">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="43"
+                                    height="43"
+                                    viewBox="0 0 43 43"
+                                    fill="none"
+                                >
+                                    <path
+                                    d="M21.4997 33.75C28.4262 33.75 34.0413 28.2655 34.0413 21.5C34.0413 14.7345 28.4262 9.25 21.4997 9.25C14.5731 9.25 8.95801 14.7345 8.95801 21.5C8.95801 28.2655 14.5731 33.75 21.4997 33.75Z"
+                                    fill="white"
+                                    />
+                                    <path
+                                    d="M21.5003 40.68C20.5149 40.68 19.7087 39.9625 19.7087 39V38.86C19.7087 37.8975 20.5149 37.11 21.5003 37.11C22.4857 37.11 23.292 37.8975 23.292 38.86C23.292 39.8225 22.4857 40.68 21.5003 40.68ZM34.2928 35.745C33.827 35.745 33.3791 35.57 33.0207 35.2375L32.7878 35.01C32.0891 34.3275 32.0891 33.225 32.7878 32.5425C33.4866 31.86 34.6153 31.86 35.3141 32.5425L35.547 32.77C36.2457 33.4525 36.2457 34.555 35.547 35.2375C35.2066 35.57 34.7587 35.745 34.2928 35.745ZM8.70783 35.745C8.24199 35.745 7.79408 35.57 7.43574 35.2375C6.73699 34.555 6.73699 33.4525 7.43574 32.77L7.66866 32.5425C8.36741 31.86 9.49616 31.86 10.1949 32.5425C10.8937 33.225 10.8937 34.3275 10.1949 35.01L9.96199 35.2375C9.62158 35.57 9.15574 35.745 8.70783 35.745ZM39.417 23.25H39.2737C38.2882 23.25 37.482 22.4625 37.482 21.5C37.482 20.5375 38.2882 19.75 39.2737 19.75C40.2591 19.75 41.137 20.5375 41.137 21.5C41.137 22.4625 40.4024 23.25 39.417 23.25ZM3.72699 23.25H3.58366C2.59824 23.25 1.79199 22.4625 1.79199 21.5C1.79199 20.5375 2.59824 19.75 3.58366 19.75C4.56908 19.75 5.44699 20.5375 5.44699 21.5C5.44699 22.4625 4.71241 23.25 3.72699 23.25ZM34.0599 10.9825C33.5941 10.9825 33.1462 10.8075 32.7878 10.475C32.0891 9.7925 32.0891 8.69 32.7878 8.0075L33.0207 7.78C33.7195 7.0975 34.8482 7.0975 35.547 7.78C36.2457 8.4625 36.2457 9.565 35.547 10.2475L35.3141 10.475C34.9737 10.8075 34.5257 10.9825 34.0599 10.9825ZM8.94074 10.9825C8.47491 10.9825 8.02699 10.8075 7.66866 10.475L7.43574 10.23C6.73699 9.5475 6.73699 8.445 7.43574 7.7625C8.13449 7.08 9.26324 7.08 9.96199 7.7625L10.1949 7.99C10.8937 8.6725 10.8937 9.775 10.1949 10.4575C9.85449 10.8075 9.38866 10.9825 8.94074 10.9825ZM21.5003 5.82C20.5149 5.82 19.7087 5.1025 19.7087 4.14V4C19.7087 3.0375 20.5149 2.25 21.5003 2.25C22.4857 2.25 23.292 3.0375 23.292 4C23.292 4.9625 22.4857 5.82 21.5003 5.82Z"
+                                    fill="white"
+                                    />
+                                </svg>
+                                </div>
                             </div>
-                            <div className="block sm:hidden">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="43"
-                                height="43"
-                                viewBox="0 0 43 43"
-                                fill="none"
-                            >
-                                <path
-                                d="M21.4997 33.75C28.4262 33.75 34.0413 28.2655 34.0413 21.5C34.0413 14.7345 28.4262 9.25 21.4997 9.25C14.5731 9.25 8.95801 14.7345 8.95801 21.5C8.95801 28.2655 14.5731 33.75 21.4997 33.75Z"
-                                fill="white"
-                                />
-                                <path
-                                d="M21.5003 40.68C20.5149 40.68 19.7087 39.9625 19.7087 39V38.86C19.7087 37.8975 20.5149 37.11 21.5003 37.11C22.4857 37.11 23.292 37.8975 23.292 38.86C23.292 39.8225 22.4857 40.68 21.5003 40.68ZM34.2928 35.745C33.827 35.745 33.3791 35.57 33.0207 35.2375L32.7878 35.01C32.0891 34.3275 32.0891 33.225 32.7878 32.5425C33.4866 31.86 34.6153 31.86 35.3141 32.5425L35.547 32.77C36.2457 33.4525 36.2457 34.555 35.547 35.2375C35.2066 35.57 34.7587 35.745 34.2928 35.745ZM8.70783 35.745C8.24199 35.745 7.79408 35.57 7.43574 35.2375C6.73699 34.555 6.73699 33.4525 7.43574 32.77L7.66866 32.5425C8.36741 31.86 9.49616 31.86 10.1949 32.5425C10.8937 33.225 10.8937 34.3275 10.1949 35.01L9.96199 35.2375C9.62158 35.57 9.15574 35.745 8.70783 35.745ZM39.417 23.25H39.2737C38.2882 23.25 37.482 22.4625 37.482 21.5C37.482 20.5375 38.2882 19.75 39.2737 19.75C40.2591 19.75 41.137 20.5375 41.137 21.5C41.137 22.4625 40.4024 23.25 39.417 23.25ZM3.72699 23.25H3.58366C2.59824 23.25 1.79199 22.4625 1.79199 21.5C1.79199 20.5375 2.59824 19.75 3.58366 19.75C4.56908 19.75 5.44699 20.5375 5.44699 21.5C5.44699 22.4625 4.71241 23.25 3.72699 23.25ZM34.0599 10.9825C33.5941 10.9825 33.1462 10.8075 32.7878 10.475C32.0891 9.7925 32.0891 8.69 32.7878 8.0075L33.0207 7.78C33.7195 7.0975 34.8482 7.0975 35.547 7.78C36.2457 8.4625 36.2457 9.565 35.547 10.2475L35.3141 10.475C34.9737 10.8075 34.5257 10.9825 34.0599 10.9825ZM8.94074 10.9825C8.47491 10.9825 8.02699 10.8075 7.66866 10.475L7.43574 10.23C6.73699 9.5475 6.73699 8.445 7.43574 7.7625C8.13449 7.08 9.26324 7.08 9.96199 7.7625L10.1949 7.99C10.8937 8.6725 10.8937 9.775 10.1949 10.4575C9.85449 10.8075 9.38866 10.9825 8.94074 10.9825ZM21.5003 5.82C20.5149 5.82 19.7087 5.1025 19.7087 4.14V4C19.7087 3.0375 20.5149 2.25 21.5003 2.25C22.4857 2.25 23.292 3.0375 23.292 4C23.292 4.9625 22.4857 5.82 21.5003 5.82Z"
-                                fill="white"
-                                />
-                            </svg>
+                            <p className="text-sm lg:text-base font-semibold text-white">
+                                {item.text}
+                            </p>
                             </div>
-                        </div>
-                        <p className="text-sm lg:text-base font-semibold text-white">
-                            {item.text}
-                        </p>
-                        </div>
                     )
                     })}
                 </div>
@@ -421,29 +479,67 @@ const Donors = (data) => {
             <section className='px-4'>
                 <Container className="py-10 flex-col md:overflow-hidden">
                     <h3 className="flex-1 text-3xl font-bold text-primaryDark uppercase">{t('donors.donors-review')}</h3>
-                    <Slider 
-                        {...settings}
-                        className='py-12 md:mx-[-20px]' 
-                    >
-                        {fakeSlider.map((item, index) => (
-                            <div key={index} className='relative'>
-                                <div className="!flex flex-col border-r-[0px] smd:border-r-[2px] border-[#EBEBEB] overflow-hidden px-2 sm:px-6 smd:px-10">
-                                    <div className='relative max-w-[102px] min-h-[102px]'>
-                                        <Image src={'http://194.4.56.53/storage/donors/August2023/hG5PLHejDXUNlvHaTQr1.png'} alt='logo' fill={true}/>
+                    { data.reviews.length % 2 === 0 ? 
+                        <Slider 
+                            {...settings}
+                            className='py-12 md:mx-[-20px]' 
+                        >
+                            {data.reviews.map((item, index) => (
+                                <div key={index} className='relative'>
+
+                                    <div className="!flex flex-col border-r-[0px] smd:border-r-[2px] border-[#EBEBEB] overflow-hidden px-2 sm:px-6 smd:px-10">
+                                        <div className='relative max-w-[102px] min-h-[102px]'>
+                                            <Image src={item.image} alt='logo' fill={true} objectFit='contain'/>
+                                        </div>
+                                        <p className='text-lg font-medium py-6'>
+                                        <div className='absolute z-[-1] mt-[-8px] ml-[-10px]'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24" fill="none">
+                                                <path d="M8.352 0.519531C3.456 3.97553 0 9.63953 0 15.8795C0 20.9675 3.072 23.9435 6.624 23.9435C9.984 23.9435 12.48 21.2555 12.48 18.0875C12.48 14.9195 10.272 12.6155 7.392 12.6155C6.816 12.6155 6.048 12.7115 5.856 12.8075C6.336 9.54353 9.408 5.70353 12.48 3.78353L8.352 0.519531ZM24.864 0.519531C20.064 3.97553 16.608 9.63953 16.608 15.8795C16.608 20.9675 19.68 23.9435 23.232 23.9435C26.496 23.9435 29.088 21.2555 29.088 18.0875C29.088 14.9195 26.784 12.6155 23.904 12.6155C23.328 12.6155 22.656 12.7115 22.464 12.8075C22.944 9.54353 25.92 5.70353 28.992 3.78353L24.864 0.519531Z" fill="#EEEEFF"/>
+                                            </svg>
+                                        </div>
+                                            {item.text} 
+                                        </p>
+                                        <div className='flex gap-[16px] items-center'>
+                                            <div className='relative w-[52px] h-[52px]'>
+                                                <Image src={item.people_image} alt='logo' fill={true} className='rounded-[50%]' objectFit='cover'/>
+                                            </div>
+                                            <div>
+                                                <p className='text-base font-medium'>{item.full_name}</p>
+                                                <p className='text-base font-medium text-[#696969]'>{item.position}</p>
+                                            </div>
+                                        </div>
+                                        {index % 2 == 0 && <div className="block smd:hidden w-[80%] h-[2px] bg-[#EBEBEB] my-4 mx-auto slider-hr__bottom"></div>}
                                     </div>
-                                    <p className='text-lg font-medium py-6'>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis. 
-                                    </p>
-                                    <div>
-                                        <div className='relative w-[52px] h-[52px]'>
-                                            <Image src={'https://plus.unsplash.com/premium_photo-1675484743423-57da4e8011c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cm9hZHN8ZW58MHx8MHx8fDA%3D&w=1000&q=80'} alt='logo' fill={true} className='rounded-[50%]' objectFit='cover'/>
+                                </div>
+                            ))}
+                    </Slider> : 
+                    <Slider 
+                            {...settings2}
+                            className='py-12 md:mx-[-20px]' 
+                        >
+                            {data.reviews.map((item, index) => (
+                                <div key={index} className='relative'>
+                                    <div className="!flex flex-col border-r-[0px] smd:border-r-[2px] border-[#EBEBEB] overflow-hidden px-2 sm:px-6 smd:px-10">
+                                        <div className='relative max-w-[102px] min-h-[102px]'>
+                                            <Image src={item.image} alt='logo' fill={true} objectFit='contain'/>
+                                        </div>
+                                        <p className='text-lg font-medium py-6'>
+                                            {item.text} 
+                                        </p>
+                                        <div className='flex gap-[16px] items-center'>
+                                            <div className='relative w-[52px] h-[52px]'>
+                                                <Image src={item.people_image} alt='logo' fill={true} className='rounded-[50%]' objectFit='cover'/>
+                                            </div>
+                                            <div>
+                                                <p className='text-base font-medium'>{item.full_name}</p>
+                                                <p className='text-base font-medium text-[#696969]'>{item.position}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    {index % 2 == 0 && <div className="block smd:hidden w-[80%] h-[2px] bg-[#EBEBEB] my-4 mx-auto slider-hr__bottom"></div>}
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </Slider>
+                    }
                 </Container>
             </section>
             <section className="py-12 px-4">

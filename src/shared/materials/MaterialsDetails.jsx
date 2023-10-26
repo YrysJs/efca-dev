@@ -6,6 +6,7 @@ import { Container, Pagination } from '@/shared/ui'
 import Slider from 'react-slick'
 import React, { Component } from 'react'
 import parse from 'html-react-parser'
+import clsx from 'clsx'
 
 const settings = {
   dots: false,
@@ -54,11 +55,16 @@ const MainDetails = ({ data }) => {
           return (
             <section key={i} className="py-[20px] px-3 md:py-10">
               <Container className="px-3 xl:px-0">
-                <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className={clsx('w-full grid grid-cols-2  gap-4', {
+                  'grid-cols-1': item.data.length ==1,
+                  'max-w-[800px] mx-auto grid-cols-2': item.data.length ==2,
+                  'lg:grid-cols-3': item.data.length > 2
+                  
+                })}>
                   {item.data.map((item, index) => (
                     <div 
                       key={index} 
-                      className='py-2 px-2 h-[138px] pr-3 rounded-lg grid grid-cols-[1fr_2fr] gap-2 items-center'
+                      className='py-2 px-2 h-[138px] pr-3 rounded-lg flex flex-col items-center justify-center text-center sm:text-left sm:grid grid-cols-[1fr_2fr] gap-2 items-center'
                       style={{ background: item.color }}
                     >
                       <div className="flex justify-center items-end">
@@ -184,11 +190,11 @@ const MainDetails = ({ data }) => {
                           objectFit="cover"
                         />
                       </div>
-                      <span className="mt-4 font-medium">{item.full_name}</span>
-                      <span className="mt-2 text-sm font-medium text-center text-primary">
+                      <span className="mt-4 blokc font-medium">{item.full_name}</span>
+                      <span className="mt-2 block text-sm font-medium text-center text-primary">
                         {item.position}
                       </span>
-                      <Link href="test.com">link</Link>
+                      <Link className="mt-2 block text-[#979797] text-sm font-medium" href={item.link}>{item.link}</Link>
                     </div>
                   ))
                 )}

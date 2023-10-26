@@ -38,9 +38,9 @@ const Benefits = ({ data, count, currentPage }) => {
           <div className="relative w-full flex gap-4 items-center justify-between h-[40px]">
             <h1 className="text-2xl lg:text-3xl font-bold text-primaryDark uppercase">{t('benefits.head')}</h1>
             <div ref={searchWrapper} className="flex flex-end rounded-lg h-[40px]">
-              <div className="ml-auto flex shadow pr-3 rounded-lg flex-row items-center justify-between w-fit">
+              <div className="ml-auto flex shadow pl-1 pr-3 rounded-lg flex-row items-center justify-between w-fit">
                 <input
-                  className="w-[100%] py-2 px-3 outline-none rounded-lg placeholder:text-right"
+                  className="w-[100%] py-2 mr-1 px-3 outline-none rounded-lg placeholder:text-right"
                   type="text"
                   placeholder={t('success-stories.search')}
                   value={searchField}

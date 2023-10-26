@@ -6,6 +6,7 @@ import { useState } from 'react'
 import Slider from 'react-slick'
 import { Container } from '@/shared/ui'
 import { api } from '@/shared/api'
+import clsx from 'clsx'
 
 const settings = {
   dots: false,
@@ -90,11 +91,11 @@ const Team = ({ trustees, employees }) => {
       <section className="pt-6 p-3 md:p-8 lg:p-12 bg-white">
         <Container className="flex flex-col">
           <h2 className="text-2xl/8 lg:text-3xl font-bold uppercase text-primaryDark">{t('team.employees')}</h2>
-          <div className="mt-6 lg:mt-10 w-full flex flex-wrap">
+          <div className="mt-6 lg:mt-10 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {employees.map((item, index) => (
               <div 
                 key={'employee'+index}
-                className="relative mb-4 md:mb-8 lg:mb-12 px-3 w-[calc(100%/2)] md:w-[calc(100%/3)] lg:w-[calc(100%/6)] flex" 
+                className="relative mb-4 md:mb-8 lg:mb-12 px-3  flex" 
                 onMouseEnter={() => setActiveCard(index)}
                 onMouseLeave={() => setActiveCard(null)}
               >
@@ -112,7 +113,9 @@ const Team = ({ trustees, employees }) => {
                 </div>
                 {activeCard === index && item.tooltip && (
                   <div 
-                    className="absolute z-[9999] bottom-[calc(100%-24px)] left-0 drop-shadow translate-y-full animate-[growUp_0.3s_ease-in-out_forwards]"
+                    className={clsx("hidden xl:block absolute z-[9999] bottom-[calc(100%-24px)] left-0 drop-shadow translate-y-full animate-[growUp_0.3s_ease-in-out_forwards]", {
+                      
+                    })}
                   >
                     <div className="p-7 min-w-[435px] bg-white rounded-2xl">
                       <p className="font-medium">{item.tooltip}</p>

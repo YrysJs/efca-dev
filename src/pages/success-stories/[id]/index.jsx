@@ -221,6 +221,7 @@ const ProjectDetails = ({ data }) => {
       )
     },
     more: ({ data }) => {
+      console.log(data);
       return (
         <Container shrink className="mt-6 flex-col px-3 xl:px-0">
           <h3 className="font-semibold text-lg md:text-xl lg:text-2xl">{t('projects.more')}</h3>
