@@ -273,7 +273,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
 
         <section className="main-projects">
           <h3 className='py-6 sm:py-12 text-2xl sm:text-[32px] font-bold bg-white px-3 sm:px-0 uppercase flex justify-start sm:justify-center items-center gap-[10px]'>
-            <Link href='/team'>{t('projects.head')}</Link>
+            <Link href='/projects'>{t('projects.head')}</Link>
             <div className="block sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g opacity="0.5">

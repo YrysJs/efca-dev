@@ -81,6 +81,9 @@
       },
       "benefits": {
         "root": "Benefits"
+      },
+      "details": {
+        "read-further": "Read further"
       }
     },
     "join": {
@@ -131,20 +134,20 @@
     "head": "Frequently asked questions"
   },
   "vacancy": {
-    "head": "Vacancy",
-    "cta": "More",
+    "head": "Open Positions",
+    "cta": "Details",
     "active": "Active",
     "passive": "Not active",
     "links": "Links"
   },
   "researches": {
-    "head": "Researches"
+    "head": "Research"
   },
   "benefits": {
     "head": "Benefits"
   },
   "contacts": {
-    "head": "Contacts",
+    "head": "Contact us",
     "address": "Address"
   },
   "grants-competetions": {
@@ -204,8 +207,49 @@
     "step-2": "Project design development",
     "step-3": "Project approval and contract signing",
     "step-4": "Project implementation",
-    "step-5": "Efficiency mark",
-    "donors-review": "Feedback from donors",
+    "step-5": "Performance evaluation",
+    "donors-review": "Donor Feedback",
     "our-donors": "Our donors"
+  },
+  "open-gal": "Open gallery",
+  "step-1-content": {
+    "one": "We determine the scale and specifics of the social issue",
+    "two": "We identify potential partners",
+    "three": "We research local and international experience",
+    "four": "We identify possible solutions to the problem",
+    "five": "We determine the risks and calculate the project budget",
+    "text": "The result of the first stage: a brief report with a clear description of the problem and recommendations for its solution. With it, you can decide whether the project will be funded or not.",
+    "date": "Working time: 1-2 weeks"
+  },
+  "step-2-content": {
+    "one": "Description of the problem and justification for its solution",
+    "two": "Setting goals and objectives to solve the problem",
+    "three": "Defining the main steps and activities",
+    "four": "Identification of risks and a search for ways to reduce risks",
+    "five": "Determination of the project monitoring schedule",
+    "six": "Determination of project implementation deadlines",
+    "seven": "Creation of a detailed budget",
+    "text": "The result of the second stage: a detailed project application that can be used as an implementation plan.",
+    "date": "Working time: 2-3 weeks"
+  },
+  "step-3-content": {
+    "one": "Project approval and contract signing",
+    "two": "Coordination of the main activities",
+    "three": "Coordination of deadlines and reporting",
+    "four": "Contract signing",
+    "text": "Result of the third stage: signed contract",
+    "date": "Working time: 2-3 weeks"
+  },
+  "step-4-content": {
+    "one": "Implementation of the project according to the contract",
+    "text": "Result of the fourth stage: the completed project and submission of reports.",
+    "date": "Work period: according to the approved plan"
+  },
+  "step-5-content": {
+    "one": "Project performance assessment",
+    "two": "Analysis of recommendations",
+    "three": "Report delivery",
+    "text": "Result of the fifth stage: a report on the effectiveness of the project with qualitative and quantitative indicators, as well as recommendations for the continuation of the project in the future",
+    "date": "Duration of work: based on the duration and complexity of the project"
   }
 }

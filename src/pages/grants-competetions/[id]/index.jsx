@@ -6,6 +6,7 @@ import React from 'react'
 import parse from 'html-react-parser'
 import { Container } from '@/shared/ui'
 import { api } from '@/shared/api'
+import Link from 'next/link'
 
 const GrantsCompetitionsDetails = ({ data }) => {
   const { t } = useTranslation()
@@ -19,7 +20,7 @@ const GrantsCompetitionsDetails = ({ data }) => {
         <Container className='flex-col-reverse lg:flex-row'>
           <aside className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:flex lg:flex-1 p-4 h-fit lg:bg-secondary rounded-lg">
             {data.other.map(item => (
-              <div key={item.id} className="overflow-hidden mb-4 w-full flex flex-col rounded-lg">
+              <Link href={`/grants-competetions/${item.id}`} key={item.id} className="overflow-hidden mb-4 w-full flex flex-col rounded-lg">
                 <div className="relative w-full h-[168px]">
                   <Image
                     src={item.image}
@@ -32,7 +33,7 @@ const GrantsCompetitionsDetails = ({ data }) => {
                   <span className="text-[10px] sm:text-xs font-medium text-lightgray">{item.date_from}</span>
                   <span className="text-base sm:text-lg font-medium text-primaryDark">{item.title}</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </aside>
           <section className="ml-0 lg:ml-12 flex-[4]">

@@ -34,7 +34,6 @@ const settings = {
 
 const MainDetails = ({ data }) => {
   const { t } = useTranslation()
-  console.log(data)
   return (
     <>
       <Head>
@@ -133,7 +132,7 @@ const MainDetails = ({ data }) => {
             <section key={i} className="pt-6 sm:pt-10">
             <Container className="flex-col">
               <h3 className="text-lg sm:text-2xl text-center font-semibold pb-6 sm:pb-10">
-                В результате отбора победителями грантового конкурса стали:
+                
               </h3>
               <ModifiedJSX
                 html={item.data}
@@ -146,13 +145,13 @@ const MainDetails = ({ data }) => {
       {data.blocks.filter(item => item.type === 'more').length ? (
         <section className="px-3 pt-6 sm:pt-10">
           <Container className="flex-col">
-            <h3 className="text-lg sm:text-2xl text-left font-semibold">Читайте также</h3>
+            <h3 className="text-lg sm:text-2xl text-left font-semibold">{t('menu.materials.details.read-further')}</h3>
             <div className="mt-6 w-full grid grid-cols1 md:grid-cols-2 gap-6">
               {data.blocks
                 .filter(item => item.type === 'more')
                 .map(item =>
                   item.data.map((item, index) => (
-                    <div key={index} className="flex flex-col">
+                    <Link href={`/news/${item.id}`} key={index} className="flex flex-col">
                       <div className="overflow-hidden relative w-full h-[212px] rounded-lg">
                         <Image src={item.image} alt={item.title} fill={true} objectFit="cover" />
                       </div>
@@ -161,7 +160,7 @@ const MainDetails = ({ data }) => {
                           {item.title}
                         </span>
                       </div>
-                    </div>
+                    </Link>
                   ))
                 )}
             </div>

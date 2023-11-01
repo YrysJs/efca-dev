@@ -62,6 +62,7 @@ const settings = {
 const Team = ({ trustees, employees }) => {
   const { t } = useTranslation()
   const [activeCard, setActiveCard] = useState(null)
+
   return (
     <>
       <Head>
@@ -91,11 +92,11 @@ const Team = ({ trustees, employees }) => {
       <section className="pt-6 p-3 md:p-8 lg:p-12 bg-white">
         <Container className="flex flex-col">
           <h2 className="text-2xl/8 lg:text-3xl font-bold uppercase text-primaryDark">{t('team.employees')}</h2>
-          <div className="mt-6 lg:mt-10 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          <div className="mt-6 lg:mt-10 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6">
             {employees.map((item, index) => (
               <div 
                 key={'employee'+index}
-                className="relative mb-4 md:mb-8 lg:mb-12 px-3  flex" 
+                className="relative mb-4 md:mb-8 lg:mb-12 px-3 xl:flex lg:block" 
                 onMouseEnter={() => setActiveCard(index)}
                 onMouseLeave={() => setActiveCard(null)}
               >
@@ -112,24 +113,46 @@ const Team = ({ trustees, employees }) => {
                   <span className="mt-2 text-sm font-medium text-center text-gray">{item.email}</span>
                 </div>
                 {activeCard === index && item.tooltip && (
-                  <div 
-                    className={clsx("hidden xl:block absolute z-[9999] bottom-[calc(100%-24px)] left-0 drop-shadow translate-y-full animate-[growUp_0.3s_ease-in-out_forwards]", {
-                      
-                    })}
-                  >
-                    <div className="p-7 min-w-[435px] bg-white rounded-2xl">
-                      <p className="font-medium">{item.tooltip}</p>
-                      {item.bottom_tooltip && (
-                        <>
-                          <div className="my-2 h-[2px] w-full bg-primaryLight" />
-                          <span className="text-sm font-medium">{item.bottom_tooltip}</span>
-                        </>
-                      )}
+                  <>
+                    <div 
+                      className={clsx("hidden xl:block absolute z-[9999] bottom-[calc(100%-24px)] left-0 drop-shadow translate-y-full animate-[growUp_0.3s_ease-in-out_forwards]", {
+                        
+                      })}
+                    >
+                      <div className="p-7 min-w-[435px] bg-white rounded-2xl">
+                        <p className="font-medium">{item.tooltip}</p>
+                        {item.bottom_tooltip && (
+                          <>
+                            <div className="my-2 h-[2px] w-full bg-primaryLight" />
+                            <span className="text-sm font-medium">{item.bottom_tooltip}</span>
+                          </>
+                        )}
+                      </div>
+                      <svg className="relative top-[-2px] ml-[70px]" width="35" height="23" viewBox="0 0 35 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.611328 0.505859H17.6113H34.6113L17.6113 22.3341L0.611328 0.505859Z" fill="white"/>
+                      </svg>
                     </div>
-                    <svg className="relative top-[-2px] ml-[70px]" width="35" height="23" viewBox="0 0 35 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.611328 0.505859H17.6113H34.6113L17.6113 22.3341L0.611328 0.505859Z" fill="white"/>
-                    </svg>
-                  </div>
+                    <div 
+                      className={clsx("block xl:hidden fixed w-[90%] top-[50%] left-[50%] shadow-lg translate-y-[-50%] translate-x-[-50%] z-[9999] ", {
+                        
+                      })}
+                    >
+                      <div className='block md:hidden absolute left-[50%] translate-x-[-50%] top-[-20px] bg-[lightGray] rounded-[50%] p-1' onClick={() => setActiveCard(null)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                          <path d="M18 18.25L6 6.25M18 6.25L6 18.25" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <div className="p-7  bg-white rounded-2xl">
+                        <p className="font-medium">{item.tooltip}</p>
+                        {item.bottom_tooltip && (
+                          <>
+                            <div className="my-2 h-[2px] w-full bg-primaryLight" />
+                            <span className="text-sm font-medium">{item.bottom_tooltip}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </>
                 )}
               </div>
             ))}

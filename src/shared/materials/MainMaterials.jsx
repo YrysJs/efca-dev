@@ -136,7 +136,7 @@ const MainMaterials = ({data, translate, route}) => {
       </section>
       <section className="pb-6 px-3 md:pb-6 md:px-8 lg:pb-6">
         <Container>
-          <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full h-[576px]">
+          { data.data.length ? <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full h-[576px]">
             {data.data.map((item, index) => (
               <Link href={`/${route}/${item.id}`} key={index} className="h-[576px] relative">
                 <div>
@@ -150,28 +150,29 @@ const MainMaterials = ({data, translate, route}) => {
                 </div>
               </Link>
             ))}
-          </Slider>
+          </Slider> : <h3 className="text-base lg:text-2xl text-center my-10 mx-auto font-bold">Нет Материала</h3> }
         </Container>
       </section>
       <section className="pt-6 pb-8 px-3 md:py-8 md:px-8 lg:py-8">
         <Container className="flex-col">
-          <div className="mb-2 sm:mb-6 md:mb-10 lg:mb-12 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 relative">
-            {data.data.map((item, i) => {
-              return (
-                <Link href={`/${route}/${item.id}`} key={i} className="">
-                  <div className="relative w-[100%] h-[216px] rounded-[8px] overflow-hidden">
-                    <Image src={item.image} alt={i} fill={true} objectFit="cover" />
-                  </div>
-                  <div className="py-4 px-5">
-                    <p className="text-darkGray text-[10px] sm:text-xs">{item.created_at}</p>
-                    <h3 className="text-primaryDark text-base font-medium lg:font-semibold md:text-xl lg:text-2xl">
-                      {item.title}
-                    </h3>
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
+          { data.data.length > 0 && 
+            <div className="mb-2 sm:mb-6 md:mb-10 lg:mb-12 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 relative">
+              {data.data.map((item, i) => {
+                return (
+                  <Link href={`/${route}/${item.id}`} key={i} className="">
+                    <div className="relative w-[100%] h-[216px] rounded-[8px] overflow-hidden">
+                      <Image src={item.image} alt={i} fill={true} objectFit="cover" />
+                    </div>
+                    <div className="py-4 px-5">
+                      <p className="text-darkGray text-[10px] sm:text-xs">{item.created_at}</p>
+                      <h3 className="text-primaryDark text-base font-medium lg:font-semibold md:text-xl lg:text-2xl">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>}
           <Pagination totalCount={4} currentPage={1} />
         </Container>
       </section>

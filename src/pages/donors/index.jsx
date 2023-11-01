@@ -144,39 +144,6 @@ const settings2 = {
 
 const Donors = (data) => {
     const { t } = useTranslation()
-    console.log(data);
-    const fakeSlider = [
-        {
-            imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-            title: 'Chevron',
-            url: 'www.chvron.com'
-        },
-        {
-            imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-            title: 'Chevron',
-            url: 'www.chvron.com'
-        },
-        {
-            imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-            title: 'Chevron',
-            url: 'www.chvron.com'
-        },
-        {
-            imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-            title: 'Chevron',
-            url: 'www.chvron.com'
-        },
-        {
-            imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-            title: 'Chevron',
-            url: 'www.chvron.com'
-        },
-        {
-            imgUrl: 'https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png',
-            title: 'Chevron',
-            url: 'www.chvron.com'
-        },
-    ]
 
     useEffect( () => {
         let windowHeight = window.innerHeight
@@ -266,17 +233,17 @@ const Donors = (data) => {
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
                                     <ul className='text-base lg:text-lg font-medium leading-normal list-disc ml-6'>
-                                        <li>Определяем масштаб и специфику социальной проблемы</li>
-                                        <li>Определяем основных потенциальных партнеров</li>
-                                        <li>Изучаем местный и международный опыт</li>
-                                        <li>Определяем возможные решения проблемы</li>
-                                        <li>Определяем риски и подсчитываем бюджет проекта</li>
+                                        <li>{t('step-1-content.one')}</li>
+                                        <li>{t('step-1-content.two')}</li>
+                                        <li>{t('step-1-content.three')}</li>
+                                        <li>{t('step-1-content.four')}</li>
+                                        <li>{t('step-1-content.five')}</li>
                                     </ul>
                                     <p className='text-sm lg:text-base font-semibold leading-[148%] my-6'>
-                                        Результат первого этапа: краткий отчет с четким описанием проблемы и рекомендациями по ее решению. С помощью него можно решить, будет ли профинансирован проект или нет.
+                                        {t('step-1-content.text')}
                                     </p>
                                     <p className='text-sm lg:text-base font-semibold'>
-                                        Срок работы: 1-2 недели
+                                        {t('step-1-content.date')}
                                     </p>
                                 </div>
                             </div>
@@ -293,19 +260,19 @@ const Donors = (data) => {
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
                                     <ul className='text-base lg:text-lg font-medium leading-normal list-disc ml-6'>
-                                        <li>Описание проблемы и обоснование для ее решения</li>
-                                        <li>Постановка целей и задач для решения проблемы</li>
-                                        <li>Определение основных шагов и мероприятий</li>
-                                        <li>Определение рисков и поиск способов снижения рисков</li>
-                                        <li>Определения графика мониторинга проекта</li>
-                                        <li>Определение сроков реализации проекта</li>
-                                        <li>Составление детального бюджета</li>
+                                        <li>{t('step-2-content.one')}</li>
+                                        <li>{t('step-2-content.two')}</li>
+                                        <li>{t('step-2-content.three')}</li>
+                                        <li>{t('step-2-content.four')}</li>
+                                        <li>{t('step-2-content.five')}</li>
+                                        <li>{t('step-2-content.six')}</li>
+                                        <li>{t('step-2-content.seven')}</li>
                                     </ul>
                                     <p className='text-sm lg:text-base font-semibold leading-[148%] my-6'>
-                                        Результат второго этапа: детальная проектная заявка, которую можно использовать как план реализации.
+                                        {t('step-2-content.text')}
                                     </p>
                                     <p className='text-sm lg:text-base font-semibold'>
-                                        Срок работы: 2-3 недели
+                                        {t('step-2-content.date')}
                                     </p>
                                 </div>
                             </div>
@@ -322,16 +289,16 @@ const Donors = (data) => {
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
                                     <ul className='text-base lg:text-lg font-medium leading-normal list-disc ml-6'>
-                                        <li>Согласование проекта и подписание контракта</li>
-                                        <li>Согласование основных мероприятий</li>
-                                        <li>Согласование сроков выполнения и отчетности</li>
-                                        <li>Подписание контракта</li>
+                                        <li>{t('step-3-content.one')}</li>
+                                        <li>{t('step-3-content.two')}</li>
+                                        <li>{t('step-3-content.three')}</li>
+                                        <li>{t('step-3-content.four')}</li>
                                     </ul>
                                     <p className='text-sm lg:text-base font-semibold leading-[148%] my-6'>
-                                        Результат третьего этапа: подписанный контракт
+                                        {t('step-3-content.text')}
                                     </p>
                                     <p className='text-sm lg:text-base font-semibold'>
-                                        Срок работы: 2-3 недели
+                                        {t('step-3-content.date')}
                                     </p>
                                 </div>
                             </div>
@@ -349,14 +316,14 @@ const Donors = (data) => {
                                 <div className="inner px-6 py-9">
                                     <ul className='text-base lg:text-lg font-medium leading-normal list-disc ml-6'>
                                         <li>
-                                            Реализация проекта согласно контракту
+                                            {t('step-3-content.one')}
                                         </li>
                                     </ul>
                                     <p className='text-sm lg:text-base font-semibold leading-[148%] my-6'>
-                                        Результат четвертого этапа: реализованный проект и сдача отчетности.
+                                        {t('step-3-content.text')}
                                     </p>
                                     <p className='text-sm lg:text-base font-semibold'>
-                                        Срок работы: согласно утвержденному плану
+                                        {t('step-3-content.date')}
                                     </p>
                                 </div>
                             </div>
@@ -373,15 +340,15 @@ const Donors = (data) => {
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
                                     <ul className='text-base lg:text-lg font-medium leading-normal list-disc ml-6'>
-                                        <li>Оценка эффективности проекта</li>
-                                        <li>Анализ рекомендаций</li>
-                                        <li>Предоставление отчета </li>
+                                        <li>{t('step-3-content.one')}</li>
+                                        <li>{t('step-3-content.two')}</li>
+                                        <li>{t('step-3-content.three')}</li>
                                     </ul>
                                     <p className='text-sm lg:text-base font-semibold leading-[148%] my-6'>
-                                        Результат четвертого этапа: реализованный проект и сдача отчетности.
+                                        {t('step-3-content.text')}
                                     </p>
                                     <p className='text-sm lg:text-base font-semibold'>
-                                        Срок работы: согласно утвержденному плану
+                                        {t('step-3-content.date')}
                                     </p>
                                 </div>
                             </div>

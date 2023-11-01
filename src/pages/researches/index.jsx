@@ -120,7 +120,6 @@ export async function getServerSideProps(context) {
       }
     }
   }
-  console.log(response);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
