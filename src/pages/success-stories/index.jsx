@@ -39,7 +39,8 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
     const date = moment(e.target.value, 'DD.MM.YY')
     if (date.isValid() && e.target.value.trim().length === 8) {
       enableFilter({ [e.target.name]: date.format('YYYY-MM-DD') })
-    } else {
+    } 
+    if (e.target.value.trim().length === 0) {
       enableFilter({ [e.target.name]: null })
     }
   }
@@ -143,6 +144,7 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                     name="date_from"
                     mask="99.99.99"
                     maskChar=" "
+                    defaultValue={moment(query.date_from, 'YYYY.MM.DD').format('DD.MM.YY') ?? ''}
                     className="outline-none py-2 px-3 w-24 font-medium rounded"
                     onChange={handleChangeDate}
                   />
@@ -151,6 +153,7 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                     name="date_to"
                     mask="99.99.99"
                     maskChar=" "
+                    defaultValue={moment(query.date_to, 'YYYY.MM.DD').format('DD.MM.YY') ?? ''}
                     className="outline-none py-2 px-3 w-24 font-medium rounded"
                     onChange={handleChangeDate}
                   />
