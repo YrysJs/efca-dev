@@ -28,7 +28,7 @@ const Faq = ({ faq }) => {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { locale } = context
   const response = await api.get('/faq', {
     headers: { 'Accept-Language' : locale }

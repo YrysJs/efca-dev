@@ -76,7 +76,7 @@ const Contacts = ({ emails, addresses, latitude, longitude }) => {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { locale } = context
   const response = await api.get('/contact', {
     headers: { 'Accept-Language' : locale }

@@ -131,7 +131,7 @@ const Partners = ({ partners, materials, company_partners }) => {
     )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { locale, query } = context
     const fetchPartners = await api.get('/partners')
     return {

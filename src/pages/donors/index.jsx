@@ -532,7 +532,7 @@ const Donors = (data) => {
         </>
     )
 }
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { locale } = context
     const fetchDonors = await api.get('/donors', {
         headers: { 'Accept-Language' : locale }

@@ -89,7 +89,7 @@ export async function getStaticPaths(context) {
   }
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { locale } = context
   const response = await api.get('/vacancy/' + context.params.id, {
     headers: { 'Accept-Language' : locale }
