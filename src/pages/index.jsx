@@ -155,7 +155,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
         <section className="hero px-3">
           <Container className="pt-[24px] flex-col">
             <div className='flex flex-col md:flex-row items-start gap-5 md:items-center mb-4 justify-between'>
-              <h1 className='max-w-[450px] font-bold text-2xl sm:text-3xl md:text-4xl leading-[normal] uppercase'>
+              <h1 className='max-w-[445px] font-bold text-2xl sm:text-3xl md:text-4xl leading-[normal] uppercase'>
                 {title}
               </h1>
               <p className='max-w-[632px] text-sm md:text-lg font-medium leading-[normal]'>
