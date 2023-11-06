@@ -110,8 +110,12 @@ const About = ({ main_block, histories, values }) => {
       <section className="relative py-6 lg:py-12 flex flex-col">
         <h2 className="text-2xl lg:text-3xl font-bold text-primaryDark uppercase px-3 lg:px-0 lg:text-center">{t('about-us.history-title')}</h2>
         {activeSlide !== null && (
-          <div className="absolute left-0 right-0 mx-auto drop-shadow flex flex-col px-3 lg:px-0 items-center animate-[growUp_0.3s_ease-in-out_forwards]" style={{ bottom: bottom + 'px' }}>
-            <div className="p-7 max-w-[430px] bg-white rounded-2xl font-semibold">
+          <div className={clsx('absolute left-0 right-0 mx-auto drop-shadow flex flex-col px-3 lg:px-0 items-center animate-[growUp_0.3s_ease-in-out_forwards]', {
+            "bottom-[80px] sm:bottom-[120px] lg:sm:bottom-[160px]" :  histories[activeSlide].text.length > 0
+          })}>
+            <div className={clsx('p-7 max-w-[430px] bg-white rounded-2xl font-semibold', {
+                "max-w-[730px]" : histories[activeSlide].text.length > 300
+            })}>
               {histories[activeSlide].text}
             </div>
             <svg className="relative top-[-2px]" width="35" height="23" viewBox="0 0 35 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +201,7 @@ const About = ({ main_block, histories, values }) => {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { locale } = context
   const response = await api.get('/about-us', {
     headers: { 'Accept-Language' : locale }
@@ -207,6 +211,7 @@ export async function getServerSideProps(context) {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data
     },
+    revalidate: 300
   }
 }
 

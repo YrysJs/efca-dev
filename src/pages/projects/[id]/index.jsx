@@ -151,7 +151,7 @@ const ProjectDetails = ({ data }) => {
           <Container shrink className="flex-col">
             <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium">{parsedTitle.props?.children}</h3>
             <div className='mt-6 flex justify-between items-center'>
-              <p className="text-lg md:text-xl lg:text-2xl font-semibold">{parsedText}</p>
+              <p className="text-lg md:text-xl lg:text-2xl font-semibold">{parsedTitle}</p>
               <button className='bg-secondary text-sm smd:text-base text-primary py-2 smd:py-3 font-semibold px-4 smd:px-[28px] flex items-center gap-[10px] rounded-[24px]' onClick={ () => openGalery(data.images)}>
                 <span>{t('open-gal')}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
