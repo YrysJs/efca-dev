@@ -87,14 +87,14 @@ const MainDetails = ({ data }) => {
                     <Slider {...settings}>
                       {item.data.map( (imageUrl, ind) => {
                         return (
-                          <di key={ind} className="relative h-[384px]">
+                          <div key={ind} className="relative h-[384px]">
                             <Image
                               src={imageUrl}
                               fill={true}
                               alt="text"
                               objectFit="cover"
                             />
-                          </di>
+                          </div>
                         )
                       })}
                     </Slider>
@@ -134,9 +134,9 @@ const MainDetails = ({ data }) => {
               <h3 className="text-lg sm:text-2xl text-center font-semibold pb-6 sm:pb-10">
                 
               </h3>
-              <ModifiedJSX
-                html={item.data}
-              />
+              <div className="material-table">
+                <div dangerouslySetInnerHTML={{_html : item.data}} />
+              </div>
             </Container>
           </section>
           )
@@ -151,7 +151,7 @@ const MainDetails = ({ data }) => {
                 .filter(item => item.type === 'more')
                 .map(item =>
                   item.data.map((item, index) => (
-                    <Link href={`/news/${item.id}`} key={index} className="flex flex-col">
+                    <Link href={item.link.match(/\/materials\/\d+/)[0]} key={index} className="flex flex-col">
                       <div className="overflow-hidden relative w-full h-[212px] rounded-lg">
                         <Image src={item.image} alt={item.title} fill={true} objectFit="cover" />
                       </div>

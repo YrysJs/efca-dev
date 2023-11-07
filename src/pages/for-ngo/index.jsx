@@ -12,11 +12,15 @@ export async function getServerSideProps(context) {
   const response = await api.get(`/materials?page=${query.page || 1}&type=npo`, {
     params: query,
     headers: { 'Accept-Language' : locale }
-  })
+  });
+  const fetchMaterialsSlider = await api.get('/materials/sliders?type=npo', {
+    headers: { 'Accept-Language' : locale }
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      ...response.data
+      data: response.data,
+      slider: fetchMaterialsSlider.data
     },
   }
 }

@@ -89,7 +89,6 @@ const MainMaterials = ({data, translate, route}) => {
   const changeSearch = e => {
     setSearchFiled(e.target.value)
   }
-
   return (
     <>
       <Head>
@@ -136,9 +135,9 @@ const MainMaterials = ({data, translate, route}) => {
       </section>
       <section className="pb-6 px-3 md:pb-6 md:px-8 lg:pb-6">
         <Container>
-          { data.data.length ? <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full h-[576px]">
-            {data.data.map((item, index) => (
-              <Link href={`/${route}/${item.id}`} key={index} className="h-[576px] relative">
+          { data.slider.data.length ? <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full h-[576px]">
+            {data.slider.data.map((item, index) => (
+              <Link href={`/materials/${item.id}`} key={index} className="h-[576px] relative">
                 <div>
                   <Image src={item.image} alt={`image${index}`} objectFit="cover" fill={true} />
                   <div className="absolute bg-[#00000080] h-[576px] min-w-full"></div>
@@ -155,11 +154,11 @@ const MainMaterials = ({data, translate, route}) => {
       </section>
       <section className="pt-6 pb-8 px-3 md:py-8 md:px-8 lg:py-8">
         <Container className="flex-col">
-          { data.data.length > 0 && 
+          { data.data.data.length > 0 && 
             <div className="mb-2 sm:mb-6 md:mb-10 lg:mb-12 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 relative">
-              {data.data.map((item, i) => {
+              {data.data.data.map((item, i) => {
                 return (
-                  <Link href={`/${route}/${item.id}`} key={i} className="">
+                  <Link href={`/materials/${item.id}`} key={i} className="">
                     <div className="relative w-[100%] h-[216px] rounded-[8px] overflow-hidden">
                       <Image src={item.image} alt={i} fill={true} objectFit="cover" />
                     </div>

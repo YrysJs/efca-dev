@@ -7,17 +7,20 @@ const News = (data) => {
     <MainMaterials data={data} translate='materials.head.news' route='news'></MainMaterials>
   )
 }
- 
 export async function getServerSideProps(context) {
   const { locale, query } = context
   const response = await api.get(`/materials?page=${query.page || 1}&type=news`, {
     params: query,
     headers: { 'Accept-Language' : locale }
   });
+  const fetchMaterialsSlider = await api.get('/materials/sliders?type=news', {
+    headers: { 'Accept-Language' : locale }
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      ...response.data,
+      data: response.data,
+      slider: fetchMaterialsSlider.data
     },
   }
 }

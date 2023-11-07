@@ -64,7 +64,6 @@ const ProjectDetails = ({ data }) => {
     setGaleryState(!galeryState)
     setImages(data)
   }
-  
   const block = {
     default: () => <></>,
     main: ({ data }) => (
@@ -94,7 +93,7 @@ const ProjectDetails = ({ data }) => {
                 <span>{data.social_media}</span>
               </div>
               <div className="mt-4 mb-4 sm:mb-6 smd:mb-0 sm:mt-10 w-full flex flex-wrap">
-                {data.images.map((item, index) => (
+                {data.images.length && data.images.map((item, index) => (
                   <div key={index} className="mr-8 relative w-[68px] h-[68px]">
                     <Image
                       src={item}
@@ -145,13 +144,14 @@ const ProjectDetails = ({ data }) => {
     paragraph: ({ data }) => {
       const parsedTitle = parse(data.title)
       const parsedText = parse(data.text)
+      console.log(data);
       return (
         <section className='px-3'>
           { galeryState && <Galery images={images} openGalery={openGalery}></Galery> }
           <Container shrink className="flex-col">
             <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium">{parsedTitle.props?.children}</h3>
             <div className='mt-6 flex justify-between items-center'>
-              <p className="text-lg md:text-xl lg:text-2xl font-semibold">{parsedTitle}</p>
+              <p className="text-lg md:text-xl lg:text-2xl font-semibold">{parsedText}</p>
               <button className='bg-secondary text-sm smd:text-base text-primary py-2 smd:py-3 font-semibold px-4 smd:px-[28px] flex items-center gap-[10px] rounded-[24px]' onClick={ () => openGalery(data.images)}>
                 <span>{t('open-gal')}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">

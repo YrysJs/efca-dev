@@ -47,6 +47,7 @@ const Contacts = ({ emails, addresses, latitude, longitude }) => {
                 <span className="mr-2 text-base lg:text-lg font-medium">{item.address}</span>
               </div>
             ))}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d181.76076558649143!2d76.90679381323577!3d43.205876384853006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x388368b7627e0c41%3A0xec685844e5d45321!2z0YPQu9C40YbQsCDQltCw0YDQvtC60L7QstCwLCDQkNC70LzQsNGC0YsgMDUwMDYw!5e0!3m2!1sru!2skz!4v1699008161489!5m2!1sru!2skz" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div className="mt-6 overflow-hidden rounded-lg">
               {isLoaded && (
                 <GoogleMap

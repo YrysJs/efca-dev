@@ -8,6 +8,7 @@ import Image from 'next/image'
 
 const Partners = ({ partners, materials, company_partners }) => {
     const { t } = useTranslation()
+    console.log(company_partners);
     return (
         <>
              <Head>
@@ -115,11 +116,11 @@ const Partners = ({ partners, materials, company_partners }) => {
                             return (
                                 <div key={i} className='w-[150px] md:w-[228px] h-[228px] relative'>
                                     <div className="relative w-[100%] h-[140px]">
-                                        <Image src='https://purepng.com/public/uploads/large/purepng.com-chevron-logologobrand-logoiconslogos-251519938945o1hd7.png' alt={'image' + i} fill={true} objectFit='contain'/>
+                                        <Image src={item.image} alt={'image' + i} fill={true} objectFit='contain'/>
                                     </div>
                                     <div className='pt-4 text-center'>
                                         <h3 className='text-base font-medium pb-2'>{item.text}</h3>
-                                        <Link className='block text-xs text-gray' href="https://google.com">text</Link>
+                                        <Link className='block text-xs text-gray' href={item.link}>{item.link}</Link>
                                     </div>
                                 </div>
                             )

@@ -80,6 +80,8 @@ const Team = ({ trustees, employees }) => {
                       src={item.image}
                       alt={item.full_name}
                       fill={true}
+                      objectFit='cover'
+                      objectPosition='top'
                     />
                   </div>
                   <span className="mt-4 font-medium text-center">{item.full_name}</span>
@@ -106,6 +108,8 @@ const Team = ({ trustees, employees }) => {
                       src={item.image}
                       alt={item.full_name}
                       fill={true}
+                      objectFit='cover'
+                      objectPosition='top'
                     />
                   </div>
                   <span className="mt-4 font-medium">{item.full_name}</span>
