@@ -81,16 +81,16 @@ const Benefits = ({ data, count, currentPage }) => {
                   <h3 className="text-lg sm:text-xl lg:text-2xl text-primaryDark font-semibold">{item.title}</h3>
                   <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
                   <div className="mt-4 lg:mt-6 text-xs sm:text-sm flex justify-end items-center">
-                    <Link href={item.file.path}>
+                    <a target="_blank" href={item.file.path}>
                       <div className="px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-secondaryDark flex items-center">
                         <span className="mr-2 font-semibold text-primary">
-                          {item.file.type}, {(item.file.size / 1024).toFixed(1)} MB
+                          {item.file.type}, {(item.file.size * 0.000001).toFixed(2)} MB
                         </span>
                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M4.99219 16.2695H13.9922M9.49219 2.76953L9.49219 13.2695M9.49219 13.2695L13.2422 9.51953M9.49219 13.2695L5.74219 9.51953" stroke="#392DCA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                       </div>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

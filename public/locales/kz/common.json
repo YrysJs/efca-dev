@@ -147,7 +147,8 @@
   },
   "contacts": {
     "head": "Контактілер",
-    "address": "Адрес"
+    "address": "Адрес",
+    "phone": "Телефон нөмірлері"
   },
   "grants-competetions": {
     "head": "Конкурстар",

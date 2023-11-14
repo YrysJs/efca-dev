@@ -79,7 +79,7 @@ const ProjectDetails = ({ data }) => {
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{data.title}</h1>
               <div className="mt-10 flex items-center">
                 <span className="mr-1 font-semibold">{t('projects.donor')}:</span>
-                <span>{data.donor}</span>
+                <span>{ data.donors.map( item => item.text).join(', ') }</span>
               </div>
               <div className="mt-4 sm:mt-6 flex items-center">
                 <span className="mr-1 font-semibold">{t('projects.period')}:</span>
@@ -87,11 +87,13 @@ const ProjectDetails = ({ data }) => {
               </div>
               <div className="mt-4 sm:mt-6 flex items-center">
                 <span className="mr-1 font-semibold">{t('projects.region')}:</span>
-                <span>{data.region}</span>
+                <span>{ data.regions.join(', ') }</span>
               </div>
               <div className="mt-4 mb-4 sm:mb-0 sm:mt-6 flex items-center">
                 <span className="mr-1 font-semibold">{t('projects.socials')}:</span>
-                <span>{data.social_media}</span>
+                {data.links.map( (item,index,arr) => {
+                  return <Link className='ml-2 hover:underline text-primary' key={index} href={item.url}>{item.title} {index !== arr.length - 1 && ','}</Link>
+                })}
               </div>
               <div className="mt-4 mb-4 sm:mb-6 smd:mb-0 sm:mt-10 w-full flex flex-wrap">
                 {data.images.map((item, index) => (
@@ -129,7 +131,7 @@ const ProjectDetails = ({ data }) => {
           {data.data.map((item, index) => (
             <div 
               key={index} 
-              className='py-2 px-2 h-[138px] pr-3 rounded-lg flex flex-col items-center justify-center text-center sm:text-left sm:grid grid-cols-[1fr_2fr] gap-2 items-center'
+              className='py-2 px-2 h-[138px] pr-3 rounded-lg flex flex-col items-center justify-center text-center sm:text-left sm:flex sm:justify-center sm:flex-row gap-2 sm:gap-10 items-center'
               style={{ background: item.color }}
             >
               <div className="flex justify-center items-end">
@@ -149,7 +151,9 @@ const ProjectDetails = ({ data }) => {
         <section className='px-3'>
           { galeryState && <Galery images={images} openGalery={openGalery}></Galery> }
           <Container shrink className="flex-col">
-            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium">{parsedTitle.props?.children}</h3>
+            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium overflow-x-scroll table-scrolles">
+              <ModifiedJSX html={data.title}/>
+            </div>
             <div className='mt-6 flex justify-between items-center'>
               <p className="text-lg md:text-xl lg:text-2xl font-semibold">{parsedText}</p>
               <button className='bg-secondary text-sm smd:text-base text-primary py-2 smd:py-3 font-semibold px-4 smd:px-[28px] flex items-center gap-[10px] rounded-[24px]' onClick={ () => openGalery(data.images)}>
@@ -212,12 +216,15 @@ const ProjectDetails = ({ data }) => {
     quote: ({ data }) => {
       return (
         <Container shrink className="flex flex-col items-center">
-          <div className="w-[200px] h-[2px] bg-[#C9C9C9]" />
-          <div className="my-4 sm:my-6 md:my-8 lg:my-9 px-6 text-center">
-            <p className="font-medium text-base sm:text-lg md:text-xl lg:text-2xl">
-              {data.text}
-            </p>
-          </div>
+          <div className="mb-9 w-[200px] h-[2px] bg-[#C9C9C9]" />
+            <div className='relative w-full h-[400px] rounded-lg overflow-hidden'>
+              <Image src={data.image} fill={true} objectFit="cover"/>
+            </div>
+            <div className="my-4 sm:my-6 md:my-8 lg:my-9 px-6 text-center">
+              <p className="font-medium text-base sm:text-lg md:text-xl lg:text-2xl">
+                {data.text}
+              </p>
+            </div>
           <div className="w-[200px] h-[2px] bg-[#C9C9C9]" />
         </Container>
       )
@@ -276,6 +283,35 @@ const ProjectDetails = ({ data }) => {
     const Component = block[item.type] || block['default'];
     return <Component data={item} key={item.id} />;
   })
+}
+
+const ModifiedJSX = ({ html }) => {
+  const parsedHTML = parse(html)
+  const applyStyles = element => {
+    if (React.isValidElement(element)) {
+      const elementType = element.type
+      if (elementType === 'ul') {
+        return React.cloneElement(
+          element,
+          { className: 'custom-ul' },
+          React.Children.map(element.props.children, applyStyles)
+        )
+      } else if (elementType === 'li') {
+        return React.cloneElement(element, {
+          className:
+            'my-6 text-sm lg:text-lg font-medium flex items-center before:mr-6 before:min-w-[8px] before:lg:min-w-[20px] before:h-[8px] before:lg:h-[20px] before:bg-primaryLight before:rounded-full',
+        })
+      } else if (elementType === 'p') {
+        return React.cloneElement(element, { className: 'my-3 text-base sm:text-2xl text-left font-medium' })
+      } else if (elementType === 'table') {
+        return React.cloneElement(element, { className: 'page-tables'})
+      }
+    }
+
+    return element
+  }
+  const jsx = React.Children.map(parsedHTML, applyStyles)
+  return <>{jsx}</>
 }
 
 export async function getStaticPaths(context) {

@@ -16,6 +16,28 @@ const routes = [
   { labelKey: 'materials.news', path: '/news' },
   { labelKey: 'join.contacts', path: '/contacts' },
 ]
+
+const Popup = ({ updateParentState }) => {
+  const handleClick = () => {
+    updateParentState(false);
+  };
+  return (
+    <div className="fixed top-0 left-0 w-full h-[100vh] bg-[#00000080] z-[80]">
+      <div className="w-[96%] translate-x-[-50%] translate-y-[-50%] p-[20px] text-center lg:px-[40px] max-w-[697px] min-h-[358px] fixed top-[50%] left-[50%] rounded-lg bg-white shadow-lg">
+        <div className="w-fit mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" width="101" height="100" viewBox="0 0 101 100" fill="none">
+            <path d="M50.5 91.6667C73.4167 91.6667 92.1667 72.9167 92.1667 50C92.1667 27.0834 73.4167 8.33337 50.5 8.33337C27.5833 8.33337 8.83331 27.0834 8.83331 50C8.83331 72.9167 27.5833 91.6667 50.5 91.6667Z" stroke="#40C47D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M32.7917 50L44.5834 61.7917L68.2084 38.2084" stroke="#40C47D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 className='text-2xl font-semibold mt-[24px] mb-[8px]'>Спасибо за подписку!</h3>
+        <p className='text-lg text-lightgray max-w-[403px] mx-auto font-semibold mb-[24px]'>Мы будем присылать на вашу почту актуальные материалы и анонсы</p>
+        <button onClick={handleClick} className='py-3 px-7 bg-primary text-base rounded-[24px] text-white font-semibold'>Отлично!</button>
+      </div>
+    </div>
+  )
+}
+
 const Footer = () => {
   const { pathname } = useRouter()
   const [subFooterState, setSubFooterState] = useState(false)
@@ -26,6 +48,7 @@ const Footer = () => {
   const [contact, setContact] = useState('')
   const [question, setQuestion] = useState('')
   const isEmailValid = useDebounce(validateEmail(email), 500)
+  const [popupState, setPopupState] = useState(false)
 
   const subFooterPathNames = ['/donors', '/partners']
   useEffect( () => {
@@ -39,6 +62,7 @@ const Footer = () => {
       email
     })
     setEmail('')
+    setPopupState(true)
   }
 
   const handleForm = async (e) => {
@@ -51,8 +75,13 @@ const Footer = () => {
     })
   }
 
+  const updateParentState = (newState) => {
+    setPopupState(newState);
+  };
+
   return (
     <>
+      {popupState && <Popup updateParentState={updateParentState}/>}
       { subFooterState ? <section className="py-6 px-4 md:py-8 md:px-6 lg:py-12 bg-secondary">
         <Container className='flex-col lg:flex-row'>
           <div className="flex-1">

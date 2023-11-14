@@ -9,6 +9,9 @@ import { api } from '@/shared/api'
 import clsx from 'clsx'
 
 const settings = {
+  autoplay: true,
+  autoplaySpeed: 5000,
+  pauseOnHover: true,
   dots: false,
   infinite: true,
   speed: 500,

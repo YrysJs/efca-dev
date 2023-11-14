@@ -76,7 +76,7 @@ const Header = ({ locale }) => {
   }
 
   return (
-    <header className="sticky top-0 left-0 bg-white z-[60]">
+    <header className="sticky top-0 left-0 bg-white z-[9999] header-fix">
       <Container className="flex items-center justify-between px-3 xl:px-0">
         <Link href="/" className="z-50">
           <div className="py-[8px] lg:py-6 flex items-center">

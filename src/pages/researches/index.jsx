@@ -81,7 +81,7 @@ const Researches = ({ data, count, currentPage }) => {
                   <h3 className="text-lg sm:text-xl lg:text-2xl text-primaryDark font-semibold">{item.title}</h3>
                   <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
                   <div className="mt-4 lg:mt-6 text-xs sm:text-sm flex justify-end items-center">
-                    <Link href={item.file.path}>
+                    <a target="_blank" href={item.file.path}>
                       <div className="px-4 lg:px-7 py-2 lg:py-3 rounded-[40px] bg-secondaryDark flex items-center">
                         <span className="mr-2 font-semibold text-primary">
                           {item.file.type}, {(item.file.size / 1024).toFixed(1)} MB
@@ -90,7 +90,8 @@ const Researches = ({ data, count, currentPage }) => {
                           <path d="M4.99219 16.2695H13.9922M9.49219 2.76953L9.49219 13.2695M9.49219 13.2695L13.2422 9.51953M9.49219 13.2695L5.74219 9.51953" stroke="#392DCA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                       </div>
-                    </Link>
+                    </a>
+                    { item.file.type === 'pdf' && <Link  href={item.file.path} legacyBehavior><a className='block py-2 px-7 font-semibold rounded-[40px] sm:w-[initial] lg:w-[initial] ml-2 sm:ml-4 lg:ml-6 text-xs sm:text-sm pl-3 pr-3 sm:px-7 lg:px-7 lg:text-base bg-primary text-white' target="_blank" rel="noopener noreferrer">Просмотр</a></Link>}
                   </div>
                 </div>
               </div>

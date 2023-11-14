@@ -148,7 +148,8 @@
   },
   "contacts": {
     "head": "Contact us",
-    "address": "Address"
+    "address": "Address",
+    "phone": "Phone Numbers"
   },
   "grants-competetions": {
     "head": "Competitions",

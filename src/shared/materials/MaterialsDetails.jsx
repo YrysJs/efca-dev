@@ -9,8 +9,11 @@ import parse from 'html-react-parser'
 import clsx from 'clsx'
 
 const settings = {
+  autoplay: true,
+  autoplaySpeed: 3000,
+  pauseOnHover: true,
   dots: false,
-  infinite: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -108,9 +111,26 @@ const MainDetails = ({ data }) => {
           return (
             <section key={i} className="py-[20px] px-3 md:py-10">
               <Container className="flex-col gap-6 md:gap-10">
-                <ModifiedJSX
-                  html={item.data}
-                />
+                {item.is_quote && <div className="mx-auto w-[200px] h-[2px] bg-[#C9C9C9]" />}
+                <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium overflow-x-auto table-scrolles">
+                  <ModifiedJSX html={item.data}/>
+                </div>
+                {item.is_quote && <div className="mx-auto w-[200px] h-[2px] bg-[#C9C9C9]" />}
+              </Container>
+            </section>
+          )
+        }
+        if (item.type === 'quote') {
+          return (
+            <section key={i} className="py-[20px] px-3 md:py-10">
+              <Container className="flex-col gap-6 md:gap-10">
+              <div className="mx-auto w-[200px] h-[2px] bg-[#C9C9C9]" />
+                <div className='relative w-full h-[400px] rounded-lg overflow-hidden'>
+                  <Image src={item.image} fill={true} objectFit="cover"/>
+                </div>
+                  <p className="text-2xl font-medium text-center">
+                    {item.text}
+                  </p>
                 <div className="mx-auto w-[200px] h-[2px] bg-[#C9C9C9]" />
               </Container>
             </section>
@@ -225,6 +245,8 @@ const ModifiedJSX = ({ html }) => {
         })
       } else if (elementType === 'p') {
         return React.cloneElement(element, { className: 'my-3 text-base sm:text-2xl text-left font-medium' })
+      } else if (elementType === 'table') {
+        return React.cloneElement(element, { className: 'page-tables'})
       }
     }
 

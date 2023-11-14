@@ -149,7 +149,7 @@ const MainMaterials = ({data, translate, route}) => {
                 </div>
               </Link>
             ))}
-          </Slider> : <h3 className="text-base lg:text-2xl text-center my-10 mx-auto font-bold">Нет Материала</h3> }
+          </Slider> : '' }
         </Container>
       </section>
       <section className="pt-6 pb-8 px-3 md:py-8 md:px-8 lg:py-8">

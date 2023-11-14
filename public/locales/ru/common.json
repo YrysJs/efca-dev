@@ -147,7 +147,8 @@
   },
   "contacts": {
     "head": "Контакты",
-    "address": "Адрес"
+    "address": "Адрес",
+    "phone": "Номера телефона"
   },
   "grants-competetions": {
     "head": "Конкурсы",

@@ -73,6 +73,9 @@ const CircularProgressBarWithImage = ({ percentage, imageUrl }) => {
 }
 
 const settings = {
+  autoplay: true,
+  autoplaySpeed: 3000,
+  pauseOnHover: true,
   dots: true,
   infinite: true,
   speed: 500,
@@ -110,7 +113,7 @@ const settings = {
 const settingsDonor = {
   dots: false,
   infinite: true,
-  slidesToShow: 3,
+  slidesToShow: 2,
   rows: 2,
   slidesToScroll: 1,
   autoplay: true,
@@ -120,6 +123,9 @@ const settingsDonor = {
 };
 
 const settingsTeam = {
+  autoplay: true,
+  autoplaySpeed: 5000,
+  pauseOnHover: true,
   dots: true,
   infinite: true,
   speed: 500,
@@ -144,7 +150,7 @@ const settingsTeam = {
 }
 
 
-const Home = ({annual_report, donors, materials, partners, projects, slider, text, title, trustees, employees}) => {
+const Home = ({annual_report, donors, materials, partners, projects, slider, text, title}) => {
   const { t } = useTranslation() 
   return (
     <>
@@ -152,29 +158,33 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
         <title>{t('main.head')}</title>
       </Head>
       <main>
-        <section className="hero px-3">
-          <Container className="pt-[24px] flex-col">
-            <div className='flex flex-col md:flex-row items-start gap-5 md:items-center mb-4 justify-between'>
-              <h1 className='max-w-[450px] font-bold text-2xl sm:text-3xl md:text-4xl leading-[normal] uppercase'>
-                {title}
-              </h1>
-              <p className='max-w-[632px] text-sm md:text-lg font-medium leading-[normal]'>
-                {text}
-              </p>
-            </div>
-            <Link href="/about-us" className='py-3 px-6 md:px-7 w-fit ml-auto bg-white rounded-[25px] border-2 border-primary text-sm md:text-base font-medium'>{t('main.more')}</Link>
-          </Container>
-        </section>
-        <section className="hero-slider">
-          <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full h-[482px]">
-              {slider.map((item, index) => (
-                <div key={index} className='h-[482px] relative'>
-                  <div>
-                    <Image src={item} alt={`image${index}`} objectFit='cover' fill={true}/>
+        <section>
+          <Slider {...settings} className="mt-6 md:mt-8 lg:mt-10 w-full">
+            {slider.map((item, index) => 
+              <div key={index}>
+                <section className="hero px-3">
+                  <Container className="pt-[24px] flex-col">
+                    <div className='flex flex-col md:flex-row items-start gap-5 md:items-center mb-4 justify-between'>
+                      <h1 className='max-w-[450px] font-bold text-2xl sm:text-3xl md:text-4xl leading-[normal] uppercase'>
+                        {item.title}
+                      </h1>
+                      <p className='max-w-[632px] text-sm md:text-lg font-medium leading-[normal]'>
+                        {item.text}
+                      </p>
+                    </div>
+                    <Link href="/about-us" className='py-3 px-6 md:px-7 w-fit ml-auto bg-white rounded-[25px] border-2 border-primary text-sm md:text-base font-medium'>{t('main.more')}</Link>
+                  </Container>
+                </section>
+                <section className="hero-slider mt-8">
+                  <div  className='h-[300px] md:h-[482px] relative'>
+                    <div>
+                      <Image src={item.image} alt={`image${index}`} objectFit='cover' fill={true}/>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
+                </section>
+              </div>
+            )}
+          </Slider>
         </section>
         <section className="main-stats bg-secondary mt-[48px] pb-[24px] sm:pb-[56px] px-3">
         <Container className='pt-[28px] md:pt-[48px] pb-[24px]'>
@@ -365,7 +375,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
             <div className='main-news flex flex-wrap flex-col md:flex-row justify-center gap-6'>
               {materials.map( (item, index) => {
                 return (
-                  <Link href={`/news/${item.id}`} key={index} className='main-news__item'>
+                  <Link href={`/materials/${item.id}`} key={index} className='main-news__item'>
                     <div className='main-news__img relative'>
                       <Image src={item.image} alt="image" fill={true} objectFit='cover'/>
                     </div>
