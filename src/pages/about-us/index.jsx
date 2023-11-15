@@ -201,7 +201,7 @@ const About = ({ main_block, histories, values }) => {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { locale } = context
   const response = await api.get('/about-us', {
     headers: { 'Accept-Language' : locale }
