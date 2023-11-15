@@ -211,7 +211,7 @@ export async function getServerSideProps(context) {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data
     },
-    revalidate: 600
+    // revalidate: 600
   }
 }
 
