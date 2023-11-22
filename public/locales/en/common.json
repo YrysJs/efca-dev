@@ -117,8 +117,13 @@
     "contacts": "Contacts",
     "textarea": "Ask your question or briefly describe the topic you want to discuss",
     "copyright": "Copyright © 2014 CF «Eurasia Fund of Central Asia». All Rights Reserved",
-    "title": "EFCA Kazakhstan"
-    
+    "title": "EFCA Kazakhstan",
+    "text" : "Find out about the news and activities of the fund, ask a question or write to us for future partnership",
+    "modal-f-title" : "Thanks for subscribing!",
+    "modal-s-title" : "Thanks for reaching out!",
+    "modal-f-text" : "We will send current materials and announcements to your email.",
+    "modal-s-text" : "We will consider your request and contact you shortly",
+    "nice": "Great!"
   },
   "about-us": {
     "history-title": "Our story",

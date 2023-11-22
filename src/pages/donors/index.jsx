@@ -75,6 +75,7 @@ const settings = {
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 initialSlide: 2,
+                adaptiveHeight: true,
                 rows: 2,
                 gap: 20
             }
@@ -84,6 +85,7 @@ const settings = {
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
+                adaptiveHeight: true,
                 rows: 2,
                 gap: 20
             }
@@ -438,14 +440,16 @@ const Donors = (data) => {
                                         <div className='relative max-w-[102px] min-h-[102px]'>
                                             <Image src={item.image} alt='logo' fill={true} objectFit='contain'/>
                                         </div>
-                                        <p className='text-lg font-medium py-6'>
-                                        <div className='absolute z-[50] mt-[-8px] ml-[-10px]'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24" fill="none">
-                                                <path d="M8.352 0.519531C3.456 3.97553 0 9.63953 0 15.8795C0 20.9675 3.072 23.9435 6.624 23.9435C9.984 23.9435 12.48 21.2555 12.48 18.0875C12.48 14.9195 10.272 12.6155 7.392 12.6155C6.816 12.6155 6.048 12.7115 5.856 12.8075C6.336 9.54353 9.408 5.70353 12.48 3.78353L8.352 0.519531ZM24.864 0.519531C20.064 3.97553 16.608 9.63953 16.608 15.8795C16.608 20.9675 19.68 23.9435 23.232 23.9435C26.496 23.9435 29.088 21.2555 29.088 18.0875C29.088 14.9195 26.784 12.6155 23.904 12.6155C23.328 12.6155 22.656 12.7115 22.464 12.8075C22.944 9.54353 25.92 5.70353 28.992 3.78353L24.864 0.519531Z" fill="#EEEEFF"/>
-                                            </svg>
+                                        <div className='py-6'>
+                                            <div className='absolute z-[50] mt-[-8px] ml-[-10px]'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24" fill="none">
+                                                    <path d="M8.352 0.519531C3.456 3.97553 0 9.63953 0 15.8795C0 20.9675 3.072 23.9435 6.624 23.9435C9.984 23.9435 12.48 21.2555 12.48 18.0875C12.48 14.9195 10.272 12.6155 7.392 12.6155C6.816 12.6155 6.048 12.7115 5.856 12.8075C6.336 9.54353 9.408 5.70353 12.48 3.78353L8.352 0.519531ZM24.864 0.519531C20.064 3.97553 16.608 9.63953 16.608 15.8795C16.608 20.9675 19.68 23.9435 23.232 23.9435C26.496 23.9435 29.088 21.2555 29.088 18.0875C29.088 14.9195 26.784 12.6155 23.904 12.6155C23.328 12.6155 22.656 12.7115 22.464 12.8075C22.944 9.54353 25.92 5.70353 28.992 3.78353L24.864 0.519531Z" fill="#EEEEFF"/>
+                                                </svg>
+                                            </div>
+                                            <p className="text-lg font-medium z-[50] relative">
+                                                {item.text}
+                                            </p> 
                                         </div>
-                                            {item.text} 
-                                        </p>
                                         <div className='flex gap-[16px] items-center'>
                                             <div className='relative w-[52px] h-[52px]'>
                                                 <Image src={item.people_image} alt='logo' fill={true} className='rounded-[50%]' objectFit='cover'/>

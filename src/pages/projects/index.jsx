@@ -11,7 +11,7 @@ import { Container, Pagination } from '@/shared/ui'
 import { removeEmpty } from '@/shared/lib'
 import { api } from '@/shared/api'
 import clsx from 'clsx'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const customStyles = {
   control: (provided) => ({
@@ -22,26 +22,53 @@ const customStyles = {
     fontWeight: 500
   }),
 }
+
+const initialQuery = {
+  search: null,
+  direction_id: null,
+  donor_id: null,
+  region_id: null,
+  partner_id: null,
+  is_active: null,
+  date_from: null,
+  date_to: null
+}
+
 const Projects = ({ data, count, currentPage, regions, donors, partners, directions }) => {
   const { t } = useTranslation()
   const router = useRouter()
   const { query } = router
-  const enableFilter = (query) => {
-    router.push({ pathname: '/projects', query: removeEmpty({ ...router.query, ...query }) })
-  }
+  const [filters, setFilters] = useState(initialQuery)
 
   const [filterState, setFilterState] = useState(false)
   const [searchField, setSearchFiled] = useState(query.search || '')
   const title = useRef(null)
 
+  const enableFilter = (query) => {
+    router.push({ pathname: '/projects', query: removeEmpty({ ...router.query, ...query }) })
+  }
+
   const handleChangeDate = (e) => {
     const date = moment(e.target.value, 'DD.MM.YY')
     if (date.isValid() && e.target.value.trim().length === 8) {
-      enableFilter({ [e.target.name]: date.format('YYYY-MM-DD') })
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        [e.target.name]: date.format('YYYY-MM-DD'),
+      }));
     } 
     if (e.target.value.trim().length === 0) {
-      enableFilter({ [e.target.name]: null })
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        [e.target.name]: null,
+      }));
     }
+  }
+
+  const updateQueryValue = (key, value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [key]: value,
+    }));
   }
 
   const handleChangeFilter = () => {
@@ -49,9 +76,28 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
     title.current.scrollIntoView({behavior: "smooth", block: "center", inline: "start"})
   }
 
+  const applyQuery = () => {
+    router.push({ pathname: '/projects', query: removeEmpty({ ...router.query, ...filters }) })
+  }
+
   const changeSearch = (e) => {
     setSearchFiled(e.target.value)
   }
+
+  useEffect(() => {
+    const { direction_id, donor_id, region_id, partner_id, date_from, date_to, is_active } = query;
+    setFilters({
+      ...filters,
+      direction_id: direction_id ? Number(direction_id) : null,
+      donor_id: donor_id ? Number(donor_id) : null,
+      region_id: region_id ? Number(region_id) : null,
+      partner_id: partner_id ? Number(partner_id) : null,
+      date_from: date_from ? moment(date_from, 'YYYY.MM.DD').format('DD.MM.YY') : null,
+      date_to: date_to ? moment(date_to, 'YYYY.MM.DD').format('DD.MM.YY') : null,
+      is_active: is_active === 'true' ? true : is_active === 'false' ? false : null,
+    });
+  }, []);
+
   return (
     <>
       <Head>
@@ -98,7 +144,7 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
                   options={directions}
                   defaultValue={directions.find(f => f.value === Number(query.direction_id))}
                   styles={customStyles}
-                  onChange={(event) => enableFilter({ direction_id: event?.value || null })}
+                  onChange={(event) => updateQueryValue('direction_id', event?.value || null)}
                 />
               </div>
               <div className="mb-6 flex flex-col">
@@ -109,7 +155,7 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
                   options={donors}
                   defaultValue={donors.find(f => f.value === Number(query.donor_id))}
                   styles={customStyles}
-                  onChange={(event) => enableFilter({ donor_id: event?.value || null })}
+                  onChange={(event) => updateQueryValue('donor_id', event?.value || null)}
                 />
               </div>
               <div className="mb-6 flex flex-col">
@@ -120,7 +166,7 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
                   options={regions}
                   defaultValue={regions.find(f => f.value === Number(query.region_id))}
                   styles={customStyles}
-                  onChange={(event) => enableFilter({ region_id: event?.value || null })}
+                  onChange={(event) => updateQueryValue('region_id', event?.value || null)}
                 />
               </div>
               <div className="mb-6 flex flex-col">
@@ -131,7 +177,7 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
                   options={partners}
                   defaultValue={partners.find(f => f.value === Number(query.partner_id))}
                   styles={customStyles}
-                  onChange={(event) => enableFilter({ partner_id: event?.value || null })}
+                  onChange={(event) => updateQueryValue('partner_id', event?.value || null)}
                 />
               </div>
               <div className="flex flex-col">
@@ -161,14 +207,15 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
               <div className="flex flex-col">
                 <label className="mb-2 font-medium">{t('projects.filter.status')}</label>
                 <div className="flex items-center">
-                  <input type="checkbox" checked={query.is_active === 'true'} onChange={event => enableFilter({ is_active: event.target.checked || null })} />
+                  <input type="checkbox" checked={query.is_active === 'true' || filters.is_active === 'true'} onChange={event => updateQueryValue('is_active', event.target.checked || null )} />
                   <span className="ml-3 font-medium">{t('projects.filter.active')}</span>
                 </div>
                 <div className="mt-2 flex items-center">
-                  <input type="checkbox" checked={query.is_active === 'false'} onChange={event => enableFilter({ is_active: event.target.checked ? false : null })} />
+                  <input type="checkbox" checked={query.is_active === 'false' || filters.is_active === 'false'} onChange={event => updateQueryValue('is_active', event.target.checked ? false : null  )} />
                   <span className="ml-3 font-medium">{t('projects.filter.passive')}</span>
                 </div>
               </div>
+              <button className="bg-primary text-white py-2 px-3 mt-6 mb-2 rounded-lg" onClick={applyQuery}>Применить</button>
             </div>
           </aside>
           <div className="ml-0 lg:ml-12 flex-[3]">

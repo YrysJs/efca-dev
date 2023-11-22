@@ -17,7 +17,8 @@ const routes = [
   { labelKey: 'join.contacts', path: '/contacts' },
 ]
 
-const Popup = ({ updateParentState }) => {
+const Popup = ({ updateParentState, type }) => {
+  const { t } = useTranslation()
   const handleClick = () => {
     updateParentState(false);
   };
@@ -30,9 +31,9 @@ const Popup = ({ updateParentState }) => {
             <path d="M32.7917 50L44.5834 61.7917L68.2084 38.2084" stroke="#40C47D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3 className='text-2xl font-semibold mt-[24px] mb-[8px]'>Спасибо за подписку!</h3>
-        <p className='text-lg text-lightgray max-w-[403px] mx-auto font-semibold mb-[24px]'>Мы будем присылать на вашу почту актуальные материалы и анонсы</p>
-        <button onClick={handleClick} className='py-3 px-7 bg-primary text-base rounded-[24px] text-white font-semibold'>Отлично!</button>
+        <h3 className='text-2xl font-semibold mt-[24px] mb-[8px]'>{type === 1 ? t('footer.modal-f-title') : t('footer.modal-s-title')}</h3>
+        <p className='text-lg text-lightgray max-w-[403px] mx-auto font-semibold mb-[24px]'>{type === 1 ? t('footer.modal-f-text') : t('footer.modal-s-text')}</p>
+        <button onClick={handleClick} className='py-3 px-7 bg-primary text-base rounded-[24px] text-white font-semibold'>{t('footer.nice')}</button>
       </div>
     </div>
   )
@@ -49,6 +50,7 @@ const Footer = () => {
   const [question, setQuestion] = useState('')
   const isEmailValid = useDebounce(validateEmail(email), 500)
   const [popupState, setPopupState] = useState(false)
+  const [modalType, setModalType] = useState(1)
 
   const subFooterPathNames = ['/donors', '/partners']
   useEffect( () => {
@@ -61,6 +63,9 @@ const Footer = () => {
     await api.post('/mailing', {
       email
     })
+
+    setModalType(1)
+
     setEmail('')
     setPopupState(true)
   }
@@ -73,6 +78,15 @@ const Footer = () => {
       contact,
       question
     })
+
+    setModalType(2)
+
+    setFullName('')
+    setCompany('')
+    setContact('')
+    setQuestion('')
+
+    setPopupState(true)
   }
 
   const updateParentState = (newState) => {
@@ -81,7 +95,7 @@ const Footer = () => {
 
   return (
     <>
-      {popupState && <Popup updateParentState={updateParentState}/>}
+      {popupState && <Popup type={modalType} updateParentState={updateParentState}/>}
       { subFooterState ? <section className="py-6 px-4 md:py-8 md:px-6 lg:py-12 bg-secondary">
         <Container className='flex-col lg:flex-row'>
           <div className="flex-1">
@@ -89,7 +103,7 @@ const Footer = () => {
               {t('footer.offer')}
             </h2>
             <p className="mt-3 sm:mt-6 lg:mt-6 text-base sm:text-lg lg:text-lg font-medium">
-              Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor
+              {t('footer.text')}
             </p>
           </div>
           <div className="flex-1 flex flex-col mt-5 lg:mt-0">
@@ -134,7 +148,7 @@ const Footer = () => {
               {t('footer.offer')}
             </h2>
             <p className="mt-3 sm:mt-6 lg:mt-6 text-base sm:text-lg lg:text-lg font-medium">
-              Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor
+            {t('footer.text')}
             </p>
           </div>
           <div className="flex-1 flex flex-col justify-center mt-5 lg:mt-0">
