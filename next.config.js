@@ -7,14 +7,14 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: false,
   env: {
-    BASE_URL: 'http://194.4.56.53/api'
+    BASE_URL: 'http://185.182.219.249:8080/api'
   },
   images: {
-    domains: ['plus.unsplash.com', 'images.unsplash.com', 'purepng.com', '194.4.56.53'],
+    domains: ['194.4.56.53', '185.182.219.249'],
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '194.4.56.53',
+        hostname: '185.182.219.249',
         port: '',
         pathname: '/storage/**',
       },
