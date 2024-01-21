@@ -156,7 +156,7 @@ const ProjectDetails = ({ data }) => {
       </Container>
     ),
     paragraph: ({ data }) => {
-      const parsedTitle = parse(data.title)
+      const parsedTitle = data.title ? parse(data.title) : ''
       const parsedText = data.text ? parse(data.text) : ''
       return (
         <section className='px-3'>
@@ -302,7 +302,7 @@ const ProjectDetails = ({ data }) => {
 }
 
 const ModifiedJSX = ({ html }) => {
-  const parsedHTML = parse(html)
+  const parsedHTML = html ? parse(html) : ''
   const applyStyles = element => {
     if (React.isValidElement(element)) {
       const elementType = element.type
