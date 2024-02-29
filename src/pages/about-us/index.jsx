@@ -201,7 +201,7 @@ const About = ({ main_block, histories, values }) => {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { locale } = context
   const response = await api.get('/about-us', {
     headers: { 'Accept-Language' : locale }
@@ -211,7 +211,7 @@ export async function getServerSideProps(context) {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data
     },
-    // revalidate: 600
+    revalidate: 3600
   }
 }
 

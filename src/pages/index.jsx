@@ -451,21 +451,23 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
   )
 }
 
-export async function getServerSideProps(context) {
-  const { locale } = context
+export async function getStaticProps({ locale }) {
   const fetchMain = await api.get('/main', {
-    headers: { 'Accept-Language' : locale }
-  })
+    headers: { 'Accept-Language': locale }
+  });
+
   const fetchTeam = await api.get('/team', {
-    headers: { 'Accept-Language' : locale }
-  })
+    headers: { 'Accept-Language': locale }
+  });
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       ...fetchMain.data,
       ...fetchTeam.data
     },
-  }
+    revalidate: 1800
+  };
 }
 
-export default Home
+export default Home;

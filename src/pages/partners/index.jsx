@@ -132,7 +132,7 @@ const Partners = ({ partners, materials, company_partners }) => {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     const { locale, query } = context
     const fetchPartners = await api.get('/partners')
     return {
@@ -140,6 +140,7 @@ export async function getServerSideProps(context) {
             ...(await serverSideTranslations(locale, ['common'])),
             ...fetchPartners.data,
         },
+        revalidate: 3600
     }
 }
 

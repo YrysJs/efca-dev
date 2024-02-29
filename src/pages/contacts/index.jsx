@@ -64,7 +64,7 @@ const Contacts = ({ emails, addresses, phone_number }) => {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { locale } = context
   const response = await api.get('/contact', {
     headers: { 'Accept-Language' : locale }
@@ -74,6 +74,7 @@ export async function getServerSideProps(context) {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data
     },
+    revalidate: 3600
   }
 }
 

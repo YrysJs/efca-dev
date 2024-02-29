@@ -298,13 +298,15 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
   )
 }
 
-export async function getServerSideProps(context) {
-  const { locale, query } = context
+export async function getStaticProps(context) {
+  const { locale, params } = context
+  const { page } = params || { page: 1 }; 
   const response = await api.get('/projects', {
-    params: query,
-    headers: { 'Accept-Language' : locale }
+    params: { ...params, page },
+    headers: { 'Accept-Language': locale }
   })
-  if (response.data.pages < query.page) {
+
+  if (response.data.pages < page) {
     return {
       redirect: {
         destination: `/projects?page=${response.data.pages}`,
@@ -312,19 +314,29 @@ export async function getServerSideProps(context) {
       }
     }
   }
+
   const [regions, donors, partners, directions] = await Promise.all([
     api.get('/reference/regions'),
     api.get('/reference/donors'),
     api.get('/reference/partners'),
     api.get('/reference/directions'),
-  ]).then(res => res.map(item => item.data.data.map(item => ({ value: item.id, label: item.text }))))
+  ]).then(res =>
+    res.map(item =>
+      item.data.data.map(item => ({ value: item.id, label: item.text }))
+    )
+  )
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data,
-      regions, donors, partners, directions,
-      currentPage: query.page || 1
-    }
+      regions,
+      donors,
+      partners,
+      directions,
+      currentPage: page,
+    },
+    revalidate: 600
   }
 }
 

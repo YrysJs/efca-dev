@@ -357,6 +357,7 @@ export async function getStaticProps(context) {
       ...(await serverSideTranslations(locale, ['common'])),
       data: response.data
     },
+    revalidate: 600
   }
 }
 

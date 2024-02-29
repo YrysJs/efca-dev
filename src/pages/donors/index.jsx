@@ -516,7 +516,7 @@ const Donors = (data) => {
         </>
     )
 }
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     const { locale } = context
     const fetchDonors = await api.get('/donors', {
         headers: { 'Accept-Language' : locale }
@@ -534,6 +534,7 @@ export async function getServerSideProps(context) {
             ...fetchReports.data,
             ...fetchPartners.data,
         },
+        revalidate: 3600
     }
 }
 export default Donors

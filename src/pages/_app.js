@@ -55,7 +55,10 @@ const App = ({ Component, pageProps }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Layout header={<Header locale={locale} />} content={loading ? <Loader /> : <Component locale={locale} {...pageProps} /> } footer={<Footer />} />
+      <Layout 
+        header={<Header locale={locale} />} 
+        content={ loading?<Loader/>:<Component locale={locale} {...pageProps} />} 
+        footer={<Footer />} />
     </>
   )
 }

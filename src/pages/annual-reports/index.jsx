@@ -160,7 +160,7 @@ const AnnualReports = (data) => {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { locale } = context
   const response = await api.get('/annual-report', {
     headers: { 'Accept-Language' : locale }
@@ -170,6 +170,7 @@ export async function getServerSideProps(context) {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data
     },
+    revalidate: 3600
   }
 }
 

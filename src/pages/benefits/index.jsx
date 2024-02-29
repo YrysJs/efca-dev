@@ -106,27 +106,39 @@ const Benefits = ({ data, count, currentPage }) => {
   )
 }
 
-export async function getServerSideProps(context) {
-  const { locale, query } = context
-  const response = await api.get(`/benefits?page=${query.page || 1}`, {
-    params: query,
-    headers: { 'Accept-Language' : locale }
+export async function getStaticProps({ locale }) {
+  const response = await api.get(`/benefits`, {
+    headers: { 'Accept-Language': locale }
   })
-  if (response.data.pages < query.page) {
-    return {
-      redirect: {
-        destination: `/benefits?page=${response.data.pages}`,
-        statusCode: 302,
-      }
-    }
-  }
+
+  const totalPages = response.data.pages;
+
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  const allBenefitsData = await Promise.all(
+    pages.map(async (page) => {
+      const response = await api.get(`/benefits?page=${page}`, {
+        headers: { 'Accept-Language': locale }
+      });
+      return response.data;
+    })
+  );
+
+  const benefitsData = allBenefitsData.reduce(
+    (acc, curr) => ({
+      ...acc,
+      data: [...acc.data, ...curr.data],
+    }),
+    { data: [] }
+  );
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      ...response.data,
-      currentPage: query.page || 1
-    }
-  }
+      ...benefitsData,
+    },
+    revalidate: 3600
+  };
 }
 
-export default Benefits
+export default Benefits;

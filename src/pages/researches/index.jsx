@@ -107,13 +107,15 @@ const Researches = ({ data, count, currentPage }) => {
   )
 }
 
-export async function getServerSideProps(context) {
-  const { locale, query } = context
-  const response = await api.get(`/research?page=${query.page || 1}`, {
-    params: query,
-    headers: { 'Accept-Language' : locale }
+export async function getStaticProps(context) {
+  const { locale, params } = context
+  const { page } = params || { page: 1 }; 
+  const response = await api.get(`/research?page=${page}`, {
+    params,
+    headers: { 'Accept-Language': locale }
   })
-  if (response.data.pages < query.page) {
+
+  if (response.data.pages < page) {
     return {
       redirect: {
         destination: `/researches?page=${response.data.pages}`,
@@ -121,12 +123,14 @@ export async function getServerSideProps(context) {
       }
     }
   }
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data,
-      currentPage: query.page || 1
-    }
+      currentPage: page,
+    },
+    revalidate: 600
   }
 }
 
