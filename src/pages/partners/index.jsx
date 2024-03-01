@@ -71,7 +71,7 @@ const Partners = ({ partners, materials, company_partners }) => {
                                     <p className="text-sm sm:text-base font-medium lg:text-lg">
                                         { item.text }
                                     </p>
-                                    <Link href={`/success-stories/${item.id}`} className='mt-4 ml-auto lg:absolute right-[0] lg:right-[48px] lg:bottom-[0px] flex items-center justify-center gap-2.5 bg-lighterBlue w-[170px] lg:w-[219px] h-[33px] lg:h-[48px]  rounded-[24px]'>
+                                    <Link href={item.link} className='mt-4 ml-auto lg:absolute right-[0] lg:right-[48px] lg:bottom-[0px] flex items-center justify-center gap-2.5 bg-lighterBlue w-[170px] lg:w-[219px] h-[33px] lg:h-[48px]  rounded-[24px]'>
                                         <span className="text-sm lg:text-base font-bold text-[#392DCA]">{t('partners.full_history')}</span>
                                         <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">

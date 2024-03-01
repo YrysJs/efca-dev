@@ -154,9 +154,9 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                   isClearable
                   placeholder={t('success-stories.select')}
                   options={donors}
-                  defaultValue={donors.find(f => f.value === Number(query.donor_id))}
+                  defaultValue={donors.find(f => f.value === Number(query.donor_ids))}
                   styles={customStyles}
-                  onChange={(event) => updateQueryValue('donor_id', event?.value || null)}
+                  onChange={(event) => updateQueryValue('donor_ids', event?.value || null)}
                 />
               </div>
               <div className="mb-6 flex flex-col">
@@ -165,9 +165,9 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                   isClearable
                   placeholder={t('success-stories.select')}
                   options={regions}
-                  defaultValue={regions.find(f => f.value === Number(query.region_id))}
+                  defaultValue={regions.find(f => f.value === Number(query.region_ids))}
                   styles={customStyles}
-                  onChange={(event) => updateQueryValue('region_id', event?.value || null)}
+                  onChange={(event) => updateQueryValue('region_ids', event?.value || null)}
                 />
               </div>
               <div className="mb-6 flex flex-col">
@@ -176,9 +176,9 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                   isClearable
                   placeholder={t('success-stories.select')}
                   options={partners}
-                  defaultValue={partners.find(f => f.value === Number(query.partner_id))}
+                  defaultValue={partners.find(f => f.value === Number(query.partner_ids))}
                   styles={customStyles}
-                  onChange={(event) => updateQueryValue('partner_id', event?.value || null)}
+                  onChange={(event) => updateQueryValue('partner_ids', event?.value || null)}
                 />
               </div>
               <div className="flex flex-col">
@@ -299,15 +299,13 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
   )
 }
 
-export async function getStaticProps(context) {
-  const { locale, params } = context
-  const { page } = params || { page: 1 }; 
+export async function getServerSideProps(context) {
+  const { locale, query } = context
   const response = await api.get('/stories', {
-    params: { ...params, page }, 
-    headers: { 'Accept-Language': locale }
+    params: query,
+    headers: { 'Accept-Language' : locale }
   })
-
-  if (response.data.pages < page) {
+  if (response.data.pages < query.page) {
     return {
       redirect: {
         destination: `/success-stories?page=${response.data.pages}`,
@@ -315,29 +313,19 @@ export async function getStaticProps(context) {
       }
     }
   }
-
   const [regions, donors, partners, directions] = await Promise.all([
     api.get('/reference/regions'),
     api.get('/reference/donors'),
     api.get('/reference/partners'),
     api.get('/reference/directions'),
-  ]).then(res =>
-    res.map(item =>
-      item.data.data.map(item => ({ value: item.id, label: item.text }))
-    )
-  )
-
+  ]).then(res => res.map(item => item.data.data.map(item => ({ value: item.id, label: item.text }))))
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data,
-      regions,
-      donors,
-      partners,
-      directions,
-      currentPage: page,
-    },
-    revalidate: 600
+      regions, donors, partners, directions,
+      currentPage: query.page || 1
+    }
   }
 }
 
