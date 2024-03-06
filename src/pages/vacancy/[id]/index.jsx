@@ -41,7 +41,7 @@ const VacancyDetails = ({ data }) => {
       </section>
       <section className="px-3 lg:px-0 py-6 bg-white">
         <Container shrink className="flex-col">
-          <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">{t('vacancy.links')}:</h3>
+          {/* <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">{t('vacancy.links')}:</h3> */}
           <p className="mt-6 text-sm md:text-lg lg:text-lg font-medium">{data.link}</p>
         </Container>
       </section>

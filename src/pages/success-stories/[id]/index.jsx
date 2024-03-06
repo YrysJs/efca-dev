@@ -56,7 +56,7 @@ const Galery = ({images, openGalery}) => {
   )
 }
 
-const ProjectDetails = ({ data }) => {
+const SuccesStoriesDetails = ({ data }) => {
   const { t } = useTranslation()
   const [galeryState, setGaleryState] = useState(false)
   const [images, setImages] = useState(null)
@@ -78,24 +78,24 @@ const ProjectDetails = ({ data }) => {
             <div className="flex-[2] smd:mr-8 md:mr-10 lg:mr-12 flex flex-col justify-center px-3 xl:px-0">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{data.title}</h1>
               { data.donors !== null && 
-                <div className="mt-10 flex items-center">
+                <div className="mt-10 flex items-start">
                   <span className="mr-1 font-semibold">{t('projects.donor')}:</span>
                   <span>{ data.donors.map( item => item.text).join(', ') }</span>
                 </div>
               }
-              <div className="mt-4 sm:mt-6 flex items-center">
+              <div className="mt-4 sm:mt-6 flex items-start">
                 <span className="mr-1 font-semibold">{t('projects.period')}:</span>
                 <span>{data.date_from} - {data.date_to}</span>
               </div>
               {
                 data.regions !== null &&
-                <div className="mt-4 sm:mt-6 flex items-center">
+                <div className="mt-4 sm:mt-6 flex items-start">
                   <span className="mr-1 font-semibold">{t('projects.region')}:</span>
                   <span>{ data.regions.join(', ') }</span>
                 </div>
               }
               { data.links !== null &&
-                <div className="mt-4 mb-4 sm:mb-0 sm:mt-6 flex items-center">
+                <div className="mt-4 mb-4 sm:mb-0 sm:mt-6 flex items-start">
                   <span className="mr-1 font-semibold">{t('projects.socials')}:</span>
                   {data.links.map( (item,index, arr) => {
                     return (
@@ -359,4 +359,4 @@ export async function getStaticProps(context) {
   }
 }
 
-export default ProjectDetails
+export default SuccesStoriesDetails

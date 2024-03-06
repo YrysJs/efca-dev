@@ -70,7 +70,7 @@ const AnnualReports = (data) => {
           })}>
             {data['annual-report'].stats.map( (item, index) => {
               return (
-                <div key={index} class="flex smd:justify-center items-center gap-[64px] lg:block">
+                <div key={index} className="flex smd:justify-center items-center gap-[64px] lg:block">
                   <CircularProgressBarWithImage percentage={item.percent} imageUrl={item.image}/>
                   <div className='lg:ml-[50%] mt-0 lg:mt-5 lg:w-[150px]'>
                     <h3 className='text-primary text-[36px] sm:text-[64px] font-bold leading-[55px]'>

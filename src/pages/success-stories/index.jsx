@@ -314,10 +314,26 @@ export async function getServerSideProps(context) {
     }
   }
   const [regions, donors, partners, directions] = await Promise.all([
-    api.get('/reference/regions'),
-    api.get('/reference/donors'),
-    api.get('/reference/partners'),
-    api.get('/reference/directions'),
+    api.get('/reference/regions', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
+    api.get('/reference/donors', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
+    api.get('/reference/partners', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
+    api.get('/reference/directions', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
   ]).then(res => res.map(item => item.data.data.map(item => ({ value: item.id, label: item.text }))))
   return {
     props: {

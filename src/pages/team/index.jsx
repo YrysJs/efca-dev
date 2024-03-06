@@ -122,7 +122,7 @@ const Team = ({ trustees, employees }) => {
                 {activeCard === index && item.tooltip && (
                   <>
                     <div 
-                      className={clsx("hidden xl:block absolute z-[9999] bottom-[calc(100%-24px)] left-0 drop-shadow translate-y-full animate-[growUp_0.3s_ease-in-out_forwards]", {
+                      className={clsx("hidden xxl:block absolute z-[9999] bottom-[calc(100%-24px)] left-0 drop-shadow translate-y-full animate-[growUp_0.3s_ease-in-out_forwards]", {
                         
                       })}
                     >
@@ -140,7 +140,7 @@ const Team = ({ trustees, employees }) => {
                       </svg>
                     </div>
                     <div 
-                      className={clsx("block xl:hidden fixed w-[90%] top-[50%] left-[50%] shadow-lg translate-y-[-50%] translate-x-[-50%] z-[9999] ", {
+                      className={clsx("block xxl:hidden fixed w-[90%] top-[50%] left-[50%] shadow-lg translate-y-[-50%] translate-x-[-50%] z-[9999] ", {
                         
                       })}
                     >

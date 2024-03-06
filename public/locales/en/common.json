@@ -41,7 +41,7 @@
         "desc": "Our mission, history"
       },
       "team": {
-        "root": "Command",
+        "root": "Team",
         "desc": "Staff and board of trustees"
       },
       "annual-reports": {
@@ -126,13 +126,13 @@
     "nice": "Great!"
   },
   "about-us": {
-    "history-title": "Our story",
+    "history-title": "Our history",
     "values-title": "Our Values"
   },
   "team": {
-    "head": "Board of trustees | Our employees",
+    "head": "Board of trustees | Our staff",
     "trustees": "Board of trustees",
-    "employees": "Our employees",
+    "employees": "Our staff",
     "show-more": "Show more"
   },
   "faq": {

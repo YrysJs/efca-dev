@@ -8,7 +8,6 @@ import Image from 'next/image'
 
 const Partners = ({ partners, materials, company_partners }) => {
     const { t } = useTranslation()
-    console.log(company_partners);
     return (
         <>
              <Head>

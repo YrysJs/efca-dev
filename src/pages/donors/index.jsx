@@ -318,14 +318,14 @@ const Donors = (data) => {
                                 <div className="inner px-6 py-9">
                                     <ul className='text-base lg:text-lg font-medium leading-normal list-disc ml-6'>
                                         <li>
-                                            {t('step-3-content.one')}
+                                            {t('step-4-content.one')}
                                         </li>
                                     </ul>
                                     <p className='text-sm lg:text-base font-semibold leading-[148%] my-6'>
-                                        {t('step-3-content.text')}
+                                        {t('step-4-content.text')}
                                     </p>
                                     <p className='text-sm lg:text-base font-semibold'>
-                                        {t('step-3-content.date')}
+                                        {t('step-4-content.date')}
                                     </p>
                                 </div>
                             </div>
@@ -342,15 +342,15 @@ const Donors = (data) => {
                             <div className="flip-box-back shadow-md">
                                 <div className="inner px-6 py-9">
                                     <ul className='text-base lg:text-lg font-medium leading-normal list-disc ml-6'>
-                                        <li>{t('step-3-content.one')}</li>
-                                        <li>{t('step-3-content.two')}</li>
-                                        <li>{t('step-3-content.three')}</li>
+                                        <li>{t('step-5-content.one')}</li>
+                                        <li>{t('step-5-content.two')}</li>
+                                        <li>{t('step-5-content.three')}</li>
                                     </ul>
                                     <p className='text-sm lg:text-base font-semibold leading-[148%] my-6'>
-                                        {t('step-3-content.text')}
+                                        {t('step-5-content.text')}
                                     </p>
                                     <p className='text-sm lg:text-base font-semibold'>
-                                        {t('step-3-content.date')}
+                                        {t('step-5-content.date')}
                                     </p>
                                 </div>
                             </div>
@@ -505,7 +505,7 @@ const Donors = (data) => {
                                     </div>
                                     <div className='pt-4 text-center'>
                                         <h3 className='text-base font-medium pb-2'>{item.text}</h3>
-                                        <Link className='block text-xs text-gray' href={item.link}>{item.link}</Link>
+                                        {/* <Link className='block text-xs text-gray' href={item.link}>{item.link}</Link> */}
                                     </div>
                                 </div>
                             )

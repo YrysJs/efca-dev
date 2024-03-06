@@ -269,7 +269,7 @@ const Projects = ({ data, count, currentPage, regions, donors, partners, directi
                       <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
                       <div className="mt-6 flex justify-end items-center text-xs sm:text-sm xl:text-base">
                         <div className="px-4 xl:px-7 py-2 xl:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary">
-                        {t('success-stories.filter.from')} {item.date_from} {t('success-stories.filter.to')} {item.date_to}
+                        {t('success-stories.filter.from')} {item.date_from.split(".").reverse()[0]} {t('success-stories.filter.to')} {item.date_to.split(".").reverse()[0]}
                         </div>
                         <div className={clsx('ml-2 lg:ml-6 px-4 xl:px-7 py-2 xl:py-3 w-fit rounded-[40px] font-semibold', {
                           ['bg-active text-activeDark']: item.is_active,
@@ -313,10 +313,26 @@ export async function getServerSideProps(context) {
     }
   }
   const [regions, donors, partners, directions] = await Promise.all([
-    api.get('/reference/regions'),
-    api.get('/reference/donors'),
-    api.get('/reference/partners'),
-    api.get('/reference/directions'),
+    api.get('/reference/regions', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
+    api.get('/reference/donors', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
+    api.get('/reference/partners', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
+    api.get('/reference/directions', {
+      headers: {
+        'Accept-Language': locale
+      }
+    }),
   ]).then(res => res.map(item => item.data.data.map(item => ({ value: item.id, label: item.text }))))
   return {
     props: {

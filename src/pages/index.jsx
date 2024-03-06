@@ -254,7 +254,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
           <Link className='flex bg-primary justify-center items-center gap-2.5 w-[144px] h-[48px] rounded-[40px] text-base' href={annual_report.main_year.file.path}>
             <span className='text-base text-white font-semibold'>{t('annual-reports.download')}</span> 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M4 14H12M8 2L8 11.3333M8 11.3333L11.3333 8M8 11.3333L4.66667 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 14H12M8 2L8 11.3333M8 11.3333L11.3333 8M8 11.3333L4.66667 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
         </Container>
@@ -267,7 +267,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
             <div className="block sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g opacity="0.5">
-                <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </g>
               </svg>
             </div>
@@ -306,7 +306,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
             <div className="block sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g opacity="0.5">
-                <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </g>
               </svg>
             </div>
@@ -367,7 +367,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
               <div className="block sm:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g opacity="0.5">
-                  <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </g>
                 </svg>
               </div>
@@ -419,7 +419,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
             <div className="block sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g opacity="0.5">
-                <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </g>
               </svg>
             </div>
