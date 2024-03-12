@@ -50,14 +50,12 @@ const Vacancy = ({ data, count, currentPage }) => {
   )
 }
 
-export async function getStaticProps(context) {
-  const { locale, params } = context
-  const { page } = params || { page: 1 }; 
-  const response = await api.get(`/vacancy?page=${page}`, {
-    headers: { 'Accept-Language': locale }
+export async function getServerSideProps(context) {
+  const { locale, query } = context
+  const response = await api.get(`/vacancy?page=${query.page || 1}`, {
+    headers: { 'Accept-Language' : locale }
   })
-
-  if (response.data.pages < page) {
+  if (response.data.pages < query.page) {
     return {
       redirect: {
         destination: `/vacancy?page=${response.data.pages}`,
@@ -65,14 +63,12 @@ export async function getStaticProps(context) {
       }
     }
   }
-
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data,
-      currentPage: page,
+      currentPage: query.page || 1
     },
-    revalidate: 3600
   }
 }
 

@@ -66,30 +66,27 @@ const GrantsCompetitions = ({ data, count, currentPage }) => {
   )
 }
 
-export async function getStaticProps({ locale, params }) {
-  const { page = 1 } = params || {}; 
+export async function getServerSideProps(context) {
+  const { locale, query } = context
   const response = await api.get(`/contest`, {
-    params: { ...params, page },
-    headers: { 'Accept-Language': locale }
-  });
-
-  if (response.data.pages < page) {
+    params: query,
+    headers: { 'Accept-Language' : locale }
+  })
+  if (response.data.pages < query.page) {
     return {
       redirect: {
-        destination: `/grants-competitions?page=${response.data.pages}`,
+        destination: `/grants-competetions?page=${response.data.pages}`,
         statusCode: 302,
       }
     }
   }
-
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data,
-      currentPage: page
+      currentPage: query.page || 1
     },
-    revalidate: 600
-  };
+  }
 }
 
 export default GrantsCompetitions;

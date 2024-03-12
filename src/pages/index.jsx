@@ -290,7 +290,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
                     <p className='text-base sm:text-lg py-3 sm:pt-[20px] sm:pb-[33px] font-medium'>
                       {item.text}
                     </p>
-                    <Link href={`/projects/${item.id}`} className='text-sm sm:text-base flex ml-auto w-[127px] sm:w-[147px] h-[41px] sm:h-[48px] rounded-[24px] border-primaryDark border-[2px] items-center justify-center font-semibold'>{t('main.more')}</Link>
+                    <Link href={`/projects/${item.id}`} className='text-sm sm:text-base flex ml-auto w-fit py-2 px-3 rounded-[24px] border-primaryDark border-[2px] items-center justify-center font-semibold'>{t('main.more')}</Link>
                 </div>
               </div>
             )

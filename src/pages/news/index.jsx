@@ -7,25 +7,22 @@ const News = (data) => {
     <MainMaterials data={data} translate='materials.head.news' route='news'></MainMaterials>
   )
 }
-export async function getStaticProps({ locale }) {
-  const materialType = 'news';
-
-  const response = await api.get(`/materials?page=1&type=${materialType}`, {
-    headers: { 'Accept-Language': locale }
+export async function getServerSideProps(context) {
+  const { locale, query } = context
+  const response = await api.get(`/materials?page=${query.page || 1}&type=news`, {
+    params: query,
+    headers: { 'Accept-Language' : locale }
   });
-
-  const fetchMaterialsSlider = await api.get(`/materials/sliders?type=${materialType}`, {
-    headers: { 'Accept-Language': locale }
+  const fetchMaterialsSlider = await api.get('/materials/sliders?type=news', {
+    headers: { 'Accept-Language' : locale }
   });
-
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       data: response.data,
       slider: fetchMaterialsSlider.data
     },
-    revalidate: 600
-  };
+  }
 }
 
 export default News;

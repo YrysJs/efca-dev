@@ -115,7 +115,7 @@ const Team = ({ trustees, employees }) => {
                       objectPosition='top'
                     />
                   </div>
-                  <span className="mt-4 font-medium">{item.full_name}</span>
+                  <span className="mt-4 font-medium text-center">{item.full_name}</span>
                   <span className="mt-2 text-sm font-medium text-center text-primary">{item.position}</span>
                   <span className="mt-2 text-sm font-medium text-center text-gray">{item.email}</span>
                 </div>

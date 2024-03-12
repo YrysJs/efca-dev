@@ -8,23 +8,22 @@ const Business = (data) => {
   )
 }
 
-export async function getStaticProps({ locale }) {
-  const response = await api.get(`/materials?page=1&type=business`, {
-    headers: { 'Accept-Language': locale }
+export async function getServerSideProps(context) {
+  const { locale, query } = context
+  const response = await api.get(`/materials?page=${query.page || 1}&type=business`, {
+    params: query,
+    headers: { 'Accept-Language' : locale }
   });
-
   const fetchMaterialsSlider = await api.get('/materials/sliders?type=business', {
-    headers: { 'Accept-Language': locale }
+    headers: { 'Accept-Language' : locale }
   });
-
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       data: response.data,
       slider: fetchMaterialsSlider.data
     },
-    revalidate: 600
-  };
+  }
 }
 
 export default Business;

@@ -146,7 +146,7 @@ const settings2 = {
 
 const Donors = (data) => {
     const { t } = useTranslation()
-
+    console.log(data);
     useEffect( () => {
         let windowHeight = window.innerHeight
         const chipAnim = () => {
@@ -497,7 +497,7 @@ const Donors = (data) => {
                 <Container className='flex-col gap-x-9 gap-y-7 lg:gap-12'>
                     <h3 className='text-2xl lg:text-3xl font-bold text-primaryDark uppercase'>{t('donors.our-donors')}</h3>
                     <div className="flex flex-wrap justify-between gap-x-9 lg:gap-x-[90px] gap-y-7 lg:gap-12">
-                        { data.company_partners.map( (item, i) => {
+                        { data.data.map( (item, i) => {
                             return (
                                 <div key={i} className='w-[150px] md:w-[228px] h-[228px] relative'>
                                     <div className="relative w-[100%] h-[140px]">
@@ -524,7 +524,7 @@ export async function getStaticProps(context) {
     const fetchReports = await api.get('/annual-report', {
         headers: { 'Accept-Language' : locale }
     })
-    const fetchPartners = await api.get('/partners', {
+    const fetchPartners = await api.get('/reference/donors', {
         headers: { 'Accept-Language' : locale }
     })
     return {
