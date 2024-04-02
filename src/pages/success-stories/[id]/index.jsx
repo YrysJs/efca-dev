@@ -287,6 +287,7 @@ const SuccesStoriesDetails = ({ data }) => {
                 </div>
                 <span className="mt-4 font-medium">{item.full_name}</span>
                 <span className="mt-2 text-sm font-medium text-center text-primary">{item.position}</span>
+                <Link href={item.link} className='mt-2 text-gray text-sm font-medium'>{item.title}</Link>
               </div>
             ))}
           </div>

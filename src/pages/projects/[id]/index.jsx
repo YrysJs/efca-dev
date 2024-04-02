@@ -269,6 +269,7 @@ const ProjectDetails = ({ data }) => {
       )
     },
     contacts: ({ data }) => {
+      console.log(data)
       return (
         <Container shrink className="my-6 flex-col px-3 xl:px-0">
           <h3 className="font-semibold text-lg md:text-xl lg:text-2xl">{t('projects.contacts')}:</h3>
@@ -285,7 +286,7 @@ const ProjectDetails = ({ data }) => {
                 </div>
                 <span className="mt-4 font-medium">{item.full_name}</span>
                 <span className="mt-2 text-sm font-medium text-center text-primary">{item.position}</span>
-                <Link href={item.link} className='mt-2 text-gray text-sm font-medium'>link</Link>
+                <Link href={item.link} className='mt-2 text-gray text-sm font-medium'>{item.title}</Link>
               </div>
             ))}
           </div>
