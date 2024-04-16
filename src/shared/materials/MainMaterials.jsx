@@ -79,7 +79,6 @@ const settings = {
 
 const MainMaterials = ({data, translate, route}) => {
   const { t } = useTranslation()
-
   const [searchField, setSearchFiled] = useState('')
   const router = useRouter()
   let { query } = router
@@ -172,7 +171,7 @@ const MainMaterials = ({data, translate, route}) => {
                 )
               })}
             </div>}
-          <Pagination totalCount={4} currentPage={1} />
+          <Pagination totalCount={data.data.count} currentPage={1} />
         </Container>
       </section>
     </>

@@ -14,28 +14,21 @@ import clsx from 'clsx'
 import { useState, useRef, useEffect } from 'react'
 
 
-const customStyles = {
-  control: (provided) => ({
-    ...provided,
-    border: 'none',
-    outline: 'none',
-    boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-    fontWeight: 500
-  }),
-}
+// const customStyles = {
+//   control: (provided) => ({
+//     ...provided,
+//     border: 'none',
+//     outline: 'none',
+//     boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+//     fontWeight: 500
+//   }),
+// }
 
 const initialQuery = {
   search: null,
-  direction_id: null,
-  donor_id: null,
-  region_id: null,
-  partner_id: null,
-  is_active: null,
-  date_from: null,
-  date_to: null
 }
 
-const SuccessStories = ({ data, count, currentPage, regions, donors, partners, directions }) => {
+const SuccessStories = ({ data, count, currentPage }) => {
   const { t } = useTranslation()
   const router = useRouter()
   const { query } = router
@@ -49,28 +42,14 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
     router.push({ pathname: '/success-stories', query: removeEmpty({ ...router.query, ...query }) })
   }
 
-  const handleChangeDate = (e) => {
-    const date = moment(e.target.value, 'DD.MM.YY')
-    if (date.isValid() && e.target.value.trim().length === 8) {
-      setFilters((prevFilters) => ({
-        ...prevFilters,
-        [e.target.name]: date.format('YYYY-MM-DD'),
-      }));
-    } 
-    if (e.target.value.trim().length === 0) {
-      setFilters((prevFilters) => ({
-        ...prevFilters,
-        [e.target.name]: null,
-      }));
-    }
-  }
+  console.log(data);
 
-  const updateQueryValue = (key, value) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [key]: value,
-    }));
-  }
+  // const updateQueryValue = (key, value) => {
+  //   setFilters((prevFilters) => ({
+  //     ...prevFilters,
+  //     [key]: value,
+  //   }));
+  // }
 
   const handleChangeFilter = () => {
     setFilterState(!filterState);
@@ -85,19 +64,19 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
     setSearchFiled(e.target.value)
   }
 
-  useEffect(() => {
-    const { direction_id, donor_id, region_id, partner_id, date_from, date_to, is_active } = query;
-    setFilters({
-      ...filters,
-      direction_id: direction_id ? Number(direction_id) : null,
-      donor_id: donor_id ? Number(donor_id) : null,
-      region_id: region_id ? Number(region_id) : null,
-      partner_id: partner_id ? Number(partner_id) : null,
-      date_from: date_from ? moment(date_from, 'YYYY.MM.DD').format('DD.MM.YY') : null,
-      date_to: date_to ? moment(date_to, 'YYYY.MM.DD').format('DD.MM.YY') : null,
-      is_active: is_active === 'true' ? true : is_active === 'false' ? false : null,
-    });
-  }, []);
+  // useEffect(() => {
+  //   const { direction_id, donor_id, region_id, partner_id, date_from, date_to, is_active } = query;
+  //   setFilters({
+  //     ...filters,
+  //     direction_id: direction_id ? Number(direction_id) : null,
+  //     donor_id: donor_id ? Number(donor_id) : null,
+  //     region_id: region_id ? Number(region_id) : null,
+  //     partner_id: partner_id ? Number(partner_id) : null,
+  //     date_from: date_from ? moment(date_from, 'YYYY.MM.DD').format('DD.MM.YY') : null,
+  //     date_to: date_to ? moment(date_to, 'YYYY.MM.DD').format('DD.MM.YY') : null,
+  //     is_active: is_active === 'true' ? true : is_active === 'false' ? false : null,
+  //   });
+  // }, []);
 
   return (
     <>
@@ -116,8 +95,8 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
               </button>
             </div>
             <div className={clsx('mt-6 p-3 rounded-lg bg-grayLight flex flex-col', {
-              ['hidden lg:flex']: filterState === false,
-              ['flex lg:flex']: filterState === true,
+              ['hidden']: filterState === false,
+              ['flex']: filterState === true,
             })}>
               <div className="mb-6 flex flex-col">
                 <label className="mb-2 font-medium">{t('success-stories.search')}</label>
@@ -135,85 +114,6 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                       <path d="M13.3194 12.2675C12.9289 11.877 12.2957 11.877 11.9052 12.2675C11.5147 12.658 11.5147 13.2912 11.9052 13.6817L13.3194 12.2675ZM16.9052 18.6817C17.2957 19.0722 17.9289 19.0722 18.3194 18.6817C18.7099 18.2912 18.7099 17.658 18.3194 17.2675L16.9052 18.6817ZM8.44564 13.6413C5.77626 13.6413 3.6123 11.4773 3.6123 8.80794H1.6123C1.6123 12.5819 4.67169 15.6413 8.44564 15.6413V13.6413ZM3.6123 8.80794C3.6123 6.13857 5.77626 3.97461 8.44564 3.97461V1.97461C4.67169 1.97461 1.6123 5.034 1.6123 8.80794H3.6123ZM8.44564 3.97461C11.115 3.97461 13.279 6.13857 13.279 8.80794H15.279C15.279 5.034 12.2196 1.97461 8.44564 1.97461V3.97461ZM13.279 8.80794C13.279 11.4773 11.115 13.6413 8.44564 13.6413V15.6413C12.2196 15.6413 15.279 12.5819 15.279 8.80794H13.279ZM11.9052 13.6817L16.9052 18.6817L18.3194 17.2675L13.3194 12.2675L11.9052 13.6817Z" fill="black"/>
                     </svg>
                   </div>
-                </div>
-              </div>
-              <div className="mb-6 flex lg:hidden flex-col">
-                <label className="mb-2 font-medium">{t('success-stories.filter.direction')}</label>
-                <Select 
-                  isClearable
-                  placeholder={t('projects.select')}
-                  options={directions}
-                  defaultValue={directions.find(f => f.value === Number(query.direction_id))}
-                  styles={customStyles}
-                  onChange={(event) => updateQueryValue('direction_id', event?.value || null)}
-                />
-              </div>
-              <div className="mb-6 flex flex-col">
-                <label className="mb-2 font-medium">{t('success-stories.filter.donor')}</label>
-                <Select 
-                  isClearable
-                  placeholder={t('success-stories.select')}
-                  options={donors}
-                  defaultValue={donors.find(f => f.value === Number(query.donor_ids))}
-                  styles={customStyles}
-                  onChange={(event) => updateQueryValue('donor_ids', event?.value || null)}
-                />
-              </div>
-              <div className="mb-6 flex flex-col">
-                <label className="mb-2 font-medium">{t('success-stories.filter.region')}</label>
-                <Select 
-                  isClearable
-                  placeholder={t('success-stories.select')}
-                  options={regions}
-                  defaultValue={regions.find(f => f.value === Number(query.region_ids))}
-                  styles={customStyles}
-                  onChange={(event) => updateQueryValue('region_ids', event?.value || null)}
-                />
-              </div>
-              <div className="mb-6 flex flex-col">
-                <label className="mb-2 font-medium">{t('success-stories.filter.partners')}</label>
-                <Select 
-                  isClearable
-                  placeholder={t('success-stories.select')}
-                  options={partners}
-                  defaultValue={partners.find(f => f.value === Number(query.partner_ids))}
-                  styles={customStyles}
-                  onChange={(event) => updateQueryValue('partner_ids', event?.value || null)}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="mb-2 font-medium">{t('success-stories.filter.date')}</label>
-                <div className="flex items-center">
-                  <span className="mr-2">{t('success-stories.filter.from')}</span>
-                  <InputMask
-                    name="date_from"
-                    mask="99.99.99"
-                    maskChar=" "
-                    defaultValue={moment(query.date_from, 'YYYY.MM.DD').format('DD.MM.YY') ?? ''}
-                    className="outline-none py-2 px-3 w-24 font-medium rounded"
-                    onChange={handleChangeDate}
-                  />
-                  <span className="mx-2">{t('success-stories.filter.to')}</span>
-                  <InputMask
-                    name="date_to"
-                    mask="99.99.99"
-                    maskChar=" "
-                    defaultValue={moment(query.date_to, 'YYYY.MM.DD').format('DD.MM.YY') ?? ''}
-                    className="outline-none py-2 px-3 w-24 font-medium rounded"
-                    onChange={handleChangeDate}
-                  />
-                </div>
-              </div>
-              <div className="my-6 h-[1px] w-full bg-gray opacity-25" />
-              <div className="flex flex-col">
-                <label className="mb-2 font-medium">{t('success-stories.filter.status')}</label>
-                <div className="flex items-center">
-                  <input type="checkbox" checked={query.is_active === 'true' || filters.is_active === 'true'} onChange={event => updateQueryValue('is_active', event.target.checked || null )} />
-                  <span className="ml-3 font-medium">{t('projects.filter.active')}</span>
-                </div>
-                <div className="mt-2 flex items-center">
-                  <input type="checkbox" checked={query.is_active === 'false' || filters.is_active === 'false'} onChange={event => updateQueryValue('is_active', event.target.checked ? false : null  )} />
-                  <span className="ml-3 font-medium">{t('projects.filter.passive')}</span>
                 </div>
               </div>
               <button className="bg-primary text-white py-2 px-3 mt-6 mb-2 rounded-lg" onClick={applyQuery}>Применить</button>
@@ -250,7 +150,7 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
             </div>
             <div className="mt-6 flex flex-col">
               {data.length ? data.map(item => (
-                <Link key={item.id} href={`/success-stories/${item.id}`}>
+                <Link key={item.id} href={`/materials/${item.id}`}>
                   <div className="mb-6 min-h-[264px] flex flex-col smd:flex-row cursor-pointer">
                     <div className="relative h-[188px] sm:h-[240px] smd:h-[340px] smd:flex-1">
                       <Image
@@ -270,14 +170,14 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
                       <p className="mt-4 text-base lg:text-lg font-medium">{item.text}</p>
                       <div className="mt-6 flex justify-end items-center text-xs sm:text-sm xl:text-base">
                         <div className="px-4 xl:px-7 py-2 xl:py-3 rounded-[40px] bg-secondaryDark font-semibold text-primary">
-                            {t('success-stories.filter.from')} {item.date_from} {t('success-stories.filter.to')} {item.date_to}
+                            {item.created_at}
                         </div>
-                        <div className={clsx('ml-2 lg:ml-6 px-4 xl:px-7 py-2 xl:py-3 w-fit rounded-[40px] font-semibold', {
+                        {/* <div className={clsx('ml-2 lg:ml-6 px-4 xl:px-7 py-2 xl:py-3 w-fit rounded-[40px] font-semibold', {
                           ['bg-active text-activeDark']: item.is_active,
                           ['bg-passive text-passiveDark']: !item.is_active,
                         })}>
                           {item.is_active ? t('vacancy.active') : t('vacancy.passive')}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -301,45 +201,44 @@ const SuccessStories = ({ data, count, currentPage, regions, donors, partners, d
 
 export async function getServerSideProps(context) {
   const { locale, query } = context
-  const response = await api.get('/stories', {
+  const response = await api.get('/materials?type=history', {
     params: query,
     headers: { 'Accept-Language' : locale }
   })
   if (response.data.pages < query.page) {
     return {
       redirect: {
-        destination: `/success-stories?page=${response.data.pages}`,
+        destination: `/materials?type=history&page=${response.data.pages}`,
         statusCode: 302,
       }
     }
   }
-  const [regions, donors, partners, directions] = await Promise.all([
-    api.get('/reference/regions', {
-      headers: {
-        'Accept-Language': locale
-      }
-    }),
-    api.get('/reference/donors', {
-      headers: {
-        'Accept-Language': locale
-      }
-    }),
-    api.get('/reference/partners', {
-      headers: {
-        'Accept-Language': locale
-      }
-    }),
-    api.get('/reference/directions', {
-      headers: {
-        'Accept-Language': locale
-      }
-    }),
-  ]).then(res => res.map(item => item.data.data.map(item => ({ value: item.id, label: item.text }))))
+  // const [regions, donors, partners, directions] = await Promise.all([
+  //   api.get('/reference/regions', {
+  //     headers: {
+  //       'Accept-Language': locale
+  //     }
+  //   }),
+  //   api.get('/reference/donors', {
+  //     headers: {
+  //       'Accept-Language': locale
+  //     }
+  //   }),
+  //   api.get('/reference/partners', {
+  //     headers: {
+  //       'Accept-Language': locale
+  //     }
+  //   }),
+  //   api.get('/reference/directions', {
+  //     headers: {
+  //       'Accept-Language': locale
+  //     }
+  //   }),
+  // ]).then(res => res.map(item => item.data.data.map(item => ({ value: item.id, label: item.text }))))
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
       ...response.data,
-      regions, donors, partners, directions,
       currentPage: query.page || 1
     }
   }

@@ -44,7 +44,7 @@ const routes = [
     labelKey: 'materials', 
     children: [
       { labelKey: 'for-business', path: '/for-business' },
-      { labelKey: 'for-ngo', path: '/for-ngo' },
+      // { labelKey: 'for-ngo', path: '/for-ngo' },
       { labelKey: 'news', path: '/news' },
       { labelKey: 'researches', path: '/researches' },
       { labelKey: 'benefits', path: '/benefits' },
