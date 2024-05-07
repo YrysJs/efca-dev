@@ -68,7 +68,7 @@
     "materials": {
       "root": "Materials",
       "for-business": {
-        "root": "For business"
+        "root": "Business and NGO"
       },
       "for-ngo": {
         "root": "For NGOs"
@@ -214,7 +214,7 @@
     "step-3": "Project approval and contract signing",
     "step-4": "Project implementation",
     "step-5": "Performance evaluation",
-    "donors-review": "Donor Feedback",
+    "donors-review": "Donors and partners feedback",
     "our-donors": "Our donors"
   },
   "open-gal": "Open gallery",
