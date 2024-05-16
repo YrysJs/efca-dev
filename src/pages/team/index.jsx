@@ -8,6 +8,7 @@ import { Container } from '@/shared/ui'
 import { api } from '@/shared/api'
 import clsx from 'clsx'
 
+
 const settings = {
   autoplay: true,
   autoplaySpeed: 5000,
