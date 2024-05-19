@@ -172,7 +172,7 @@ const Home = ({annual_report, donors, materials, partners, projects, slider, tex
                         {item.text}
                       </p>
                     </div>
-                    <Link href="/about-us" className='py-3 px-6 md:px-7 w-fit ml-auto bg-white rounded-[25px] border-2 border-primary text-sm md:text-base font-medium'>{t('main.more')}</Link>
+                    <Link href={item.link} className='py-3 px-6 md:px-7 w-fit ml-auto bg-white rounded-[25px] border-2 border-primary text-sm md:text-base font-medium'>{t('main.more')}</Link>
                   </Container>
                 </section>
                 <section className="hero-slider mt-8">
