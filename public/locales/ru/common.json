@@ -154,7 +154,8 @@
   "contacts": {
     "head": "Контакты",
     "address": "Адрес",
-    "phone": "Номера телефона"
+    "phone": "Номера телефона",
+    "phone_title": "Фонд Евразия Центральной Азии"
   },
   "grants-competetions": {
     "head": "Конкурсы",

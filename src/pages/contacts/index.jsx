@@ -37,7 +37,7 @@ const Contacts = ({ emails, addresses, phone_number }) => {
               <span className="ml-3 text-lg md:text-xl lg:text-2xl font-semibold">{t('contacts.phone')}</span>
             </div>
             <div className="mt-3 flex items-start lg:items-center flex-col sm:flex-row lg:flex-row">
-                <span className="mr-2 text-base lg:text-lg font-medium">{t('main.head')}:</span>
+                <span className="mr-2 text-base lg:text-lg font-medium">{t('contacts.phone_title')}:</span>
                 <Link href={'tel:' + phone_number}>
                   <span className="text-base lg:text-lg font-medium text-primaryLight hover:underline">{phone_number}</span>
                 </Link>

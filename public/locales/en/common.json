@@ -154,7 +154,8 @@
   "contacts": {
     "head": "Contact us",
     "address": "Address",
-    "phone": "Phone Numbers"
+    "phone": "Phone Numbers",
+    "phone_title": "Eurasia Foundation of Central Asia"
   },
   "grants-competetions": {
     "head": "Competitions",
